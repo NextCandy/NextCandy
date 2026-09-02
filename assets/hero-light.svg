@@ -39,7 +39,7 @@
       <circle r="5" fill="#FF5F57"/><circle cx="22" r="5" fill="#FEBC2E"/><circle cx="44" r="5" fill="#28C840"/>
       <text x="64" y="4" class="micro" fill="#5B7885">NEXTCANDY / PROFILE_CONSOLE · V2</text>
     </g>
-    <g transform="translate(994 24)">
+    <g transform="translate(950 24)">
       <circle class="pulse" r="4.5" fill="#12995F" filter="url(#glow)"/>
       <text x="16" y="4" class="micro" fill="#12995F">ALL SYSTEMS OPERATIONAL</text>
     </g>
