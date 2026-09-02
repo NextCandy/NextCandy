@@ -197,7 +197,10 @@ def render_dashboard(username, stats, mode):
                 f'<text x="22" y="30" class="micro" fill="{t["green"]}">PUSH CADENCE</text>'
                 f'<text x="294" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">12 MO / LAST-PUSH</text></g>')
     cad_s = "\n" + "\n".join(cad_rows)
-    rec_head = (f'\n<g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
+    rec_head = (f'\n<g transform="translate(828 210)">'
+                f'<rect x="-2" y="-2" width="348" height="308" rx="16" fill="none" stroke="url(#accent)" stroke-width="4" stroke-opacity=".16"/>'
+                f'<rect width="344" height="304" rx="14" fill="{t["panel"]}" stroke="url(#accent)" stroke-width="1.5" stroke-opacity=".62"/>'
+                f'<path d="M16 0H328" stroke="{t["pink"]}" stroke-width="2" stroke-linecap="round" opacity=".9"/>'
                 f'<text x="22" y="30" class="micro" fill="{t["pink"]}">RECENT TRANSMISSIONS</text>'
                 f'<text x="322" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PUBLIC · PUSHED</text></g>')
     rec_s = "\n" + "\n".join(rec_rows)

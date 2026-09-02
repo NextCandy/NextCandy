@@ -155,7 +155,7 @@
     </g>
 
 
-<g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="#0A1420" stroke="#1E3446"/><text x="22" y="30" class="micro" fill="#FF5CA8">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#7E96A6">PUBLIC · PUSHED</text></g>
+<g transform="translate(828 210)"><rect x="-2" y="-2" width="348" height="308" rx="16" fill="none" stroke="url(#accent)" stroke-width="4" stroke-opacity=".16"/><rect width="344" height="304" rx="14" fill="#0A1420" stroke="url(#accent)" stroke-width="1.5" stroke-opacity=".62"/><path d="M16 0H328" stroke="#FF5CA8" stroke-width="2" stroke-linecap="round" opacity=".9"/><text x="22" y="30" class="micro" fill="#FF5CA8">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#7E96A6">PUBLIC · PUSHED</text></g>
 
 <g class="boot" style="animation-delay:0.3s">
       <path d="M860 274V304" stroke="#1E3446" stroke-width="1.5"/>

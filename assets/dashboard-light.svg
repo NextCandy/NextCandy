@@ -151,7 +151,7 @@
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885">08</text>
     </g>
 
-<g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/><text x="22" y="30" class="micro" fill="#E83E8C">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#5B7885">PUBLIC · PUSHED</text></g>
+<g transform="translate(828 210)"><rect x="-2" y="-2" width="348" height="308" rx="16" fill="none" stroke="url(#accent)" stroke-width="4" stroke-opacity=".16"/><rect width="344" height="304" rx="14" fill="#FFFFFF" stroke="url(#accent)" stroke-width="1.5" stroke-opacity=".62"/><path d="M16 0H328" stroke="#E83E8C" stroke-width="2" stroke-linecap="round" opacity=".9"/><text x="22" y="30" class="micro" fill="#E83E8C">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#5B7885">PUBLIC · PUSHED</text></g>
 
 <g class="boot" style="animation-delay:0.3s">
       <path d="M860 274V304" stroke="#B9D2DC" stroke-width="1.5"/>
