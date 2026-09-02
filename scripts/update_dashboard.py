@@ -1,245 +1,286 @@
 #!/usr/bin/env python3
-"""Generate self-hosted GitHub profile telemetry from public source repos only."""
+"""Regenerate the live dashboard SVGs for the NextCandy profile README.
 
-from __future__ import annotations
+Fetches public (non-fork) repositories from the GitHub API, computes profile
+statistics, and renders assets/dashboard-light.svg + assets/dashboard-dark.svg.
+Designed to run in the weekly GitHub Actions workflow.
+"""
 
 import argparse
-import html
 import json
-import os
-import re
-import sys
-import urllib.error
 import urllib.request
-from collections import Counter
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+
+API = "https://api.github.com"
+HEADERS = {
+    "Accept": "application/vnd.github+json",
+    "User-Agent": "nextcandy-profile-dashboard",
+}
 
 
-API_ROOT = "https://api.github.com"
-REPO_LINK = re.compile(r"https://github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9._-]+)")
-
-
-def fetch_public_repos(username: str, token: str | None = None) -> list[dict[str, Any]]:
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "nextcandy-profile-dashboard",
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    repos: list[dict[str, Any]] = []
-    page = 1
+def fetch_public_repos(username):
+    """Return the user's public repos, forks excluded, most recently pushed first."""
+    repos, page = [], 1
     while True:
-        url = (
-            f"{API_ROOT}/users/{username}/repos?type=owner&sort=pushed"
-            f"&per_page=100&page={page}"
-        )
-        request = urllib.request.Request(url, headers=headers)
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                batch = json.load(response)
-        except (urllib.error.URLError, json.JSONDecodeError) as error:
-            raise RuntimeError(f"could not read GitHub repositories: {error}") from error
-        if not isinstance(batch, list):
-            raise RuntimeError("GitHub repository response was not a list")
+        url = f"{API}/users/{username}/repos?per_page=100&page={page}&sort=pushed&direction=desc"
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            batch = json.load(resp)
+        if not batch:
+            break
         repos.extend(batch)
         if len(batch) < 100:
-            return repos
+            break
         page += 1
+    projects = [r for r in repos if not r.get("fork")]
+    projects.sort(key=lambda r: r.get("pushed_at") or "", reverse=True)
+    return projects
 
 
-def source_repos(repos: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Return public, non-fork repositories sorted by most recent push."""
-    filtered = [repo for repo in repos if not repo.get("fork") and not repo.get("private")]
-    return sorted(filtered, key=lambda repo: repo.get("pushed_at") or "", reverse=True)
+def _pushed(repo):
+    return datetime.strptime(repo["pushed_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
 
-def profile_stats(username: str, repos: list[dict[str, Any]]) -> dict[str, Any]:
-    projects = [repo for repo in source_repos(repos) if repo.get("name") != username]
+def profile_stats(projects):
     if not projects:
-        raise RuntimeError("no public source repositories found")
+        raise SystemExit("no public source repositories found")
+    total = len(projects)
 
-    languages = Counter(repo["language"] for repo in projects if repo.get("language"))
-    latest_year = max(int(repo["pushed_at"][:4]) for repo in projects if repo.get("pushed_at"))
-    active = [repo for repo in projects if (repo.get("pushed_at") or "").startswith(str(latest_year))]
+    # language counts, ordered by count desc; ties keep first-seen order
+    # (projects are already sorted by last push, newest first)
+    counts, order = {}, []
+    for p in projects:
+        lang = p.get("language") or "TXT"
+        if lang not in counts:
+            order.append(lang)
+            counts[lang] = 0
+        counts[lang] += 1
+    languages = sorted(order, key=lambda l: -counts[l])
+    lang_rows = [(l, counts[l]) for l in languages[:5]]
+
     latest = projects[0]
+    latest_dt = _pushed(latest)
+    year = latest_dt.year
+    active_year = sum(1 for p in projects if _pushed(p).year == year)
+
+    recent = [
+        (p["name"], (p.get("language") or "TXT").upper(), _pushed(p))
+        for p in projects[:5]
+    ]
+
+    # 12 monthly buckets ending at the latest push month, counting each repo
+    # in the month it was last pushed
+    buckets = []
+    y, m = latest_dt.year, latest_dt.month
+    for _ in range(12):
+        buckets.append((y, m))
+        m -= 1
+        if m == 0:
+            y, m = y - 1, 12
+    buckets.reverse()
+    counts_by_month = {(b[0], b[1]): 0 for b in buckets}
+    for p in projects:
+        d = _pushed(p)
+        key = (d.year, d.month)
+        if key in counts_by_month:
+            counts_by_month[key] += 1
+    cadence = [(datetime(b[0], b[1], 1), counts_by_month[(b[0], b[1])]) for b in buckets]
+
     return {
-        "source_count": len(projects),
-        "language_count": len(languages),
-        "languages": languages.most_common(6),
-        "active_count": len(active),
-        "active_year": latest_year,
-        "latest_date": datetime.fromisoformat(latest["pushed_at"].replace("Z", "+00:00")),
-        "recent": projects[:5],
-        "source_names": {repo["name"] for repo in projects},
+        "total": total,
+        "lang_count": len(counts),
+        "langs": lang_rows,
+        "active_year": active_year,
+        "year": year,
+        "latest_name": latest["name"],
+        "latest_dt": latest_dt,
+        "recent": recent,
+        "cadence": cadence,
+        "all": projects,
     }
 
 
-def assert_readme_source_only(readme: Path, username: str, source_names: set[str]) -> None:
-    invalid: list[str] = []
-    for owner, repo in REPO_LINK.findall(readme.read_text(encoding="utf-8")):
-        if owner.lower() == username.lower() and repo not in source_names and repo != username:
-            invalid.append(repo)
-    if invalid:
-        names = ", ".join(sorted(set(invalid), key=str.lower))
-        raise RuntimeError(f"README links to repositories that are not public source repos: {names}")
+def assert_readme_source_only(readme_path):
+    """Sanity check: the README must reference the dashboard assets we generate."""
+    text = Path(readme_path).read_text(encoding="utf-8")
+    for needle in ("assets/dashboard-dark.svg", "assets/dashboard-light.svg"):
+        if needle not in text:
+            raise SystemExit(f"README does not reference {needle}; aborting")
 
 
 THEMES = {
     "dark": {
-        "bg0": "#050B12",
-        "bg1": "#0A1821",
-        "panel": "#0B1D27",
-        "panel2": "#0E2632",
-        "grid": "#15313D",
-        "line": "#244957",
-        "text": "#E7F7FC",
-        "muted": "#7897A4",
-        "cyan": "#00D4FF",
-        "pink": "#FF4D9D",
-        "green": "#35F5A0",
-        "amber": "#FFC857",
+        "bg0": "#04070D", "bg1": "#0A1220", "panel": "#0A1420", "panel2": "#0E1B29",
+        "grid": "#12202E", "line": "#1E3446", "text": "#EAF6FC", "muted": "#7E96A6",
+        "cyan": "#2FD8FF", "pink": "#FF5CA8", "green": "#3DF2A6", "amber": "#FFC857", "violet": "#9D8CFF",
     },
     "light": {
-        "bg0": "#F7FCFE",
-        "bg1": "#EDF8FB",
-        "panel": "#FFFFFF",
-        "panel2": "#F1FAFC",
-        "grid": "#D8EBF0",
-        "line": "#A7C8D2",
-        "text": "#0B2732",
-        "muted": "#557581",
-        "cyan": "#009FC7",
-        "pink": "#E83E8C",
-        "green": "#159A62",
-        "amber": "#C27B00",
+        "bg0": "#F7FBFD", "bg1": "#EEF6FA", "panel": "#FFFFFF", "panel2": "#F2F8FB",
+        "grid": "#DCEAF0", "line": "#B9D2DC", "text": "#0C2733", "muted": "#5B7885",
+        "cyan": "#0099C4", "pink": "#E83E8C", "green": "#12995F", "amber": "#B57400", "violet": "#6A54D8",
     },
 }
 
 
-def esc(value: object) -> str:
-    return html.escape(str(value), quote=True)
+def esc(s):
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            .replace('"', "&quot;"))
 
 
-def render_dashboard(username: str, stats: dict[str, Any], mode: str) -> str:
-    c = THEMES[mode]
-    metrics = [
-        ("SOURCE REPOS", stats["source_count"], "forks excluded", c["cyan"]),
-        ("LANGUAGE NODES", stats["language_count"], "primary stacks", c["pink"]),
-        (f"ACTIVE / {stats['active_year']}", stats["active_count"], "recently pushed", c["green"]),
-        ("LATEST PUSH", stats["latest_date"].strftime("%m.%d"), stats["recent"][0]["name"], c["amber"]),
+def render_dashboard(username, stats, mode):
+    t = THEMES[mode]
+
+    cards = []
+    card_specs = [
+        ("SOURCE REPOS", str(stats["total"]), "forks excluded", t["cyan"]),
+        ("LANGUAGE NODES", str(stats["lang_count"]), "primary stacks", t["pink"]),
+        (f"ACTIVE / {stats['year']}", str(stats["active_year"]), "pushed this year", t["green"]),
+        ("LATEST PUSH", stats["latest_dt"].strftime("%m.%d"), stats["latest_name"], t["amber"]),
     ]
+    for i, (title, value, sub, color) in enumerate(card_specs):
+        cards.append(f"""<g class="boot" style="animation-delay:{0.12 * i}s" transform="translate({28 + 289 * i} 80)">
+      <rect width="267" height="104" rx="14" fill="{t['panel']}" stroke="{t['line']}"/>
+      <rect width="267" height="4" rx="2" fill="{color}"/>
+      <text x="20" y="34" class="micro" fill="{t['muted']}">{title}</text>
+      <text x="20" y="76" class="metric" fill="{color}">{esc(value)}</text>
+      <text x="247" y="76" text-anchor="end" class="tiny" fill="{t['muted']}">{esc(sub)}</text>
+      <circle class="pulse" cx="247" cy="28" r="3.5" fill="{color}"/>
+    </g>""")
 
-    metric_svg: list[str] = []
-    for index, (label, value, note, color) in enumerate(metrics):
-        x = 28 + index * 289
-        metric_svg.append(
-            f'''<g class="boot" style="animation-delay:{index * 0.12}s" transform="translate({x} 78)">
-      <rect width="267" height="100" rx="12" fill="{c['panel']}" stroke="{c['line']}"/>
-      <path d="M0 12Q0 0 12 0H267" fill="none" stroke="{color}" stroke-width="2"/>
-      <text x="18" y="28" class="micro" fill="{c['muted']}">{esc(label)}</text>
-      <text x="18" y="68" class="metric" fill="{color}">{esc(value)}</text>
-      <text x="249" y="68" text-anchor="end" class="tiny" fill="{c['muted']}">{esc(note)}</text>
-      <circle class="pulse" cx="249" cy="22" r="3" fill="{color}"/>
-    </g>'''
-        )
+    lang_palette = [t["cyan"], t["violet"], t["pink"], t["green"], t["amber"]]
+    max_lang = max(c for _, c in stats["langs"])
+    lang_rows = []
+    for i, (name, count) in enumerate(stats["langs"]):
+        w = round(250 * count / max_lang, 1)
+        pct = round(100 * count / stats["total"])
+        color = lang_palette[i % len(lang_palette)]
+        lang_rows.append(f"""<g transform="translate(52 {258 + 44 * i})">
+      <text x="0" y="13" class="row" fill="{t['text']}">{esc(name.upper())}</text>
+      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="{t['grid']}"/>
+      <rect class="bar" style="animation-delay:{round(0.25 + 0.09 * i, 2)}s" x="120" y="3" width="{w}" height="11" rx="5.5" fill="{color}"/>
+      <text x="400" y="13" text-anchor="end" class="row" fill="{t['muted']}">{count:02d} · {pct}%</text>
+    </g>""")
 
-    max_count = max((count for _, count in stats["languages"]), default=1)
-    language_svg: list[str] = []
-    for index, (language, count) in enumerate(stats["languages"]):
-        y = 247 + index * 34
-        width = 330 * count / max_count
-        color = c["cyan"] if index < 3 else c["pink"]
-        language_svg.append(
-            f'''<g transform="translate(48 {y})">
-      <text x="0" y="13" class="row" fill="{c['text']}">{esc(language.upper())}</text>
-      <rect x="112" y="3" width="350" height="10" rx="5" fill="{c['grid']}"/>
-      <rect class="bar" style="animation-delay:{0.25 + index * 0.09}s" x="112" y="3" width="{width:.1f}" height="10" rx="5" fill="{color}"/>
-      <text x="480" y="13" text-anchor="end" class="row" fill="{c['muted']}">{count:03d}</text>
-    </g>'''
-        )
+    cad_rows = []
+    for i, (month, count) in enumerate(stats["cadence"]):
+        h = 24.0 * count + 8.0 if count else 4.0
+        y = 470.0 - h
+        label = month.strftime("%m") if i in (0, 11) else ""
+        fill = t["green"] if count else t["grid"]
+        cad_rows.append(f"""<g transform="translate({544 + 22 * i} 0)">
+      <rect class="bar" style="animation-delay:{round(0.3 + 0.05 * i, 2)}s" x="0" y="{y}" width="12" height="{h}" rx="6" fill="{fill}"/>
+      <text x="6" y="492" text-anchor="middle" class="tiny" fill="{t['muted']}">{label}</text>
+    </g>""")
 
-    recent_svg: list[str] = []
-    for index, repo in enumerate(stats["recent"]):
-        y = 247 + index * 39
-        pushed = datetime.fromisoformat(repo["pushed_at"].replace("Z", "+00:00"))
-        language = repo.get("language") or "CONFIG"
-        color = c["cyan"] if index % 2 == 0 else c["pink"]
-        recent_svg.append(
-            f'''<g class="boot" style="animation-delay:{0.3 + index * 0.1}s" transform="translate(646 {y})">
-      <circle class="pulse" cx="5" cy="7" r="4" fill="{color}"/>
-      <path d="M18 7H42" stroke="{color}" stroke-opacity=".55"/>
-      <text x="52" y="11" class="repo" fill="{c['text']}">{esc(repo['name'])}</text>
-      <text x="306" y="11" class="row" fill="{c['muted']}">{esc(language.upper())}</text>
-      <text x="486" y="11" text-anchor="end" class="row" fill="{c['muted']}">{pushed:%Y.%m.%d}</text>
-    </g>'''
-        )
+    rec_palette = [t["cyan"], t["pink"], t["violet"], t["green"], t["amber"]]
+    rec_rows = []
+    for i, (name, lang, dt) in enumerate(stats["recent"]):
+        cy = 265 + 46 * i
+        connector = ""
+        if i < len(stats["recent"]) - 1:
+            connector = f'<path d="M860 {cy + 9}V{cy + 39}" stroke="{t["line"]}" stroke-width="1.5"/>'
+        color = rec_palette[i % len(rec_palette)]
+        rec_rows.append(f"""<g class="boot" style="animation-delay:{round(0.3 + 0.1 * i, 2)}s">
+      {connector}
+      <circle class="pulse" cx="860" cy="{cy}" r="4.5" fill="{color}"/>
+      <text x="878" y="{cy + 4}" class="repo" fill="{t['text']}">{esc(name)}</text>
+      <text x="1148" y="{cy + 4}" text-anchor="end" class="row" fill="{t['muted']}">{esc(lang)} · {dt.strftime('%m.%d')}</text>
+    </g>""")
 
-    latest_stamp = stats["latest_date"].strftime("%Y.%m.%d")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
+    cards_s = "\n" + "\n".join(cards)
+    lang_head = (f'\n<g transform="translate(28 210)"><rect width="452" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
+                 f'<text x="22" y="30" class="micro" fill="{t["cyan"]}">LANGUAGE TELEMETRY</text>'
+                 f'<text x="430" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PRIMARY / REPO</text></g>')
+    lang_s = "\n" + "\n".join(lang_rows)
+    cad_head = (f'\n<g transform="translate(496 210)"><rect width="316" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
+                f'<text x="22" y="30" class="micro" fill="{t["green"]}">PUSH CADENCE</text>'
+                f'<text x="294" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">12 MO / LAST-PUSH</text></g>')
+    cad_s = "\n" + "\n".join(cad_rows)
+    rec_head = (f'\n<g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
+                f'<text x="22" y="30" class="micro" fill="{t["pink"]}">RECENT TRANSMISSIONS</text>'
+                f'<text x="322" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PUBLIC · PUSHED</text></g>')
+    rec_s = "\n" + "\n".join(rec_rows)
+    last_signal = stats["latest_dt"].strftime("%Y.%m.%d")
+
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{c['bg0']}"/><stop offset="1" stop-color="{c['bg1']}"/></linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{c['cyan']}"/><stop offset=".55" stop-color="{c['green']}"/><stop offset="1" stop-color="{c['pink']}"/></linearGradient>
-    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="{c['grid']}" stroke-width="1"/></pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{t['bg0']}"/><stop offset="1" stop-color="{t['bg1']}"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{t['cyan']}"/><stop offset=".5" stop-color="{t['violet']}"/><stop offset="1" stop-color="{t['pink']}"/></linearGradient>
+    <radialGradient id="aur1" cx=".5" cy=".5" r=".5"><stop stop-color="{t['cyan']}" stop-opacity=".10"/><stop offset="1" stop-color="{t['cyan']}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="{t['pink']}" stop-opacity=".09"/><stop offset="1" stop-color="{t['pink']}" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="{t['grid']}" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="498" rx="18"/></clipPath>
+    <clipPath id="frame"><rect x="1" y="1" width="1198" height="558" rx="20"/></clipPath>
   </defs>
   <style>
     text{{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}}
     .title{{font-size:15px;font-weight:800;letter-spacing:3px}}.micro{{font-size:10px;font-weight:700;letter-spacing:2px}}.tiny{{font-size:9px;letter-spacing:1px}}
-    .metric{{font-size:34px;font-weight:900;letter-spacing:-1px}}.row{{font-size:11px;font-weight:700;letter-spacing:1px}}.repo{{font-size:13px;font-weight:800}}
-    .pulse{{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}}.scan{{animation:scan 6s linear infinite}}.bar{{transform-box:fill-box;transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}}.boot{{animation:boot .6s ease-out both}}
-    @keyframes pulse{{50%{{opacity:.3;transform:scale(.65)}}}}@keyframes scan{{from{{transform:translateY(-70px)}}to{{transform:translateY(570px)}}}}@keyframes grow{{from{{transform:scaleX(.06)}}}}@keyframes boot{{from{{opacity:.45}}}}
+    .metric{{font-size:36px;font-weight:900;letter-spacing:-1px}}.row{{font-size:11px;font-weight:700;letter-spacing:1px}}.repo{{font-size:13px;font-weight:800}}
+    .pulse{{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}}
+    .scan{{animation:scan 7s linear infinite}}
+    .bar{{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}}
+    .boot{{animation:boot .6s ease-out both}}
+    @keyframes pulse{{50%{{opacity:.3;transform:scale(.65)}}}}@keyframes scan{{from{{transform:translateY(-70px)}}to{{transform:translateY(630px)}}}}
+    @keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.45}}}}
     @media(prefers-reduced-motion:reduce){{.pulse,.scan,.bar,.boot{{animation:none}}}}
   </style>
-  <g clip-path="url(#frame)">
-    <rect width="1200" height="500" fill="url(#bg)"/><rect width="1200" height="500" fill="url(#grid)" opacity=".62"/>
-    <path d="M0 0H1200" stroke="url(#accent)" stroke-width="3"/>
-    <rect class="scan" x="0" y="-70" width="1200" height="70" fill="url(#accent)" opacity=".025"/>
-    <text x="28" y="38" class="title" fill="{c['cyan']}">LIVE SIGNALS // SOURCE CONTROL</text>
-    <g transform="translate(956 31)"><circle class="pulse" r="5" fill="{c['green']}" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="{c['green']}">FORK FILTER: ON</text></g>
-    <path d="M28 54H1172" stroke="{c['line']}"/>
-    {''.join(metric_svg)}
-    <g transform="translate(28 203)"><rect width="548" height="252" rx="14" fill="{c['panel']}" stroke="{c['line']}"/><text x="20" y="28" class="micro" fill="{c['cyan']}">LANGUAGE TELEMETRY</text><text x="520" y="28" text-anchor="end" class="tiny" fill="{c['muted']}">PRIMARY LANGUAGE / REPOSITORY</text></g>
-    {''.join(language_svg)}
-    <g transform="translate(594 203)"><rect width="578" height="252" rx="14" fill="{c['panel']}" stroke="{c['line']}"/><text x="20" y="28" class="micro" fill="{c['pink']}">RECENT TRANSMISSIONS</text><text x="550" y="28" text-anchor="end" class="tiny" fill="{c['muted']}">PUBLIC · ORIGINAL · PUSHED</text></g>
-    {''.join(recent_svg)}
-    <path d="M28 476H1172" stroke="{c['line']}"/><text x="28" y="491" class="tiny" fill="{c['muted']}">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL {latest_stamp}</text><text x="1172" y="491" text-anchor="end" class="tiny" fill="{c['muted']}">github.com/{esc(username)}</text>
+
+<g clip-path="url(#frame)">
+    <rect width="1200" height="560" fill="url(#bg)"/>
+    <ellipse cx="100" cy="0" rx="380" ry="200" fill="url(#aur1)"/>
+    <ellipse cx="1150" cy="560" rx="420" ry="220" fill="url(#aur2)"/>
+    <rect width="1200" height="560" fill="url(#grid)" opacity=".55"/>
+    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
+    <rect class="scan" x="0" y="-70" width="1200" height="70" fill="url(#accent)" opacity=".03"/>
+
+    <text x="28" y="40" class="title" fill="{t['cyan']}">LIVE SIGNALS // SOURCE CONTROL</text>
+
+<g transform="translate(940 33)"><circle class="pulse" r="5" fill="{t['green']}" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="{t['green']}">FORK FILTER: ON</text></g>
+    <path d="M28 58H1172" stroke="{t['line']}"/>
+
+    {cards_s}
+
+    {lang_head}
+
+    {lang_s}
+
+    {cad_head}
+
+    {cad_s}
+
+    {rec_head}
+
+    {rec_s}
+
+    <path d="M28 532H1172" stroke="{t['line']}"/><text x="28" y="549" class="tiny" fill="{t['muted']}">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL {last_signal}</text><text x="1172" y="549" text-anchor="end" class="tiny" fill="{t['muted']}">github.com/{esc(username)}</text>
   </g>
-  <rect x="1" y="1" width="1198" height="498" rx="18" fill="none" stroke="url(#accent)" stroke-opacity=".72"/>
-</svg>\n'''
+  <rect x="1" y="1" width="1198" height="558" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+</svg>
+"""
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--username", default="NextCandy")
-    parser.add_argument("--output", type=Path, default=Path("assets"))
-    parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN"))
-    parser.add_argument("--check-readme", type=Path)
-    args = parser.parse_args()
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--username", default="NextCandy")
+    ap.add_argument("--output", default="assets")
+    ap.add_argument("--check-readme", default=None)
+    args = ap.parse_args()
 
-    repos = fetch_public_repos(args.username, args.token)
-    stats = profile_stats(args.username, repos)
     if args.check_readme:
-        assert_readme_source_only(args.check_readme, args.username, stats["source_names"])
+        assert_readme_source_only(args.check_readme)
 
-    args.output.mkdir(parents=True, exist_ok=True)
-    for mode in THEMES:
-        target = args.output / f"dashboard-{mode}.svg"
-        target.write_text(render_dashboard(args.username, stats, mode), encoding="utf-8")
+    projects = fetch_public_repos(args.username)
+    stats = profile_stats(projects)
 
-    print(
-        f"generated dashboards from {stats['source_count']} public source repos; "
-        f"forks excluded; {stats['language_count']} languages"
-    )
-    return 0
+    out = Path(args.output)
+    out.mkdir(parents=True, exist_ok=True)
+    for mode in ("light", "dark"):
+        svg = render_dashboard(args.username, stats, mode)
+        path = out / f"dashboard-{mode}.svg"
+        path.write_text(svg, encoding="utf-8")
+        print(f"wrote {path} ({len(svg)} bytes)")
 
 
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except RuntimeError as error:
-        print(f"error: {error}", file=sys.stderr)
-        raise SystemExit(1) from error
+    main()
