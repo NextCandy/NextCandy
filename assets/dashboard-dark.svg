@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-label="NextCandy live GitHub source repository signals" data-mode="dark">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050B12"/><stop offset="1" stop-color="#0A1821"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#00D4FF"/><stop offset=".55" stop-color="#35F5A0"/><stop offset="1" stop-color="#FF4D9D"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#15313D" stroke-width="1"/></pattern>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="frame"><rect x="1" y="1" width="1198" height="498" rx="18"/></clipPath>
+  </defs>
+  <style>
+    text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+    .title{font-size:15px;font-weight:800;letter-spacing:3px}.micro{font-size:10px;font-weight:700;letter-spacing:2px}.tiny{font-size:9px;letter-spacing:1px}
+    .metric{font-size:34px;font-weight:900;letter-spacing:-1px}.row{font-size:11px;font-weight:700;letter-spacing:1px}.repo{font-size:13px;font-weight:800}
+    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}.scan{animation:scan 6s linear infinite}.bar{transform-box:fill-box;transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}.boot{animation:boot .6s ease-out both}
+    @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes scan{from{transform:translateY(-70px)}to{transform:translateY(570px)}}@keyframes grow{from{transform:scaleX(.06)}}@keyframes boot{from{opacity:.45}}
+    @media(prefers-reduced-motion:reduce){.pulse,.scan,.bar,.boot{animation:none}}
+  </style>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="500" fill="url(#bg)"/><rect width="1200" height="500" fill="url(#grid)" opacity=".62"/>
+    <path d="M0 0H1200" stroke="url(#accent)" stroke-width="3"/>
+    <rect class="scan" x="0" y="-70" width="1200" height="70" fill="url(#accent)" opacity=".025"/>
+    <text x="28" y="38" class="title" fill="#00D4FF">LIVE SIGNALS // SOURCE CONTROL</text>
+    <g transform="translate(956 31)"><circle class="pulse" r="5" fill="#35F5A0" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="#35F5A0">FORK FILTER: ON</text></g>
+    <path d="M28 54H1172" stroke="#244957"/>
+    <g class="boot" style="animation-delay:0.0s" transform="translate(28 78)">
+      <rect width="267" height="100" rx="12" fill="#0B1D27" stroke="#244957"/>
+      <path d="M0 12Q0 0 12 0H267" fill="none" stroke="#00D4FF" stroke-width="2"/>
+      <text x="18" y="28" class="micro" fill="#7897A4">SOURCE REPOS</text>
+      <text x="18" y="68" class="metric" fill="#00D4FF">16</text>
+      <text x="249" y="68" text-anchor="end" class="tiny" fill="#7897A4">forks excluded</text>
+      <circle class="pulse" cx="249" cy="22" r="3" fill="#00D4FF"/>
+    </g><g class="boot" style="animation-delay:0.12s" transform="translate(317 78)">
+      <rect width="267" height="100" rx="12" fill="#0B1D27" stroke="#244957"/>
+      <path d="M0 12Q0 0 12 0H267" fill="none" stroke="#FF4D9D" stroke-width="2"/>
+      <text x="18" y="28" class="micro" fill="#7897A4">LANGUAGE NODES</text>
+      <text x="18" y="68" class="metric" fill="#FF4D9D">5</text>
+      <text x="249" y="68" text-anchor="end" class="tiny" fill="#7897A4">primary stacks</text>
+      <circle class="pulse" cx="249" cy="22" r="3" fill="#FF4D9D"/>
+    </g><g class="boot" style="animation-delay:0.24s" transform="translate(606 78)">
+      <rect width="267" height="100" rx="12" fill="#0B1D27" stroke="#244957"/>
+      <path d="M0 12Q0 0 12 0H267" fill="none" stroke="#35F5A0" stroke-width="2"/>
+      <text x="18" y="28" class="micro" fill="#7897A4">ACTIVE / 2026</text>
+      <text x="18" y="68" class="metric" fill="#35F5A0">14</text>
+      <text x="249" y="68" text-anchor="end" class="tiny" fill="#7897A4">recently pushed</text>
+      <circle class="pulse" cx="249" cy="22" r="3" fill="#35F5A0"/>
+    </g><g class="boot" style="animation-delay:0.36s" transform="translate(895 78)">
+      <rect width="267" height="100" rx="12" fill="#0B1D27" stroke="#244957"/>
+      <path d="M0 12Q0 0 12 0H267" fill="none" stroke="#FFC857" stroke-width="2"/>
+      <text x="18" y="28" class="micro" fill="#7897A4">LATEST PUSH</text>
+      <text x="18" y="68" class="metric" fill="#FFC857">08.18</text>
+      <text x="249" y="68" text-anchor="end" class="tiny" fill="#7897A4">TimeAmber</text>
+      <circle class="pulse" cx="249" cy="22" r="3" fill="#FFC857"/>
+    </g>
+    <g transform="translate(28 203)"><rect width="548" height="252" rx="14" fill="#0B1D27" stroke="#244957"/><text x="20" y="28" class="micro" fill="#00D4FF">LANGUAGE TELEMETRY</text><text x="520" y="28" text-anchor="end" class="tiny" fill="#7897A4">PRIMARY LANGUAGE / REPOSITORY</text></g>
+    <g transform="translate(48 247)">
+      <text x="0" y="13" class="row" fill="#E7F7FC">TYPESCRIPT</text>
+      <rect x="112" y="3" width="350" height="10" rx="5" fill="#15313D"/>
+      <rect class="bar" style="animation-delay:0.25s" x="112" y="3" width="330.0" height="10" rx="5" fill="#00D4FF"/>
+      <text x="480" y="13" text-anchor="end" class="row" fill="#7897A4">011</text>
+    </g><g transform="translate(48 281)">
+      <text x="0" y="13" class="row" fill="#E7F7FC">JAVASCRIPT</text>
+      <rect x="112" y="3" width="350" height="10" rx="5" fill="#15313D"/>
+      <rect class="bar" style="animation-delay:0.33999999999999997s" x="112" y="3" width="60.0" height="10" rx="5" fill="#00D4FF"/>
+      <text x="480" y="13" text-anchor="end" class="row" fill="#7897A4">002</text>
+    </g><g transform="translate(48 315)">
+      <text x="0" y="13" class="row" fill="#E7F7FC">GO</text>
+      <rect x="112" y="3" width="350" height="10" rx="5" fill="#15313D"/>
+      <rect class="bar" style="animation-delay:0.43s" x="112" y="3" width="30.0" height="10" rx="5" fill="#00D4FF"/>
+      <text x="480" y="13" text-anchor="end" class="row" fill="#7897A4">001</text>
+    </g><g transform="translate(48 349)">
+      <text x="0" y="13" class="row" fill="#E7F7FC">CSS</text>
+      <rect x="112" y="3" width="350" height="10" rx="5" fill="#15313D"/>
+      <rect class="bar" style="animation-delay:0.52s" x="112" y="3" width="30.0" height="10" rx="5" fill="#FF4D9D"/>
+      <text x="480" y="13" text-anchor="end" class="row" fill="#7897A4">001</text>
+    </g><g transform="translate(48 383)">
+      <text x="0" y="13" class="row" fill="#E7F7FC">HTML</text>
+      <rect x="112" y="3" width="350" height="10" rx="5" fill="#15313D"/>
+      <rect class="bar" style="animation-delay:0.61s" x="112" y="3" width="30.0" height="10" rx="5" fill="#FF4D9D"/>
+      <text x="480" y="13" text-anchor="end" class="row" fill="#7897A4">001</text>
+    </g>
+    <g transform="translate(594 203)"><rect width="578" height="252" rx="14" fill="#0B1D27" stroke="#244957"/><text x="20" y="28" class="micro" fill="#FF4D9D">RECENT TRANSMISSIONS</text><text x="550" y="28" text-anchor="end" class="tiny" fill="#7897A4">PUBLIC · ORIGINAL · PUSHED</text></g>
+    <g class="boot" style="animation-delay:0.3s" transform="translate(646 247)">
+      <circle class="pulse" cx="5" cy="7" r="4" fill="#00D4FF"/>
+      <path d="M18 7H42" stroke="#00D4FF" stroke-opacity=".55"/>
+      <text x="52" y="11" class="repo" fill="#E7F7FC">TimeAmber</text>
+      <text x="306" y="11" class="row" fill="#7897A4">TYPESCRIPT</text>
+      <text x="486" y="11" text-anchor="end" class="row" fill="#7897A4">2026.08.18</text>
+    </g><g class="boot" style="animation-delay:0.4s" transform="translate(646 286)">
+      <circle class="pulse" cx="5" cy="7" r="4" fill="#FF4D9D"/>
+      <path d="M18 7H42" stroke="#FF4D9D" stroke-opacity=".55"/>
+      <text x="52" y="11" class="repo" fill="#E7F7FC">DomainHunter</text>
+      <text x="306" y="11" class="row" fill="#7897A4">GO</text>
+      <text x="486" y="11" text-anchor="end" class="row" fill="#7897A4">2026.08.12</text>
+    </g><g class="boot" style="animation-delay:0.5s" transform="translate(646 325)">
+      <circle class="pulse" cx="5" cy="7" r="4" fill="#00D4FF"/>
+      <path d="M18 7H42" stroke="#00D4FF" stroke-opacity=".55"/>
+      <text x="52" y="11" class="repo" fill="#E7F7FC">dh</text>
+      <text x="306" y="11" class="row" fill="#7897A4">TYPESCRIPT</text>
+      <text x="486" y="11" text-anchor="end" class="row" fill="#7897A4">2026.08.10</text>
+    </g><g class="boot" style="animation-delay:0.6000000000000001s" transform="translate(646 364)">
+      <circle class="pulse" cx="5" cy="7" r="4" fill="#FF4D9D"/>
+      <path d="M18 7H42" stroke="#FF4D9D" stroke-opacity=".55"/>
+      <text x="52" y="11" class="repo" fill="#E7F7FC">content-animator</text>
+      <text x="306" y="11" class="row" fill="#7897A4">TYPESCRIPT</text>
+      <text x="486" y="11" text-anchor="end" class="row" fill="#7897A4">2026.08.05</text>
+    </g><g class="boot" style="animation-delay:0.7s" transform="translate(646 403)">
+      <circle class="pulse" cx="5" cy="7" r="4" fill="#00D4FF"/>
+      <path d="M18 7H42" stroke="#00D4FF" stroke-opacity=".55"/>
+      <text x="52" y="11" class="repo" fill="#E7F7FC">UnUseDomain</text>
+      <text x="306" y="11" class="row" fill="#7897A4">TYPESCRIPT</text>
+      <text x="486" y="11" text-anchor="end" class="row" fill="#7897A4">2026.07.23</text>
+    </g>
+    <path d="M28 476H1172" stroke="#244957"/><text x="28" y="491" class="tiny" fill="#7897A4">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.08.18</text><text x="1172" y="491" text-anchor="end" class="tiny" fill="#7897A4">github.com/NextCandy</text>
+  </g>
+  <rect x="1" y="1" width="1198" height="498" rx="18" fill="none" stroke="url(#accent)" stroke-opacity=".72"/>
+</svg>
