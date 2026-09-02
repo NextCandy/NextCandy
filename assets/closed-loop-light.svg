@@ -51,7 +51,7 @@
       <text x="600" y="281" text-anchor="middle" class="micro" fill="#0C2733">NC CORE</text>
     </g>
 
-<g class="boot" style="animation-delay:0.15s" transform="translate(600.0 77.0)">
+<g class="boot" style="animation-delay:0.15s" transform="translate(600.0 88.0)">
       <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#0099C4" stroke-opacity=".65"/>
       <circle class="pulse" cx="-56" cy="0" r="4" fill="#0099C4" filter="url(#glow)"/>
       <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">COLLECT</text>
@@ -75,7 +75,7 @@
       <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">ARCHIVE</text>
       <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">TimeAmber</text>
     </g>
-<g class="boot" style="animation-delay:0.47s" transform="translate(600.0 333.0)">
+<g class="boot" style="animation-delay:0.47s" transform="translate(600.0 320.0)">
       <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#6A54D8" stroke-opacity=".65"/>
       <circle class="pulse" cx="-56" cy="0" r="4" fill="#6A54D8" filter="url(#glow)"/>
       <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">BOARD</text>
