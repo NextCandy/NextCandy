@@ -1,84 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="NextCandy profile control plane" data-mode="dark">
-      <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131A"/><stop offset="1" stop-color="#10141F"/></linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#00A7D1"/><stop offset="1" stop-color="#E84A8A"/></linearGradient>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#17313C" stroke-width="1"/></pattern>
-    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="358" rx="18"/></clipPath>
-  </defs><style>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="NextCandy profile console" data-mode="dark">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#04070D"/><stop offset="1" stop-color="#0A1220"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2FD8FF"/><stop offset=".5" stop-color="#9D8CFF"/><stop offset="1" stop-color="#FF5CA8"/></linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#04070D" stop-opacity="0"/><stop offset=".12" stop-color="#04070D"/><stop offset=".88" stop-color="#04070D"/><stop offset="1" stop-color="#04070D" stop-opacity="0"/></linearGradient>
+    <radialGradient id="aur1" cx=".5" cy=".5" r=".5"><stop stop-color="#2FD8FF" stop-opacity=".16"/><stop offset="1" stop-color="#2FD8FF" stop-opacity="0"/></radialGradient>
+    <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="#FF5CA8" stop-opacity=".14"/><stop offset="1" stop-color="#FF5CA8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="aur3" cx=".5" cy=".5" r=".5"><stop stop-color="#9D8CFF" stop-opacity=".12"/><stop offset="1" stop-color="#9D8CFF" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#12202E" stroke-width="1"/></pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="frame"><rect x="1" y="1" width="1198" height="418" rx="20"/></clipPath>
+    <clipPath id="tickclip"><rect x="0" y="376" width="1200" height="44"/></clipPath>
+  </defs>
+  <style>
     text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
-    .label{font-size:12px;letter-spacing:3px;font-weight:700}.micro{font-size:10px;letter-spacing:2px}
-    .flow{stroke-dasharray:7 9;animation:flow 8s linear infinite}.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}
-    .orbit{transform-box:fill-box;transform-origin:center;animation:orbit 24s linear infinite}.blink{animation:blink 2s ease-in-out infinite}
-    @keyframes flow{to{stroke-dashoffset:-160}}@keyframes pulse{50%{opacity:.35;transform:scale(.72)}}
-    @keyframes orbit{to{transform:rotate(360deg)}}@keyframes blink{50%{opacity:.35}}
-    @media(prefers-reduced-motion:reduce){.flow,.pulse,.orbit,.blink{animation:none}}
+    .micro{font-size:10px;letter-spacing:2.4px;font-weight:700}.label{font-size:12px;letter-spacing:3.5px;font-weight:700}
+    .big{font-size:66px;font-weight:900;letter-spacing:-2px}.tick{font-size:11px;letter-spacing:3px;font-weight:700}
+    .term{font-size:12.5px;font-weight:600}
+    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-in-out infinite}
+    .blink{animation:blink 1.1s steps(1) infinite}
+    .o1{transform-box:fill-box;transform-origin:center;animation:spin 34s linear infinite}
+    .o2{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite reverse}
+    .o3{transform-box:fill-box;transform-origin:center;animation:spin 16s linear infinite}
+    .mq{animation:mq 26s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.3;transform:scale(.6)}}
+    @keyframes blink{50%{opacity:0}}@keyframes mq{to{transform:translateX(-903px)}}
+    @media(prefers-reduced-motion:reduce){.pulse,.blink,.o1,.o2,.o3,.mq{animation:none}}
   </style>
-      <g clip-path="url(#frame)"><rect width="1200" height="360" fill="url(#bg)"/><rect width="1200" height="360" fill="url(#grid)" opacity=".7"/>
-      <path d="M0 292C240 250 360 176 566 84S930 20 1200 0V360H0Z" fill="#00A7D1" opacity=".035"/>
-      <path d="M660 0l290 360h250V0Z" fill="#E84A8A" opacity=".04"/>
-      <path d="M0 1h1200" stroke="url(#accent)" stroke-width="2"/>
-      <g transform="translate(22 22)"><circle cx="0" cy="0" r="4" fill="#EF4B5A"/><circle cx="18" cy="0" r="4" fill="#E6A425"/><circle cx="36" cy="0" r="4" fill="#22A447"/>
-      <text x="58" y="4" class="micro" fill="#8BA9B5">NEXTCANDY / CONTROL_PLANE</text></g>
-      <g transform="translate(1046 22)"><circle class="blink" cx="0" cy="0" r="4" fill="#00A7D1" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="#8BA9B5">SYSTEM ONLINE</text></g>
-      <path d="M0 44h1200" stroke="#2B4A57"/>
-      <text x="38" y="91" class="label" fill="#00A7D1">// COLLECTING DOMAINS · BUILDING TOOLS</text>
-      <text x="38" y="159" font-size="52" font-weight="900" letter-spacing="-2" fill="#E7F7FC">DOMAINS · WHOIS</text><text x="38" y="218" font-size="45" font-weight="900" letter-spacing="-1.5" fill="#E7F7FC">· SELF-HOSTED</text>
-      <text x="40" y="252" font-size="13" letter-spacing="2" fill="#8BA9B5">A MULTI-LANGUAGE PORTFOLIO SPANNING DOMAIN INTELLIGENCE, WHOIS TOOLING, SELF-HOSTED PLATFORMS · Beijing · UTC+8</text>
-      <g transform="translate(1018 151)"><circle r="74" fill="none" stroke="#2B4A57"/><circle class="orbit" r="57" fill="none" stroke="#00A7D1" stroke-width="1.5" stroke-dasharray="8 10" opacity=".65"/>
-      <g stroke="#00A7D1" opacity=".6"><path d="M0-74V-25M64-37L22-13M64 37L22 13M0 74V25M-64 37L-22 13M-64-37L-22-13"/></g>
-      <circle r="18" fill="#0C1C24" stroke="#00A7D1" filter="url(#glow)"/><circle class="pulse" r="5" fill="#00A7D1"/>
-      <g fill="#0C1C24" stroke="#00A7D1"><circle cy="-74" r="6"/><circle cx="64" cy="-37" r="6"/><circle cx="64" cy="37" r="6"/><circle cy="74" r="6"/><circle cx="-64" cy="37" r="6"/><circle cx="-64" cy="-37" r="6"/></g></g>
-      <text x="973" y="247" class="micro" fill="#8BA9B5">CLOSED LOOP</text>
-      <text x="22" y="288" class="micro" fill="#E84A8A">EXECUTION PATH / 08 ACTIVE LAYERS</text>
-      <g transform="translate(22.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#00A7D1" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#00A7D1"/>
-        <path d="M24 19h100.0" stroke="#00A7D1" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">COLLECT</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#00A7D1">UnUseDomain</text>
-      </g><g transform="translate(168.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#00A7D1" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#00A7D1"/>
-        <path d="M24 19h100.0" stroke="#00A7D1" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">MONITOR</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#00A7D1">DomainHunter</text>
-      </g><g transform="translate(314.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#00A7D1" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#00A7D1"/>
-        <path d="M24 19h100.0" stroke="#00A7D1" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">LOOKUP</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#00A7D1">nextwhois</text>
-      </g><g transform="translate(460.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#00A7D1" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#00A7D1"/>
-        <path d="M24 19h100.0" stroke="#00A7D1" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">ARCHIVE</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#00A7D1">TimeAmber</text>
-      </g><g transform="translate(606.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#E84A8A" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#E84A8A"/>
-        <path d="M24 19h100.0" stroke="#E84A8A" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">DASHBOARD</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#E84A8A">aio</text>
-      </g><g transform="translate(752.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#E84A8A" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#E84A8A"/>
-        <path d="M24 19h100.0" stroke="#E84A8A" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">PUBLISH</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#E84A8A">dog.do</text>
-      </g><g transform="translate(898.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#E84A8A" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#E84A8A"/>
-        <path d="M24 19h100.0" stroke="#E84A8A" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">HOME</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#E84A8A">HomePage</text>
-      </g><g transform="translate(1044.0 304)">
-        <rect width="134.0" height="38" rx="5" fill="#0C1C24" fill-opacity=".82" stroke="#E84A8A" stroke-opacity=".65"/>
-        <circle class="pulse" cx="14" cy="19" r="3" fill="#E84A8A"/>
-        <path d="M24 19h100.0" stroke="#E84A8A" stroke-opacity=".18" stroke-dasharray="7 9"/>
-        <text x="67.0" y="16" text-anchor="middle" font-size="8" letter-spacing="1.3" fill="#8BA9B5">HUNT</text>
-        <text x="67.0" y="29" text-anchor="middle" font-size="9" font-weight="700" fill="#E84A8A">dshunter</text>
-      </g></g>
-      <rect x="1" y="1" width="1198" height="358" rx="18" fill="none" stroke="#00A7D1" stroke-opacity=".72"/>
-    </svg>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="420" fill="url(#bg)"/>
+    <ellipse cx="180" cy="60" rx="420" ry="240" fill="url(#aur1)"/>
+    <ellipse cx="1120" cy="330" rx="460" ry="260" fill="url(#aur2)"/>
+    <ellipse cx="640" cy="420" rx="380" ry="220" fill="url(#aur3)"/>
+    <rect width="1200" height="420" fill="url(#grid)" opacity=".55"/>
+    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
+
+    <!-- window chrome -->
+    <g transform="translate(24 24)">
+      <circle r="5" fill="#FF5F57"/><circle cx="22" r="5" fill="#FEBC2E"/><circle cx="44" r="5" fill="#28C840"/>
+      <text x="64" y="4" class="micro" fill="#7E96A6">NEXTCANDY / PROFILE_CONSOLE · V2</text>
+    </g>
+    <g transform="translate(994 24)">
+      <circle class="pulse" r="4.5" fill="#3DF2A6" filter="url(#glow)"/>
+      <text x="16" y="4" class="micro" fill="#3DF2A6">ALL SYSTEMS OPERATIONAL</text>
+    </g>
+    <path d="M24 52H1176" stroke="#1E3446"/>
+
+    <!-- headline -->
+    <text x="40" y="112" class="label" fill="#2FD8FF">// DOMAIN CONNOISSEUR — EST. 2016</text>
+    <text x="38" y="184" class="big" fill="#EAF6FC">COLLECT DOMAINS.</text>
+    <text x="38" y="252" class="big" fill="url(#accent)">BUILD TOOLS.</text>
+
+    <!-- terminal card -->
+    <g transform="translate(38 282)">
+      <rect width="600" height="82" rx="12" fill="#060D16" stroke="#1E3446"/>
+      <rect width="600" height="82" rx="12" fill="#2FD8FF" opacity=".04"/>
+      <circle cx="16" cy="16" r="3" fill="#FF5F57"/><circle cx="28" cy="16" r="3" fill="#FEBC2E"/><circle cx="40" cy="16" r="3" fill="#28C840"/>
+      <text x="560" y="20" text-anchor="end" class="micro" fill="#7E96A6">zsh — 80×24</text>
+      <text x="18" y="44" class="term" fill="#3DF2A6">$ whoami</text>
+      <text x="96" y="44" class="term" fill="#D8E9F2">nextcandy :: domain collector · whois toolmaker</text>
+      <text x="18" y="66" class="term" fill="#3DF2A6">$ status</text>
+      <text x="96" y="66" class="term" fill="#D8E9F2">16 public repos · 5 languages · 862 domains</text>
+      <text x="476" y="66" class="term" fill="#3DF2A6">ONLINE</text>
+      <rect class="blink" x="536" y="55" width="9" height="15" fill="#2FD8FF"/>
+    </g>
+
+    <!-- orbit core -->
+    <g transform="translate(975 195)">
+      <circle r="158" fill="none" stroke="#1E3446" stroke-dasharray="2 7"/>
+      <circle r="112" fill="none" stroke="#1E3446" stroke-dasharray="2 7"/>
+      <circle r="68" fill="none" stroke="#1E3446" stroke-dasharray="2 7"/>
+      <g class="o1">
+        <circle cx="158" r="7" fill="#0A1420" stroke="#2FD8FF" stroke-width="2"/><circle class="pulse" cx="158" r="2.5" fill="#2FD8FF"/>
+        <circle cx="-79" cy="137" r="7" fill="#0A1420" stroke="#FF5CA8" stroke-width="2"/><circle class="pulse" cx="-79" cy="137" r="2.5" fill="#FF5CA8"/>
+        <circle cx="-79" cy="-137" r="7" fill="#0A1420" stroke="#9D8CFF" stroke-width="2"/><circle class="pulse" cx="-79" cy="-137" r="2.5" fill="#9D8CFF"/>
+      </g>
+      <g class="o2">
+        <circle cy="-112" r="6" fill="#0A1420" stroke="#2FD8FF" stroke-width="2"/>
+        <circle cx="97" cy="56" r="6" fill="#0A1420" stroke="#FF5CA8" stroke-width="2"/>
+        <circle cx="-97" cy="56" r="6" fill="#0A1420" stroke="#9D8CFF" stroke-width="2"/>
+      </g>
+      <g class="o3">
+        <circle cx="68" r="5" fill="#0A1420" stroke="#3DF2A6" stroke-width="2"/>
+        <circle cx="-68" r="5" fill="#0A1420" stroke="#FFC857" stroke-width="2"/>
+      </g>
+      <circle r="42" fill="#0A1420" stroke="url(#accent)" stroke-width="2"/>
+      <circle class="pulse" r="52" fill="none" stroke="#2FD8FF" stroke-opacity=".5"/>
+      <text y="-2" text-anchor="middle" font-size="22" font-weight="900" fill="#EAF6FC">NC</text>
+      <text y="14" text-anchor="middle" font-size="7.5" letter-spacing="2" fill="#7E96A6">CORE</text>
+      <text y="170" text-anchor="middle" class="micro" fill="#7E96A6">08 ACTIVE NODES · ONE LOOP</text>
+    </g>
+
+    <!-- ticker -->
+    <path d="M0 376H1200" stroke="#1E3446"/>
+    <g clip-path="url(#tickclip)">
+      <g class="mq"><g transform="translate(0 0)"><text x="0" y="29" class="tick" fill="#7E96A6">WANMI.ORG ✦ UNUSEDOMAIN.COM ✦ DOG.DO ✦ DP.DO ✦ NEXTWHOIS ✦ DOMAINHUNTER ✦ TIMEAMBER ✦ AIO ✦ </text></g><g transform="translate(903 0)"><text x="0" y="29" class="tick" fill="#7E96A6">WANMI.ORG ✦ UNUSEDOMAIN.COM ✦ DOG.DO ✦ DP.DO ✦ NEXTWHOIS ✦ DOMAINHUNTER ✦ TIMEAMBER ✦ AIO ✦ </text></g></g>
+      <rect width="1200" height="44" y="376" fill="url(#fade)"/>
+    </g>
+  </g>
+  <rect x="1" y="1" width="1198" height="418" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+</svg>
