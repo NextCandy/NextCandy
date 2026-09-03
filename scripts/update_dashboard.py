@@ -176,16 +176,25 @@ def render_dashboard(username, stats, mode):
     rec_palette = [t["cyan"], t["pink"], t["violet"], t["green"], t["amber"]]
     rec_rows = []
     for i, (name, lang, dt) in enumerate(stats["recent"]):
-        cy = 265 + 46 * i
-        connector = ""
-        if i < len(stats["recent"]) - 1:
-            connector = f'<path d="M860 {cy + 9}V{cy + 39}" stroke="{t["line"]}" stroke-width="1.5"/>'
+        row_y = 52 + 46 * i
         color = rec_palette[i % len(rec_palette)]
-        rec_rows.append(f"""<g class="boot" style="animation-delay:{round(0.3 + 0.1 * i, 2)}s">
+        label = "LATEST" if i == 0 else f"{i + 1:02d}"
+        stroke = color if i == 0 else t["line"]
+        stroke_width = "1.5" if i == 0 else "1"
+        stroke_opacity = ".78" if i == 0 else ".9"
+        row_filter = "url(#glow)" if i == 0 else "none"
+        connector = "" if i == len(stats["recent"]) - 1 else (
+            f'<path d="M12 36V46" stroke="{color}" stroke-opacity=".28" stroke-width="1.5"/>'
+        )
+        rec_rows.append(f"""<g class="boot" style="animation-delay:{round(0.3 + 0.1 * i, 2)}s" transform="translate(846 {210 + row_y})">
       {connector}
-      <circle class="pulse" cx="860" cy="{cy}" r="4.5" fill="{color}"/>
-      <text x="878" y="{cy + 4}" class="repo" fill="{t['text']}">{esc(name)}</text>
-      <text x="1148" y="{cy + 4}" text-anchor="end" class="row" fill="{t['muted']}">{esc(lang)} · {dt.strftime('%m.%d')}</text>
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="{t['panel']}" stroke="{stroke}" stroke-width="{stroke_width}" stroke-opacity="{stroke_opacity}"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="{color}"/>
+      <circle class="pulse" cx="12" cy="18" r="{5 if i == 0 else 3.5}" fill="{color}" filter="{row_filter}"/>
+      <text x="32" y="14" class="tiny" fill="{color}">{label}</text>
+      <text x="58" y="24" class="repo" fill="{t['text']}">{esc(name)}</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="{t['muted']}">{esc(lang)}</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="{t['muted']}">{dt.strftime('%m.%d')}</text>
     </g>""")
 
     cards_s = "\n" + "\n".join(cards)
@@ -197,16 +206,24 @@ def render_dashboard(username, stats, mode):
                 f'<text x="22" y="30" class="micro" fill="{t["green"]}">PUSH CADENCE</text>'
                 f'<text x="294" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">12 MO / LAST-PUSH</text></g>')
     cad_s = "\n" + "\n".join(cad_rows)
-    rec_head = (f'\n<g transform="translate(828 210)">'
-                f'<rect x="-2" y="-2" width="348" height="308" rx="16" fill="none" stroke="url(#accent)" stroke-width="4" stroke-opacity=".16"/>'
-                f'<rect width="344" height="304" rx="14" fill="{t["panel"]}" stroke="url(#accent)" stroke-width="1.5" stroke-opacity=".62"/>'
-                f'<path d="M16 0H328" stroke="{t["pink"]}" stroke-width="2" stroke-linecap="round" opacity=".9"/>'
-                f'<text x="22" y="30" class="micro" fill="{t["pink"]}">RECENT TRANSMISSIONS</text>'
-                f'<text x="322" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PUBLIC · PUSHED</text></g>')
+    rec_head = (
+        f'\n<g clip-path="url(#recent-frame)">'
+        f'<rect x="828" y="210" width="344" height="304" rx="14" fill="{t["panel2"]}"/>'
+        f'<rect class="recent-sweep" x="828" y="214" width="344" height="34" fill="url(#accent)" opacity=".04"/>'
+        f'</g>'
+        f'<g transform="translate(828 210)">'
+        f'<rect width="344" height="304" rx="14" fill="none" stroke="{t["line"]}" stroke-width="1"/>'
+        f'<path d="M14 0H330" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>'
+        f'<path d="M300 0H330V30" fill="none" stroke="{t["pink"]}" stroke-width="2" stroke-linecap="round" opacity=".8"/>'
+        f'<path d="M12 58V262" stroke="url(#accent)" stroke-width="1" stroke-opacity=".38"/>'
+        f'<path d="M16 48H328" stroke="{t["line"]}" stroke-width="1"/>'
+        f'<text x="22" y="30" class="micro" fill="{t["pink"]}">RECENT TRANSMISSIONS</text>'
+        f'<text x="322" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PUBLIC · PUSHED</text></g>'
+    )
     rec_s = "\n" + "\n".join(rec_rows)
     last_signal = stats["latest_dt"].strftime("%Y.%m.%d")
 
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="{t['bg0']}"/><stop offset="1" stop-color="{t['bg1']}"/></linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{t['cyan']}"/><stop offset=".5" stop-color="{t['violet']}"/><stop offset="1" stop-color="{t['pink']}"/></linearGradient>
@@ -215,6 +232,7 @@ def render_dashboard(username, stats, mode):
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="{t['grid']}" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <clipPath id="frame"><rect x="1" y="1" width="1198" height="558" rx="20"/></clipPath>
+    <clipPath id="recent-frame"><rect x="828" y="210" width="344" height="304" rx="14"/></clipPath>
   </defs>
   <style>
     text{{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}}
@@ -224,9 +242,10 @@ def render_dashboard(username, stats, mode):
     .scan{{animation:scan 7s linear infinite}}
     .bar{{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}}
     .boot{{animation:boot .6s ease-out both}}
+    .recent-sweep{{animation:recentSweep 5.5s linear infinite}}
     @keyframes pulse{{50%{{opacity:.3;transform:scale(.65)}}}}@keyframes scan{{from{{transform:translateY(-70px)}}to{{transform:translateY(630px)}}}}
-    @keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.45}}}}
-    @media(prefers-reduced-motion:reduce){{.pulse,.scan,.bar,.boot{{animation:none}}}}
+    @keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.45}}}}@keyframes recentSweep{{from{{transform:translateY(-46px)}}to{{transform:translateY(310px)}}}}
+    @media(prefers-reduced-motion:reduce){{.pulse,.scan,.bar,.boot,.recent-sweep{{animation:none}}}}
   </style>
 
 <g clip-path="url(#frame)">
@@ -261,6 +280,7 @@ def render_dashboard(username, stats, mode):
   <rect x="1" y="1" width="1198" height="558" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
 </svg>
 """
+    return "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
 
 
 def main():

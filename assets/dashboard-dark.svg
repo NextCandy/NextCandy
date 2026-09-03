@@ -7,6 +7,7 @@
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#12202E" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     <clipPath id="frame"><rect x="1" y="1" width="1198" height="558" rx="20"/></clipPath>
+    <clipPath id="recent-frame"><rect x="828" y="210" width="344" height="304" rx="14"/></clipPath>
   </defs>
   <style>
     text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
@@ -16,9 +17,10 @@
     .scan{animation:scan 7s linear infinite}
     .bar{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
     .boot{animation:boot .6s ease-out both}
+    .recent-sweep{animation:recentSweep 5.5s linear infinite}
     @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes scan{from{transform:translateY(-70px)}to{transform:translateY(630px)}}
-    @keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.45}}
-    @media(prefers-reduced-motion:reduce){.pulse,.scan,.bar,.boot{animation:none}}
+    @keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.45}}@keyframes recentSweep{from{transform:translateY(-46px)}to{transform:translateY(310px)}}
+    @media(prefers-reduced-motion:reduce){.pulse,.scan,.bar,.boot,.recent-sweep{animation:none}}
   </style>
 
 <g clip-path="url(#frame)">
@@ -39,7 +41,7 @@
       <rect width="267" height="104" rx="14" fill="#0A1420" stroke="#1E3446"/>
       <rect width="267" height="4" rx="2" fill="#2FD8FF"/>
       <text x="20" y="34" class="micro" fill="#7E96A6">SOURCE REPOS</text>
-      <text x="20" y="76" class="metric" fill="#2FD8FF">16</text>
+      <text x="20" y="76" class="metric" fill="#2FD8FF">9</text>
       <text x="247" y="76" text-anchor="end" class="tiny" fill="#7E96A6">forks excluded</text>
       <circle class="pulse" cx="247" cy="28" r="3.5" fill="#2FD8FF"/>
     </g>
@@ -55,7 +57,7 @@
       <rect width="267" height="104" rx="14" fill="#0A1420" stroke="#1E3446"/>
       <rect width="267" height="4" rx="2" fill="#3DF2A6"/>
       <text x="20" y="34" class="micro" fill="#7E96A6">ACTIVE / 2026</text>
-      <text x="20" y="76" class="metric" fill="#3DF2A6">14</text>
+      <text x="20" y="76" class="metric" fill="#3DF2A6">8</text>
       <text x="247" y="76" text-anchor="end" class="tiny" fill="#7E96A6">pushed this year</text>
       <circle class="pulse" cx="247" cy="28" r="3.5" fill="#3DF2A6"/>
     </g>
@@ -63,58 +65,60 @@
       <rect width="267" height="104" rx="14" fill="#0A1420" stroke="#1E3446"/>
       <rect width="267" height="4" rx="2" fill="#FFC857"/>
       <text x="20" y="34" class="micro" fill="#7E96A6">LATEST PUSH</text>
-      <text x="20" y="76" class="metric" fill="#FFC857">08.18</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="#7E96A6">TimeAmber</text>
+      <text x="20" y="76" class="metric" fill="#FFC857">09.02</text>
+      <text x="247" y="76" text-anchor="end" class="tiny" fill="#7E96A6">NextCandy</text>
       <circle class="pulse" cx="247" cy="28" r="3.5" fill="#FFC857"/>
     </g>
 
 
 <g transform="translate(28 210)"><rect width="452" height="304" rx="14" fill="#0A1420" stroke="#1E3446"/><text x="22" y="30" class="micro" fill="#2FD8FF">LANGUAGE TELEMETRY</text><text x="430" y="30" text-anchor="end" class="tiny" fill="#7E96A6">PRIMARY / REPO</text></g>
 
+
 <g transform="translate(52 258)">
       <text x="0" y="13" class="row" fill="#EAF6FC">TYPESCRIPT</text>
       <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#12202E"/>
       <rect class="bar" style="animation-delay:0.25s" x="120" y="3" width="250.0" height="11" rx="5.5" fill="#2FD8FF"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">11 · 69%</text>
+      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">05 · 56%</text>
     </g>
 <g transform="translate(52 302)">
-      <text x="0" y="13" class="row" fill="#EAF6FC">JAVASCRIPT</text>
+      <text x="0" y="13" class="row" fill="#EAF6FC">PYTHON</text>
       <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#12202E"/>
-      <rect class="bar" style="animation-delay:0.34s" x="120" y="3" width="45.5" height="11" rx="5.5" fill="#9D8CFF"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">02 · 12%</text>
+      <rect class="bar" style="animation-delay:0.34s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#9D8CFF"/>
+      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 11%</text>
     </g>
 <g transform="translate(52 346)">
       <text x="0" y="13" class="row" fill="#EAF6FC">GO</text>
       <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#12202E"/>
-      <rect class="bar" style="animation-delay:0.43s" x="120" y="3" width="22.7" height="11" rx="5.5" fill="#FF5CA8"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 6%</text>
+      <rect class="bar" style="animation-delay:0.43s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#FF5CA8"/>
+      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 11%</text>
     </g>
 <g transform="translate(52 390)">
       <text x="0" y="13" class="row" fill="#EAF6FC">CSS</text>
       <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#12202E"/>
-      <rect class="bar" style="animation-delay:0.52s" x="120" y="3" width="22.7" height="11" rx="5.5" fill="#3DF2A6"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 6%</text>
+      <rect class="bar" style="animation-delay:0.52s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#3DF2A6"/>
+      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 11%</text>
     </g>
 <g transform="translate(52 434)">
       <text x="0" y="13" class="row" fill="#EAF6FC">HTML</text>
       <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#12202E"/>
-      <rect class="bar" style="animation-delay:0.61s" x="120" y="3" width="22.7" height="11" rx="5.5" fill="#FFC857"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 6%</text>
+      <rect class="bar" style="animation-delay:0.61s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#FFC857"/>
+      <text x="400" y="13" text-anchor="end" class="row" fill="#7E96A6">01 · 11%</text>
     </g>
 
 
 <g transform="translate(496 210)"><rect width="316" height="304" rx="14" fill="#0A1420" stroke="#1E3446"/><text x="22" y="30" class="micro" fill="#3DF2A6">PUSH CADENCE</text><text x="294" y="30" text-anchor="end" class="tiny" fill="#7E96A6">12 MO / LAST-PUSH</text></g>
 
+
 <g transform="translate(544 0)">
-      <rect class="bar" style="animation-delay:0.3s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6">09</text>
+      <rect class="bar" style="animation-delay:0.3s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#12202E"/>
+      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6">10</text>
     </g>
 <g transform="translate(566 0)">
-      <rect class="bar" style="animation-delay:0.35s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#12202E"/>
+      <rect class="bar" style="animation-delay:0.35s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(588 0)">
-      <rect class="bar" style="animation-delay:0.4s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.4s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#12202E"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(610 0)">
@@ -126,15 +130,15 @@
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(654 0)">
-      <rect class="bar" style="animation-delay:0.55s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.55s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#12202E"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(676 0)">
-      <rect class="bar" style="animation-delay:0.6s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.6s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#12202E"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(698 0)">
-      <rect class="bar" style="animation-delay:0.65s" x="0" y="414.0" width="12" height="56.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.65s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(720 0)">
@@ -142,53 +146,74 @@
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(742 0)">
-      <rect class="bar" style="animation-delay:0.75s" x="0" y="414.0" width="12" height="56.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.75s" x="0" y="390.0" width="12" height="80.0" rx="6" fill="#3DF2A6"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(764 0)">
-      <rect class="bar" style="animation-delay:0.8s" x="0" y="366.0" width="12" height="104.0" rx="6" fill="#3DF2A6"/>
+      <rect class="bar" style="animation-delay:0.8s" x="0" y="390.0" width="12" height="80.0" rx="6" fill="#3DF2A6"/>
       <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
     </g>
 <g transform="translate(786 0)">
-      <rect class="bar" style="animation-delay:0.85s" x="0" y="366.0" width="12" height="104.0" rx="6" fill="#3DF2A6"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6">08</text>
+      <rect class="bar" style="animation-delay:0.85s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#3DF2A6"/>
+      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#7E96A6">09</text>
     </g>
 
 
-<g transform="translate(828 210)"><rect x="-2" y="-2" width="348" height="308" rx="16" fill="none" stroke="url(#accent)" stroke-width="4" stroke-opacity=".16"/><rect width="344" height="304" rx="14" fill="#0A1420" stroke="url(#accent)" stroke-width="1.5" stroke-opacity=".62"/><path d="M16 0H328" stroke="#FF5CA8" stroke-width="2" stroke-linecap="round" opacity=".9"/><text x="22" y="30" class="micro" fill="#FF5CA8">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#7E96A6">PUBLIC · PUSHED</text></g>
+<g clip-path="url(#recent-frame)"><rect x="828" y="210" width="344" height="304" rx="14" fill="#0E1B29"/><rect class="recent-sweep" x="828" y="214" width="344" height="34" fill="url(#accent)" opacity=".04"/></g><g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="none" stroke="#1E3446" stroke-width="1"/><path d="M14 0H330" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/><path d="M300 0H330V30" fill="none" stroke="#FF5CA8" stroke-width="2" stroke-linecap="round" opacity=".8"/><path d="M12 58V262" stroke="url(#accent)" stroke-width="1" stroke-opacity=".38"/><path d="M16 48H328" stroke="#1E3446" stroke-width="1"/><text x="22" y="30" class="micro" fill="#FF5CA8">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#7E96A6">PUBLIC · PUSHED</text></g>
 
-<g class="boot" style="animation-delay:0.3s">
-      <path d="M860 274V304" stroke="#1E3446" stroke-width="1.5"/>
-      <circle class="pulse" cx="860" cy="265" r="4.5" fill="#2FD8FF"/>
-      <text x="878" y="269" class="repo" fill="#EAF6FC">TimeAmber</text>
-      <text x="1148" y="269" text-anchor="end" class="row" fill="#7E96A6">TYPESCRIPT · 08.18</text>
-    </g>
-<g class="boot" style="animation-delay:0.4s">
-      <path d="M860 320V350" stroke="#1E3446" stroke-width="1.5"/>
-      <circle class="pulse" cx="860" cy="311" r="4.5" fill="#FF5CA8"/>
-      <text x="878" y="315" class="repo" fill="#EAF6FC">DomainHunter</text>
-      <text x="1148" y="315" text-anchor="end" class="row" fill="#7E96A6">GO · 08.12</text>
-    </g>
-<g class="boot" style="animation-delay:0.5s">
-      <path d="M860 366V396" stroke="#1E3446" stroke-width="1.5"/>
-      <circle class="pulse" cx="860" cy="357" r="4.5" fill="#9D8CFF"/>
-      <text x="878" y="361" class="repo" fill="#EAF6FC">dh</text>
-      <text x="1148" y="361" text-anchor="end" class="row" fill="#7E96A6">TYPESCRIPT · 08.10</text>
-    </g>
-<g class="boot" style="animation-delay:0.6s">
-      <path d="M860 412V442" stroke="#1E3446" stroke-width="1.5"/>
-      <circle class="pulse" cx="860" cy="403" r="4.5" fill="#3DF2A6"/>
-      <text x="878" y="407" class="repo" fill="#EAF6FC">content-animator</text>
-      <text x="1148" y="407" text-anchor="end" class="row" fill="#7E96A6">TYPESCRIPT · 08.05</text>
-    </g>
-<g class="boot" style="animation-delay:0.7s">
 
-      <circle class="pulse" cx="860" cy="449" r="4.5" fill="#FFC857"/>
-      <text x="878" y="453" class="repo" fill="#EAF6FC">UnUseDomain</text>
-      <text x="1148" y="453" text-anchor="end" class="row" fill="#7E96A6">TYPESCRIPT · 07.23</text>
+<g class="boot" style="animation-delay:0.3s" transform="translate(846 262)">
+      <path d="M12 36V46" stroke="#2FD8FF" stroke-opacity=".28" stroke-width="1.5"/>
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="#0A1420" stroke="#2FD8FF" stroke-width="1.5" stroke-opacity=".78"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#2FD8FF"/>
+      <circle class="pulse" cx="12" cy="18" r="5" fill="#2FD8FF" filter="url(#glow)"/>
+      <text x="32" y="14" class="tiny" fill="#2FD8FF">LATEST</text>
+      <text x="58" y="24" class="repo" fill="#EAF6FC">NextCandy</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="#7E96A6">PYTHON</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="#7E96A6">09.02</text>
+    </g>
+<g class="boot" style="animation-delay:0.4s" transform="translate(846 308)">
+      <path d="M12 36V46" stroke="#FF5CA8" stroke-opacity=".28" stroke-width="1.5"/>
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="#0A1420" stroke="#1E3446" stroke-width="1" stroke-opacity=".9"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#FF5CA8"/>
+      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#FF5CA8" filter="none"/>
+      <text x="32" y="14" class="tiny" fill="#FF5CA8">02</text>
+      <text x="58" y="24" class="repo" fill="#EAF6FC">TimeAmber</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="#7E96A6">TYPESCRIPT</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="#7E96A6">08.18</text>
+    </g>
+<g class="boot" style="animation-delay:0.5s" transform="translate(846 354)">
+      <path d="M12 36V46" stroke="#9D8CFF" stroke-opacity=".28" stroke-width="1.5"/>
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="#0A1420" stroke="#1E3446" stroke-width="1" stroke-opacity=".9"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#9D8CFF"/>
+      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#9D8CFF" filter="none"/>
+      <text x="32" y="14" class="tiny" fill="#9D8CFF">03</text>
+      <text x="58" y="24" class="repo" fill="#EAF6FC">DomainHunter</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="#7E96A6">GO</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="#7E96A6">08.14</text>
+    </g>
+<g class="boot" style="animation-delay:0.6s" transform="translate(846 400)">
+      <path d="M12 36V46" stroke="#3DF2A6" stroke-opacity=".28" stroke-width="1.5"/>
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="#0A1420" stroke="#1E3446" stroke-width="1" stroke-opacity=".9"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#3DF2A6"/>
+      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#3DF2A6" filter="none"/>
+      <text x="32" y="14" class="tiny" fill="#3DF2A6">04</text>
+      <text x="58" y="24" class="repo" fill="#EAF6FC">content-animator</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="#7E96A6">TYPESCRIPT</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="#7E96A6">08.05</text>
+    </g>
+<g class="boot" style="animation-delay:0.7s" transform="translate(846 446)">
+
+      <rect x="18" y="0" width="308" height="36" rx="9" fill="#0A1420" stroke="#1E3446" stroke-width="1" stroke-opacity=".9"/>
+      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#FFC857"/>
+      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#FFC857" filter="none"/>
+      <text x="32" y="14" class="tiny" fill="#FFC857">05</text>
+      <text x="58" y="24" class="repo" fill="#EAF6FC">UnUseDomain</text>
+      <text x="296" y="14" text-anchor="end" class="tiny" fill="#7E96A6">TYPESCRIPT</text>
+      <text x="296" y="27" text-anchor="end" class="tiny" fill="#7E96A6">07.23</text>
     </g>
 
-    <path d="M28 532H1172" stroke="#1E3446"/><text x="28" y="549" class="tiny" fill="#7E96A6">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.08.18</text><text x="1172" y="549" text-anchor="end" class="tiny" fill="#7E96A6">github.com/NextCandy</text>
+    <path d="M28 532H1172" stroke="#1E3446"/><text x="28" y="549" class="tiny" fill="#7E96A6">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.09.02</text><text x="1172" y="549" text-anchor="end" class="tiny" fill="#7E96A6">github.com/NextCandy</text>
   </g>
   <rect x="1" y="1" width="1198" height="558" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
 </svg>
