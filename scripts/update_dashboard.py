@@ -130,98 +130,94 @@ def esc(s):
 
 def render_dashboard(username, stats, mode):
     t = THEMES[mode]
+    latest_dt = stats["latest_dt"]
+    latest_full = latest_dt.strftime("%Y.%m.%d")
+    frame_path = "M12 1H1188L1199 12V548L1188 559H12L1 548V12Z"
 
-    cards = []
-    card_specs = [
-        ("SOURCE REPOS", str(stats["total"]), "forks excluded", t["cyan"]),
-        ("LANGUAGE NODES", str(stats["lang_count"]), "primary stacks", t["pink"]),
-        (f"ACTIVE / {stats['year']}", str(stats["active_year"]), "pushed this year", t["green"]),
-        ("LATEST PUSH", stats["latest_dt"].strftime("%m.%d"), stats["latest_name"], t["amber"]),
+    rail_specs = [
+        ("SOURCE REPOS", str(stats["total"]), t["cyan"]),
+        ("LANGUAGE NODES", str(stats["lang_count"]), t["pink"]),
+        (f"ACTIVE / {stats['year']}", str(stats["active_year"]), t["green"]),
+        ("LATEST PUSH", latest_dt.strftime("%m.%d"), t["amber"]),
     ]
-    for i, (title, value, sub, color) in enumerate(card_specs):
-        cards.append(f"""<g class="boot" style="animation-delay:{0.12 * i}s" transform="translate({28 + 289 * i} 80)">
-      <rect width="267" height="104" rx="14" fill="{t['panel']}" stroke="{t['line']}"/>
-      <rect width="267" height="4" rx="2" fill="{color}"/>
-      <text x="20" y="34" class="micro" fill="{t['muted']}">{title}</text>
-      <text x="20" y="76" class="metric" fill="{color}">{esc(value)}</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="{t['muted']}">{esc(sub)}</text>
-      <circle class="pulse" cx="247" cy="28" r="3.5" fill="{color}"/>
+    rail = []
+    for i, (label, value, color) in enumerate(rail_specs):
+        x = 398 + 158 * i
+        separator = "" if i == len(rail_specs) - 1 else f'<path d="M{x + 145} 20V52" stroke="{t["line"]}"/>'
+        rail.append(f"""<g class="boot" style="animation-delay:{round(0.08 + 0.08 * i, 2)}s" transform="translate({x} 0)">
+      <text x="0" y="27" class="rail-label" fill="{t['muted']}">{esc(label)}</text>
+      <text x="0" y="48" class="rail-value" fill="{color}">{esc(value)}</text>
+      {separator}
     </g>""")
 
     lang_palette = [t["cyan"], t["violet"], t["pink"], t["green"], t["amber"]]
-    max_lang = max(c for _, c in stats["langs"])
-    lang_rows = []
-    for i, (name, count) in enumerate(stats["langs"]):
-        w = round(250 * count / max_lang, 1)
-        pct = round(100 * count / stats["total"])
-        color = lang_palette[i % len(lang_palette)]
-        lang_rows.append(f"""<g transform="translate(52 {258 + 44 * i})">
-      <text x="0" y="13" class="row" fill="{t['text']}">{esc(name.upper())}</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="{t['grid']}"/>
-      <rect class="bar" style="animation-delay:{round(0.25 + 0.09 * i, 2)}s" x="120" y="3" width="{w}" height="11" rx="5.5" fill="{color}"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="{t['muted']}">{count:02d} · {pct}%</text>
-    </g>""")
+    language_segments = list(stats["langs"])
+    shown_total = sum(count for _, count in language_segments)
+    if stats["total"] > shown_total:
+        language_segments.append(("OTHER", stats["total"] - shown_total))
 
+    segment_x = 28.0
+    segment_width = 544.0
+    lang_segments = []
+    lang_items = []
+    for i, (name, count) in enumerate(language_segments):
+        width = round(segment_width * count / stats["total"], 1)
+        color = lang_palette[i % len(lang_palette)]
+        lang_segments.append(f'<rect class="bar" style="animation-delay:{round(0.18 + 0.08 * i, 2)}s" x="{segment_x:.1f}" y="383" width="{width:.1f}" height="14" fill="{color}"/>')
+        pct = round(100 * count / stats["total"])
+        col = i % 3
+        row = i // 3
+        x = 28 + 181 * col
+        y = 426 + 28 * row
+        lang_items.append(f"""<g transform="translate({x} {y})">
+      <circle cx="3" cy="-4" r="3" fill="{color}"/>
+      <text x="13" y="0" class="ledger-label" fill="{t['text']}">{esc(name.upper())}</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="{t['muted']}">{count:02d} · {pct}%</text>
+    </g>""")
+        segment_x += width
+
+    max_cadence = max((count for _, count in stats["cadence"]), default=0)
     cad_rows = []
+    chart_x = 636.0
+    slot = 43.0
     for i, (month, count) in enumerate(stats["cadence"]):
-        h = 24.0 * count + 8.0 if count else 4.0
-        y = 470.0 - h
-        label = month.strftime("%m") if i in (0, 11) else ""
-        fill = t["green"] if count else t["grid"]
-        cad_rows.append(f"""<g transform="translate({544 + 22 * i} 0)">
-      <rect class="bar" style="animation-delay:{round(0.3 + 0.05 * i, 2)}s" x="0" y="{y}" width="12" height="{h}" rx="6" fill="{fill}"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="{t['muted']}">{label}</text>
+        bar_width = 16.0
+        height = round(8.0 + 68.0 * count / max_cadence, 1) if max_cadence else 8.0
+        x = chart_x + slot * i + (slot - bar_width) / 2
+        y = 493.0 - height
+        color = t["grid"] if not count else lang_palette[i % len(lang_palette)]
+        if i == len(stats["cadence"]) - 1 and count:
+            color = t["pink"]
+        label = month.strftime("%b").upper() if i in (0, 5, 11) else ""
+        value = str(count) if count else ""
+        cad_rows.append(f"""<g transform="translate({x:.1f} 0)">
+      <rect class="bar" style="animation-delay:{round(0.22 + 0.035 * i, 2)}s" x="0" y="{y:.1f}" width="{bar_width:.1f}" height="{height:.1f}" fill="{color}"/>
+      <text x="{bar_width / 2:.1f}" y="{y - 6:.1f}" text-anchor="middle" class="tiny" fill="{t['muted']}">{value}</text>
+      <text x="{bar_width / 2:.1f}" y="508" text-anchor="middle" class="tiny" fill="{t['muted']}">{label}</text>
     </g>""")
 
     rec_palette = [t["cyan"], t["pink"], t["violet"], t["green"], t["amber"]]
     rec_rows = []
     for i, (name, lang, dt) in enumerate(stats["recent"]):
-        row_y = 52 + 46 * i
+        row_y = 137 + 35 * i
         color = rec_palette[i % len(rec_palette)]
-        label = "LATEST" if i == 0 else f"{i + 1:02d}"
-        stroke = color if i == 0 else t["line"]
-        stroke_width = "1.5" if i == 0 else "1"
-        stroke_opacity = ".78" if i == 0 else ".9"
-        row_filter = "url(#glow)" if i == 0 else "none"
-        connector = "" if i == len(stats["recent"]) - 1 else (
-            f'<path d="M12 36V46" stroke="{color}" stroke-opacity=".28" stroke-width="1.5"/>'
-        )
-        rec_rows.append(f"""<g class="boot" style="animation-delay:{round(0.3 + 0.1 * i, 2)}s" transform="translate(846 {210 + row_y})">
-      {connector}
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="{t['panel']}" stroke="{stroke}" stroke-width="{stroke_width}" stroke-opacity="{stroke_opacity}"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="{color}"/>
-      <circle class="pulse" cx="12" cy="18" r="{5 if i == 0 else 3.5}" fill="{color}" filter="{row_filter}"/>
-      <text x="32" y="14" class="tiny" fill="{color}">{label}</text>
-      <text x="58" y="24" class="repo" fill="{t['text']}">{esc(name)}</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="{t['muted']}">{esc(lang)}</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="{t['muted']}">{dt.strftime('%m.%d')}</text>
+        fill = t["panel2"] if i == 0 else "none"
+        label = "01" if i == 0 else f"{i + 1:02d}"
+        rec_rows.append(f"""<g class="boot" style="animation-delay:{round(0.22 + 0.08 * i, 2)}s">
+      <rect x="796" y="{row_y}" width="356" height="31" fill="{fill}"/>
+      <rect x="804" y="{row_y + 5}" width="24" height="21" fill="{color}"/>
+      <text x="816" y="{row_y + 19}" text-anchor="middle" class="number" fill="{t['bg0']}">{label}</text>
+      <text x="840" y="{row_y + 14}" class="ledger-repo" fill="{t['text']}">{esc(name)}</text>
+      <text x="1148" y="{row_y + 14}" text-anchor="end" class="tiny" fill="{color}">{esc(lang)}</text>
+      <text x="1148" y="{row_y + 25}" text-anchor="end" class="tiny" fill="{t['muted']}">{dt.strftime('%m.%d')}</text>
     </g>""")
 
-    cards_s = "\n" + "\n".join(cards)
-    lang_head = (f'\n<g transform="translate(28 210)"><rect width="452" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
-                 f'<text x="22" y="30" class="micro" fill="{t["cyan"]}">LANGUAGE TELEMETRY</text>'
-                 f'<text x="430" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PRIMARY / REPO</text></g>')
-    lang_s = "\n" + "\n".join(lang_rows)
-    cad_head = (f'\n<g transform="translate(496 210)"><rect width="316" height="304" rx="14" fill="{t["panel"]}" stroke="{t["line"]}"/>'
-                f'<text x="22" y="30" class="micro" fill="{t["green"]}">PUSH CADENCE</text>'
-                f'<text x="294" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">12 MO / LAST-PUSH</text></g>')
+    rail_s = "\n" + "\n".join(rail)
+    lang_segments_s = "\n" + "\n".join(lang_segments)
+    lang_items_s = "\n" + "\n".join(lang_items)
     cad_s = "\n" + "\n".join(cad_rows)
-    rec_head = (
-        f'\n<g clip-path="url(#recent-frame)">'
-        f'<rect x="828" y="210" width="344" height="304" rx="14" fill="{t["panel2"]}"/>'
-        f'<rect class="recent-sweep" x="828" y="214" width="344" height="34" fill="url(#accent)" opacity=".04"/>'
-        f'</g>'
-        f'<g transform="translate(828 210)">'
-        f'<rect width="344" height="304" rx="14" fill="none" stroke="{t["line"]}" stroke-width="1"/>'
-        f'<path d="M14 0H330" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>'
-        f'<path d="M300 0H330V30" fill="none" stroke="{t["pink"]}" stroke-width="2" stroke-linecap="round" opacity=".8"/>'
-        f'<path d="M12 58V262" stroke="url(#accent)" stroke-width="1" stroke-opacity=".38"/>'
-        f'<path d="M16 48H328" stroke="{t["line"]}" stroke-width="1"/>'
-        f'<text x="22" y="30" class="micro" fill="{t["pink"]}">RECENT TRANSMISSIONS</text>'
-        f'<text x="322" y="30" text-anchor="end" class="tiny" fill="{t["muted"]}">PUBLIC · PUSHED</text></g>'
-    )
     rec_s = "\n" + "\n".join(rec_rows)
-    last_signal = stats["latest_dt"].strftime("%Y.%m.%d")
+    top_language = language_segments[0][0].upper()
 
     svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
   <defs>
@@ -229,55 +225,92 @@ def render_dashboard(username, stats, mode):
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="{t['cyan']}"/><stop offset=".5" stop-color="{t['violet']}"/><stop offset="1" stop-color="{t['pink']}"/></linearGradient>
     <radialGradient id="aur1" cx=".5" cy=".5" r=".5"><stop stop-color="{t['cyan']}" stop-opacity=".10"/><stop offset="1" stop-color="{t['cyan']}" stop-opacity="0"/></radialGradient>
     <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="{t['pink']}" stop-opacity=".09"/><stop offset="1" stop-color="{t['pink']}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="signal-glow" cx=".5" cy=".5" r=".5"><stop stop-color="{t['pink']}" stop-opacity=".18"/><stop offset="1" stop-color="{t['pink']}" stop-opacity="0"/></radialGradient>
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="{t['grid']}" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="558" rx="20"/></clipPath>
-    <clipPath id="recent-frame"><rect x="828" y="210" width="344" height="304" rx="14"/></clipPath>
+    <clipPath id="frame"><path d="{frame_path}"/></clipPath>
   </defs>
   <style>
     text{{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}}
     .title{{font-size:15px;font-weight:800;letter-spacing:3px}}.micro{{font-size:10px;font-weight:700;letter-spacing:2px}}.tiny{{font-size:9px;letter-spacing:1px}}
-    .metric{{font-size:36px;font-weight:900;letter-spacing:-1px}}.row{{font-size:11px;font-weight:700;letter-spacing:1px}}.repo{{font-size:13px;font-weight:800}}
+    .rail-label{{font-size:8px;font-weight:700;letter-spacing:1.3px}}.rail-value{{font-size:17px;font-weight:900;letter-spacing:-.5px}}
+    .section{{font-size:11px;font-weight:800;letter-spacing:2px}}.hero-date{{font-size:57px;font-weight:900;letter-spacing:-3px}}.hero-year{{font-size:10px;font-weight:700;letter-spacing:2px}}
+    .hero-repo{{font-size:25px;font-weight:900;letter-spacing:-.5px}}.ledger-label{{font-size:10px;font-weight:800;letter-spacing:1px}}.ledger-repo{{font-size:11px;font-weight:800}}.number{{font-size:9px;font-weight:900}}
     .pulse{{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}}
-    .scan{{animation:scan 7s linear infinite}}
     .bar{{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}}
     .boot{{animation:boot .6s ease-out both}}
-    .recent-sweep{{animation:recentSweep 5.5s linear infinite}}
-    @keyframes pulse{{50%{{opacity:.3;transform:scale(.65)}}}}@keyframes scan{{from{{transform:translateY(-70px)}}to{{transform:translateY(630px)}}}}
-    @keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.45}}}}@keyframes recentSweep{{from{{transform:translateY(-46px)}}to{{transform:translateY(310px)}}}}
-    @media(prefers-reduced-motion:reduce){{.pulse,.scan,.bar,.boot,.recent-sweep{{animation:none}}}}
+    @keyframes pulse{{50%{{opacity:.3;transform:scale(.65)}}}}@keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.45}}}}
+    @media(prefers-reduced-motion:reduce){{.pulse,.bar,.boot{{animation:none}}}}
   </style>
 
 <g clip-path="url(#frame)">
     <rect width="1200" height="560" fill="url(#bg)"/>
     <ellipse cx="100" cy="0" rx="380" ry="200" fill="url(#aur1)"/>
     <ellipse cx="1150" cy="560" rx="420" ry="220" fill="url(#aur2)"/>
-    <rect width="1200" height="560" fill="url(#grid)" opacity=".55"/>
-    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
-    <rect class="scan" x="0" y="-70" width="1200" height="70" fill="url(#accent)" opacity=".03"/>
+    <rect width="1200" height="560" fill="url(#grid)" opacity=".32"/>
 
-    <text x="28" y="40" class="title" fill="{t['cyan']}">LIVE SIGNALS // SOURCE CONTROL</text>
+    <circle cx="32" cy="37" r="5" fill="{t['pink']}" filter="url(#glow)"/>
+    <text x="48" y="42" class="title" fill="{t['text']}">LIVE SIGNALS // SOURCE CONTROL</text>
+    {rail_s}
+    <text x="1172" y="42" text-anchor="end" class="hero-repo" fill="{t['text']}">{esc(username)}</text>
+    <path d="M28 64H1172" stroke="{t['line']}"/>
+    <path d="M28 64H258" stroke="{t['cyan']}" stroke-width="2"/>
 
-<g transform="translate(940 33)"><circle class="pulse" r="5" fill="{t['green']}" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="{t['green']}">FORK FILTER: ON</text></g>
-    <path d="M28 58H1172" stroke="{t['line']}"/>
+    <g class="boot" style="animation-delay:.18s">
+      <rect x="28" y="82" width="704" height="238" fill="{t['panel2']}" opacity=".76"/>
+      <path d="M28 82V320" stroke="{t['pink']}" stroke-width="4"/>
+      <path d="M28 82H732M28 320H732" stroke="{t['line']}"/>
+      <path d="M28 82H58M28 82V112" stroke="{t['pink']}" stroke-width="2"/>
+      <text x="54" y="112" class="section" fill="{t['pink']}">LATEST PUSH</text>
+      <path d="M54 124H102" stroke="{t['pink']}" stroke-width="4"/>
+      <text x="54" y="193" class="hero-date" fill="{t['text']}">{latest_full}</text>
+      <text x="54" y="216" class="hero-year" fill="{t['muted']}">UTC SOURCE EVENT · PUBLIC REPOSITORY</text>
+      <text x="54" y="256" class="hero-repo" fill="{t['text']}" textLength="420" lengthAdjust="spacingAndGlyphs">{esc(stats['latest_name'])}</text>
+      <path d="M54 274H468" stroke="{t['line']}"/>
+      <text x="54" y="297" class="tiny" fill="{t['muted']}">LATEST SOURCE SIGNAL · {latest_dt.strftime('%b %d').upper()}</text>
+      <g transform="translate(620 190)">
+        <circle r="78" fill="url(#signal-glow)"/>
+        <circle r="61" fill="none" stroke="{t['line']}" stroke-dasharray="2 6"/>
+        <circle r="43" fill="none" stroke="{t['muted']}" stroke-opacity=".65" stroke-dasharray="1 5"/>
+        <circle r="24" fill="none" stroke="{t['pink']}" stroke-opacity=".7"/>
+        <path d="M-70 0H70M0 -70V70" stroke="{t['line']}" stroke-opacity=".8"/>
+        <circle class="pulse" r="7" fill="{t['pink']}" filter="url(#glow)"/>
+      </g>
+      <text x="620" y="292" text-anchor="middle" class="tiny" fill="{t['pink']}">SIGNAL / ACTIVE</text>
+    </g>
 
-    {cards_s}
-
-    {lang_head}
-
-    {lang_s}
-
-    {cad_head}
-
-    {cad_s}
-
-    {rec_head}
-
+    <path d="M760 82V320" stroke="{t['line']}"/>
+    <path d="M772 82H1172M772 320H1172" stroke="{t['line']}"/>
+    <path d="M772 82V320" stroke="url(#accent)" stroke-width="2"/>
+    <text x="796" y="110" class="section" fill="{t['text']}">RECENT TRANSMISSIONS</text>
+    <text x="1152" y="110" text-anchor="end" class="tiny" fill="{t['muted']}">LAST 5 · PUSHED</text>
+    <path d="M796 122H1152" stroke="{t['line']}"/>
+    <path d="M786 152V291" stroke="{t['line']}"/>
     {rec_s}
 
-    <path d="M28 532H1172" stroke="{t['line']}"/><text x="28" y="549" class="tiny" fill="{t['muted']}">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL {last_signal}</text><text x="1172" y="549" text-anchor="end" class="tiny" fill="{t['muted']}">github.com/{esc(username)}</text>
+    <path d="M28 338H1172" stroke="{t['line']}"/>
+    <path d="M596 344V514" stroke="{t['line']}"/>
+    <text x="28" y="365" class="section" fill="{t['cyan']}">LANGUAGE TELEMETRY</text>
+    <text x="572" y="365" text-anchor="end" class="tiny" fill="{t['muted']}">{stats['total']} SOURCE REPOSITORIES</text>
+    <path d="M28 378H572" stroke="{t['line']}"/>
+    <rect x="28" y="383" width="544" height="14" fill="{t['grid']}"/>
+    {lang_segments_s}
+    {lang_items_s}
+    <text x="28" y="499" class="tiny" fill="{t['muted']}">TOP LANGUAGE · {esc(top_language)}</text>
+
+    <text x="620" y="365" class="section" fill="{t['green']}">PUSH CADENCE</text>
+    <text x="1172" y="365" text-anchor="end" class="tiny" fill="{t['muted']}">12 MONTHS · LAST-PUSH RHYTHM</text>
+    <path d="M620 378H1172" stroke="{t['line']}"/>
+    <path d="M620 425H1172M620 459H1172M620 493H1172" stroke="{t['line']}" stroke-dasharray="2 6"/>
+    {cad_s}
+
+    <path d="M28 526H1172" stroke="{t['line']}"/>
+    <text x="28" y="548" class="tiny" fill="{t['muted']}">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL {latest_full}</text>
+    <text x="1172" y="548" text-anchor="end" class="tiny" fill="{t['muted']}">github.com/{esc(username)}</text>
   </g>
-  <rect x="1" y="1" width="1198" height="558" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+  <path d="{frame_path}" fill="none" stroke="{t['line']}" stroke-width="2"/>
+  <path d="M12 1H258M1 12V70" fill="none" stroke="{t['cyan']}" stroke-width="2"/>
+  <path d="M942 559H1188M1199 490V548" fill="none" stroke="{t['pink']}" stroke-width="2"/>
 </svg>
 """
     return "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"

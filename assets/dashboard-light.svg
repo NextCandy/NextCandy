@@ -4,216 +4,240 @@
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0099C4"/><stop offset=".5" stop-color="#6A54D8"/><stop offset="1" stop-color="#E83E8C"/></linearGradient>
     <radialGradient id="aur1" cx=".5" cy=".5" r=".5"><stop stop-color="#0099C4" stop-opacity=".10"/><stop offset="1" stop-color="#0099C4" stop-opacity="0"/></radialGradient>
     <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="#E83E8C" stop-opacity=".09"/><stop offset="1" stop-color="#E83E8C" stop-opacity="0"/></radialGradient>
+    <radialGradient id="signal-glow" cx=".5" cy=".5" r=".5"><stop stop-color="#E83E8C" stop-opacity=".18"/><stop offset="1" stop-color="#E83E8C" stop-opacity="0"/></radialGradient>
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#DCEAF0" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="558" rx="20"/></clipPath>
-    <clipPath id="recent-frame"><rect x="828" y="210" width="344" height="304" rx="14"/></clipPath>
+    <clipPath id="frame"><path d="M12 1H1188L1199 12V548L1188 559H12L1 548V12Z"/></clipPath>
   </defs>
   <style>
     text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
     .title{font-size:15px;font-weight:800;letter-spacing:3px}.micro{font-size:10px;font-weight:700;letter-spacing:2px}.tiny{font-size:9px;letter-spacing:1px}
-    .metric{font-size:36px;font-weight:900;letter-spacing:-1px}.row{font-size:11px;font-weight:700;letter-spacing:1px}.repo{font-size:13px;font-weight:800}
+    .rail-label{font-size:8px;font-weight:700;letter-spacing:1.3px}.rail-value{font-size:17px;font-weight:900;letter-spacing:-.5px}
+    .section{font-size:11px;font-weight:800;letter-spacing:2px}.hero-date{font-size:57px;font-weight:900;letter-spacing:-3px}.hero-year{font-size:10px;font-weight:700;letter-spacing:2px}
+    .hero-repo{font-size:25px;font-weight:900;letter-spacing:-.5px}.ledger-label{font-size:10px;font-weight:800;letter-spacing:1px}.ledger-repo{font-size:11px;font-weight:800}.number{font-size:9px;font-weight:900}
     .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
-    .scan{animation:scan 7s linear infinite}
     .bar{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
     .boot{animation:boot .6s ease-out both}
-    .recent-sweep{animation:recentSweep 5.5s linear infinite}
-    @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes scan{from{transform:translateY(-70px)}to{transform:translateY(630px)}}
-    @keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.45}}@keyframes recentSweep{from{transform:translateY(-46px)}to{transform:translateY(310px)}}
-    @media(prefers-reduced-motion:reduce){.pulse,.scan,.bar,.boot,.recent-sweep{animation:none}}
+    @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.45}}
+    @media(prefers-reduced-motion:reduce){.pulse,.bar,.boot{animation:none}}
   </style>
 
 <g clip-path="url(#frame)">
     <rect width="1200" height="560" fill="url(#bg)"/>
     <ellipse cx="100" cy="0" rx="380" ry="200" fill="url(#aur1)"/>
     <ellipse cx="1150" cy="560" rx="420" ry="220" fill="url(#aur2)"/>
-    <rect width="1200" height="560" fill="url(#grid)" opacity=".55"/>
-    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
-    <rect class="scan" x="0" y="-70" width="1200" height="70" fill="url(#accent)" opacity=".03"/>
+    <rect width="1200" height="560" fill="url(#grid)" opacity=".32"/>
 
-    <text x="28" y="40" class="title" fill="#0099C4">LIVE SIGNALS // SOURCE CONTROL</text>
+    <circle cx="32" cy="37" r="5" fill="#E83E8C" filter="url(#glow)"/>
+    <text x="48" y="42" class="title" fill="#0C2733">LIVE SIGNALS // SOURCE CONTROL</text>
 
-<g transform="translate(940 33)"><circle class="pulse" r="5" fill="#12995F" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="#12995F">FORK FILTER: ON</text></g>
-    <path d="M28 58H1172" stroke="#B9D2DC"/>
+<g class="boot" style="animation-delay:0.08s" transform="translate(398 0)">
+      <text x="0" y="27" class="rail-label" fill="#5B7885">SOURCE REPOS</text>
+      <text x="0" y="48" class="rail-value" fill="#0099C4">9</text>
+      <path d="M543 20V52" stroke="#B9D2DC"/>
+    </g>
+<g class="boot" style="animation-delay:0.16s" transform="translate(556 0)">
+      <text x="0" y="27" class="rail-label" fill="#5B7885">LANGUAGE NODES</text>
+      <text x="0" y="48" class="rail-value" fill="#E83E8C">5</text>
+      <path d="M701 20V52" stroke="#B9D2DC"/>
+    </g>
+<g class="boot" style="animation-delay:0.24s" transform="translate(714 0)">
+      <text x="0" y="27" class="rail-label" fill="#5B7885">ACTIVE / 2026</text>
+      <text x="0" y="48" class="rail-value" fill="#12995F">8</text>
+      <path d="M859 20V52" stroke="#B9D2DC"/>
+    </g>
+<g class="boot" style="animation-delay:0.32s" transform="translate(872 0)">
+      <text x="0" y="27" class="rail-label" fill="#5B7885">LATEST PUSH</text>
+      <text x="0" y="48" class="rail-value" fill="#B57400">09.03</text>
 
+    </g>
+    <text x="1172" y="42" text-anchor="end" class="hero-repo" fill="#0C2733">NextCandy</text>
+    <path d="M28 64H1172" stroke="#B9D2DC"/>
+    <path d="M28 64H258" stroke="#0099C4" stroke-width="2"/>
 
-<g class="boot" style="animation-delay:0.0s" transform="translate(28 80)">
-      <rect width="267" height="104" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/>
-      <rect width="267" height="4" rx="2" fill="#0099C4"/>
-      <text x="20" y="34" class="micro" fill="#5B7885">SOURCE REPOS</text>
-      <text x="20" y="76" class="metric" fill="#0099C4">9</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="#5B7885">forks excluded</text>
-      <circle class="pulse" cx="247" cy="28" r="3.5" fill="#0099C4"/>
-    </g>
-<g class="boot" style="animation-delay:0.12s" transform="translate(317 80)">
-      <rect width="267" height="104" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/>
-      <rect width="267" height="4" rx="2" fill="#E83E8C"/>
-      <text x="20" y="34" class="micro" fill="#5B7885">LANGUAGE NODES</text>
-      <text x="20" y="76" class="metric" fill="#E83E8C">5</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="#5B7885">primary stacks</text>
-      <circle class="pulse" cx="247" cy="28" r="3.5" fill="#E83E8C"/>
-    </g>
-<g class="boot" style="animation-delay:0.24s" transform="translate(606 80)">
-      <rect width="267" height="104" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/>
-      <rect width="267" height="4" rx="2" fill="#12995F"/>
-      <text x="20" y="34" class="micro" fill="#5B7885">ACTIVE / 2026</text>
-      <text x="20" y="76" class="metric" fill="#12995F">8</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="#5B7885">pushed this year</text>
-      <circle class="pulse" cx="247" cy="28" r="3.5" fill="#12995F"/>
-    </g>
-<g class="boot" style="animation-delay:0.36s" transform="translate(895 80)">
-      <rect width="267" height="104" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/>
-      <rect width="267" height="4" rx="2" fill="#B57400"/>
-      <text x="20" y="34" class="micro" fill="#5B7885">LATEST PUSH</text>
-      <text x="20" y="76" class="metric" fill="#B57400">09.02</text>
-      <text x="247" y="76" text-anchor="end" class="tiny" fill="#5B7885">NextCandy</text>
-      <circle class="pulse" cx="247" cy="28" r="3.5" fill="#B57400"/>
-    </g>
-
-
-<g transform="translate(28 210)"><rect width="452" height="304" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/><text x="22" y="30" class="micro" fill="#0099C4">LANGUAGE TELEMETRY</text><text x="430" y="30" text-anchor="end" class="tiny" fill="#5B7885">PRIMARY / REPO</text></g>
-
-
-<g transform="translate(52 258)">
-      <text x="0" y="13" class="row" fill="#0C2733">TYPESCRIPT</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#DCEAF0"/>
-      <rect class="bar" style="animation-delay:0.25s" x="120" y="3" width="250.0" height="11" rx="5.5" fill="#0099C4"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#5B7885">05 · 56%</text>
-    </g>
-<g transform="translate(52 302)">
-      <text x="0" y="13" class="row" fill="#0C2733">PYTHON</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#DCEAF0"/>
-      <rect class="bar" style="animation-delay:0.34s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#6A54D8"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#5B7885">01 · 11%</text>
-    </g>
-<g transform="translate(52 346)">
-      <text x="0" y="13" class="row" fill="#0C2733">GO</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#DCEAF0"/>
-      <rect class="bar" style="animation-delay:0.43s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#E83E8C"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#5B7885">01 · 11%</text>
-    </g>
-<g transform="translate(52 390)">
-      <text x="0" y="13" class="row" fill="#0C2733">CSS</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#DCEAF0"/>
-      <rect class="bar" style="animation-delay:0.52s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#12995F"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#5B7885">01 · 11%</text>
-    </g>
-<g transform="translate(52 434)">
-      <text x="0" y="13" class="row" fill="#0C2733">HTML</text>
-      <rect x="120" y="3" width="250" height="11" rx="5.5" fill="#DCEAF0"/>
-      <rect class="bar" style="animation-delay:0.61s" x="120" y="3" width="50.0" height="11" rx="5.5" fill="#B57400"/>
-      <text x="400" y="13" text-anchor="end" class="row" fill="#5B7885">01 · 11%</text>
+    <g class="boot" style="animation-delay:.18s">
+      <rect x="28" y="82" width="704" height="238" fill="#F2F8FB" opacity=".76"/>
+      <path d="M28 82V320" stroke="#E83E8C" stroke-width="4"/>
+      <path d="M28 82H732M28 320H732" stroke="#B9D2DC"/>
+      <path d="M28 82H58M28 82V112" stroke="#E83E8C" stroke-width="2"/>
+      <text x="54" y="112" class="section" fill="#E83E8C">LATEST PUSH</text>
+      <path d="M54 124H102" stroke="#E83E8C" stroke-width="4"/>
+      <text x="54" y="193" class="hero-date" fill="#0C2733">2026.09.03</text>
+      <text x="54" y="216" class="hero-year" fill="#5B7885">UTC SOURCE EVENT · PUBLIC REPOSITORY</text>
+      <text x="54" y="256" class="hero-repo" fill="#0C2733" textLength="420" lengthAdjust="spacingAndGlyphs">NextCandy</text>
+      <path d="M54 274H468" stroke="#B9D2DC"/>
+      <text x="54" y="297" class="tiny" fill="#5B7885">LATEST SOURCE SIGNAL · SEP 03</text>
+      <g transform="translate(620 190)">
+        <circle r="78" fill="url(#signal-glow)"/>
+        <circle r="61" fill="none" stroke="#B9D2DC" stroke-dasharray="2 6"/>
+        <circle r="43" fill="none" stroke="#5B7885" stroke-opacity=".65" stroke-dasharray="1 5"/>
+        <circle r="24" fill="none" stroke="#E83E8C" stroke-opacity=".7"/>
+        <path d="M-70 0H70M0 -70V70" stroke="#B9D2DC" stroke-opacity=".8"/>
+        <circle class="pulse" r="7" fill="#E83E8C" filter="url(#glow)"/>
+      </g>
+      <text x="620" y="292" text-anchor="middle" class="tiny" fill="#E83E8C">SIGNAL / ACTIVE</text>
     </g>
 
+    <path d="M760 82V320" stroke="#B9D2DC"/>
+    <path d="M772 82H1172M772 320H1172" stroke="#B9D2DC"/>
+    <path d="M772 82V320" stroke="url(#accent)" stroke-width="2"/>
+    <text x="796" y="110" class="section" fill="#0C2733">RECENT TRANSMISSIONS</text>
+    <text x="1152" y="110" text-anchor="end" class="tiny" fill="#5B7885">LAST 5 · PUSHED</text>
+    <path d="M796 122H1152" stroke="#B9D2DC"/>
+    <path d="M786 152V291" stroke="#B9D2DC"/>
 
-<g transform="translate(496 210)"><rect width="316" height="304" rx="14" fill="#FFFFFF" stroke="#B9D2DC"/><text x="22" y="30" class="micro" fill="#12995F">PUSH CADENCE</text><text x="294" y="30" text-anchor="end" class="tiny" fill="#5B7885">12 MO / LAST-PUSH</text></g>
-
-
-<g transform="translate(544 0)">
-      <rect class="bar" style="animation-delay:0.3s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885">10</text>
+<g class="boot" style="animation-delay:0.22s">
+      <rect x="796" y="137" width="356" height="31" fill="#F2F8FB"/>
+      <rect x="804" y="142" width="24" height="21" fill="#0099C4"/>
+      <text x="816" y="156" text-anchor="middle" class="number" fill="#F7FBFD">01</text>
+      <text x="840" y="151" class="ledger-repo" fill="#0C2733">NextCandy</text>
+      <text x="1148" y="151" text-anchor="end" class="tiny" fill="#0099C4">PYTHON</text>
+      <text x="1148" y="162" text-anchor="end" class="tiny" fill="#5B7885">09.03</text>
     </g>
-<g transform="translate(566 0)">
-      <rect class="bar" style="animation-delay:0.35s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#12995F"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+<g class="boot" style="animation-delay:0.3s">
+      <rect x="796" y="172" width="356" height="31" fill="none"/>
+      <rect x="804" y="177" width="24" height="21" fill="#E83E8C"/>
+      <text x="816" y="191" text-anchor="middle" class="number" fill="#F7FBFD">02</text>
+      <text x="840" y="186" class="ledger-repo" fill="#0C2733">TimeAmber</text>
+      <text x="1148" y="186" text-anchor="end" class="tiny" fill="#E83E8C">TYPESCRIPT</text>
+      <text x="1148" y="197" text-anchor="end" class="tiny" fill="#5B7885">08.18</text>
     </g>
-<g transform="translate(588 0)">
-      <rect class="bar" style="animation-delay:0.4s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+<g class="boot" style="animation-delay:0.38s">
+      <rect x="796" y="207" width="356" height="31" fill="none"/>
+      <rect x="804" y="212" width="24" height="21" fill="#6A54D8"/>
+      <text x="816" y="226" text-anchor="middle" class="number" fill="#F7FBFD">03</text>
+      <text x="840" y="221" class="ledger-repo" fill="#0C2733">DomainHunter</text>
+      <text x="1148" y="221" text-anchor="end" class="tiny" fill="#6A54D8">GO</text>
+      <text x="1148" y="232" text-anchor="end" class="tiny" fill="#5B7885">08.14</text>
     </g>
-<g transform="translate(610 0)">
-      <rect class="bar" style="animation-delay:0.45s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+<g class="boot" style="animation-delay:0.46s">
+      <rect x="796" y="242" width="356" height="31" fill="none"/>
+      <rect x="804" y="247" width="24" height="21" fill="#12995F"/>
+      <text x="816" y="261" text-anchor="middle" class="number" fill="#F7FBFD">04</text>
+      <text x="840" y="256" class="ledger-repo" fill="#0C2733">content-animator</text>
+      <text x="1148" y="256" text-anchor="end" class="tiny" fill="#12995F">TYPESCRIPT</text>
+      <text x="1148" y="267" text-anchor="end" class="tiny" fill="#5B7885">08.05</text>
     </g>
-<g transform="translate(632 0)">
-      <rect class="bar" style="animation-delay:0.5s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(654 0)">
-      <rect class="bar" style="animation-delay:0.55s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(676 0)">
-      <rect class="bar" style="animation-delay:0.6s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(698 0)">
-      <rect class="bar" style="animation-delay:0.65s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#12995F"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(720 0)">
-      <rect class="bar" style="animation-delay:0.7s" x="0" y="466.0" width="12" height="4.0" rx="6" fill="#DCEAF0"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(742 0)">
-      <rect class="bar" style="animation-delay:0.75s" x="0" y="390.0" width="12" height="80.0" rx="6" fill="#12995F"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(764 0)">
-      <rect class="bar" style="animation-delay:0.8s" x="0" y="390.0" width="12" height="80.0" rx="6" fill="#12995F"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885"></text>
-    </g>
-<g transform="translate(786 0)">
-      <rect class="bar" style="animation-delay:0.85s" x="0" y="438.0" width="12" height="32.0" rx="6" fill="#12995F"/>
-      <text x="6" y="492" text-anchor="middle" class="tiny" fill="#5B7885">09</text>
+<g class="boot" style="animation-delay:0.54s">
+      <rect x="796" y="277" width="356" height="31" fill="none"/>
+      <rect x="804" y="282" width="24" height="21" fill="#B57400"/>
+      <text x="816" y="296" text-anchor="middle" class="number" fill="#F7FBFD">05</text>
+      <text x="840" y="291" class="ledger-repo" fill="#0C2733">UnUseDomain</text>
+      <text x="1148" y="291" text-anchor="end" class="tiny" fill="#B57400">TYPESCRIPT</text>
+      <text x="1148" y="302" text-anchor="end" class="tiny" fill="#5B7885">07.23</text>
     </g>
 
+    <path d="M28 338H1172" stroke="#B9D2DC"/>
+    <path d="M596 344V514" stroke="#B9D2DC"/>
+    <text x="28" y="365" class="section" fill="#0099C4">LANGUAGE TELEMETRY</text>
+    <text x="572" y="365" text-anchor="end" class="tiny" fill="#5B7885">9 SOURCE REPOSITORIES</text>
+    <path d="M28 378H572" stroke="#B9D2DC"/>
+    <rect x="28" y="383" width="544" height="14" fill="#DCEAF0"/>
 
-<g clip-path="url(#recent-frame)"><rect x="828" y="210" width="344" height="304" rx="14" fill="#F2F8FB"/><rect class="recent-sweep" x="828" y="214" width="344" height="34" fill="url(#accent)" opacity=".04"/></g><g transform="translate(828 210)"><rect width="344" height="304" rx="14" fill="none" stroke="#B9D2DC" stroke-width="1"/><path d="M14 0H330" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/><path d="M300 0H330V30" fill="none" stroke="#E83E8C" stroke-width="2" stroke-linecap="round" opacity=".8"/><path d="M12 58V262" stroke="url(#accent)" stroke-width="1" stroke-opacity=".38"/><path d="M16 48H328" stroke="#B9D2DC" stroke-width="1"/><text x="22" y="30" class="micro" fill="#E83E8C">RECENT TRANSMISSIONS</text><text x="322" y="30" text-anchor="end" class="tiny" fill="#5B7885">PUBLIC · PUSHED</text></g>
+<rect class="bar" style="animation-delay:0.18s" x="28.0" y="383" width="302.2" height="14" fill="#0099C4"/>
+<rect class="bar" style="animation-delay:0.26s" x="330.2" y="383" width="60.4" height="14" fill="#6A54D8"/>
+<rect class="bar" style="animation-delay:0.34s" x="390.6" y="383" width="60.4" height="14" fill="#E83E8C"/>
+<rect class="bar" style="animation-delay:0.42s" x="451.0" y="383" width="60.4" height="14" fill="#12995F"/>
+<rect class="bar" style="animation-delay:0.5s" x="511.4" y="383" width="60.4" height="14" fill="#B57400"/>
 
+<g transform="translate(28 426)">
+      <circle cx="3" cy="-4" r="3" fill="#0099C4"/>
+      <text x="13" y="0" class="ledger-label" fill="#0C2733">TYPESCRIPT</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="#5B7885">05 · 56%</text>
+    </g>
+<g transform="translate(209 426)">
+      <circle cx="3" cy="-4" r="3" fill="#6A54D8"/>
+      <text x="13" y="0" class="ledger-label" fill="#0C2733">PYTHON</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="#5B7885">01 · 11%</text>
+    </g>
+<g transform="translate(390 426)">
+      <circle cx="3" cy="-4" r="3" fill="#E83E8C"/>
+      <text x="13" y="0" class="ledger-label" fill="#0C2733">GO</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="#5B7885">01 · 11%</text>
+    </g>
+<g transform="translate(28 454)">
+      <circle cx="3" cy="-4" r="3" fill="#12995F"/>
+      <text x="13" y="0" class="ledger-label" fill="#0C2733">CSS</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="#5B7885">01 · 11%</text>
+    </g>
+<g transform="translate(209 454)">
+      <circle cx="3" cy="-4" r="3" fill="#B57400"/>
+      <text x="13" y="0" class="ledger-label" fill="#0C2733">HTML</text>
+      <text x="168" y="0" text-anchor="end" class="tiny" fill="#5B7885">01 · 11%</text>
+    </g>
+    <text x="28" y="499" class="tiny" fill="#5B7885">TOP LANGUAGE · TYPESCRIPT</text>
 
-<g class="boot" style="animation-delay:0.3s" transform="translate(846 262)">
-      <path d="M12 36V46" stroke="#0099C4" stroke-opacity=".28" stroke-width="1.5"/>
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="#FFFFFF" stroke="#0099C4" stroke-width="1.5" stroke-opacity=".78"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#0099C4"/>
-      <circle class="pulse" cx="12" cy="18" r="5" fill="#0099C4" filter="url(#glow)"/>
-      <text x="32" y="14" class="tiny" fill="#0099C4">LATEST</text>
-      <text x="58" y="24" class="repo" fill="#0C2733">NextCandy</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="#5B7885">PYTHON</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="#5B7885">09.02</text>
-    </g>
-<g class="boot" style="animation-delay:0.4s" transform="translate(846 308)">
-      <path d="M12 36V46" stroke="#E83E8C" stroke-opacity=".28" stroke-width="1.5"/>
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="#FFFFFF" stroke="#B9D2DC" stroke-width="1" stroke-opacity=".9"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#E83E8C"/>
-      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#E83E8C" filter="none"/>
-      <text x="32" y="14" class="tiny" fill="#E83E8C">02</text>
-      <text x="58" y="24" class="repo" fill="#0C2733">TimeAmber</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="#5B7885">TYPESCRIPT</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="#5B7885">08.18</text>
-    </g>
-<g class="boot" style="animation-delay:0.5s" transform="translate(846 354)">
-      <path d="M12 36V46" stroke="#6A54D8" stroke-opacity=".28" stroke-width="1.5"/>
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="#FFFFFF" stroke="#B9D2DC" stroke-width="1" stroke-opacity=".9"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#6A54D8"/>
-      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#6A54D8" filter="none"/>
-      <text x="32" y="14" class="tiny" fill="#6A54D8">03</text>
-      <text x="58" y="24" class="repo" fill="#0C2733">DomainHunter</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="#5B7885">GO</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="#5B7885">08.14</text>
-    </g>
-<g class="boot" style="animation-delay:0.6s" transform="translate(846 400)">
-      <path d="M12 36V46" stroke="#12995F" stroke-opacity=".28" stroke-width="1.5"/>
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="#FFFFFF" stroke="#B9D2DC" stroke-width="1" stroke-opacity=".9"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#12995F"/>
-      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#12995F" filter="none"/>
-      <text x="32" y="14" class="tiny" fill="#12995F">04</text>
-      <text x="58" y="24" class="repo" fill="#0C2733">content-animator</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="#5B7885">TYPESCRIPT</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="#5B7885">08.05</text>
-    </g>
-<g class="boot" style="animation-delay:0.7s" transform="translate(846 446)">
+    <text x="620" y="365" class="section" fill="#12995F">PUSH CADENCE</text>
+    <text x="1172" y="365" text-anchor="end" class="tiny" fill="#5B7885">12 MONTHS · LAST-PUSH RHYTHM</text>
+    <path d="M620 378H1172" stroke="#B9D2DC"/>
+    <path d="M620 425H1172M620 459H1172M620 493H1172" stroke="#B9D2DC" stroke-dasharray="2 6"/>
 
-      <rect x="18" y="0" width="308" height="36" rx="9" fill="#FFFFFF" stroke="#B9D2DC" stroke-width="1" stroke-opacity=".9"/>
-      <rect x="18" y="0" width="3" height="36" rx="1.5" fill="#B57400"/>
-      <circle class="pulse" cx="12" cy="18" r="3.5" fill="#B57400" filter="none"/>
-      <text x="32" y="14" class="tiny" fill="#B57400">05</text>
-      <text x="58" y="24" class="repo" fill="#0C2733">UnUseDomain</text>
-      <text x="296" y="14" text-anchor="end" class="tiny" fill="#5B7885">TYPESCRIPT</text>
-      <text x="296" y="27" text-anchor="end" class="tiny" fill="#5B7885">07.23</text>
+<g transform="translate(649.5 0)">
+      <rect class="bar" style="animation-delay:0.22s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885">OCT</text>
+    </g>
+<g transform="translate(692.5 0)">
+      <rect class="bar" style="animation-delay:0.26s" x="0" y="462.3" width="16.0" height="30.7" fill="#6A54D8"/>
+      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#5B7885">1</text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(735.5 0)">
+      <rect class="bar" style="animation-delay:0.29s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(778.5 0)">
+      <rect class="bar" style="animation-delay:0.33s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(821.5 0)">
+      <rect class="bar" style="animation-delay:0.36s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(864.5 0)">
+      <rect class="bar" style="animation-delay:0.4s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885">MAR</text>
+    </g>
+<g transform="translate(907.5 0)">
+      <rect class="bar" style="animation-delay:0.43s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(950.5 0)">
+      <rect class="bar" style="animation-delay:0.47s" x="0" y="462.3" width="16.0" height="30.7" fill="#E83E8C"/>
+      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#5B7885">1</text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(993.5 0)">
+      <rect class="bar" style="animation-delay:0.5s" x="0" y="485.0" width="16.0" height="8.0" fill="#DCEAF0"/>
+      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(1036.5 0)">
+      <rect class="bar" style="animation-delay:0.54s" x="0" y="417.0" width="16.0" height="76.0" fill="#B57400"/>
+      <text x="8.0" y="411.0" text-anchor="middle" class="tiny" fill="#5B7885">3</text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(1079.5 0)">
+      <rect class="bar" style="animation-delay:0.57s" x="0" y="417.0" width="16.0" height="76.0" fill="#0099C4"/>
+      <text x="8.0" y="411.0" text-anchor="middle" class="tiny" fill="#5B7885">3</text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885"></text>
+    </g>
+<g transform="translate(1122.5 0)">
+      <rect class="bar" style="animation-delay:0.6s" x="0" y="462.3" width="16.0" height="30.7" fill="#E83E8C"/>
+      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#5B7885">1</text>
+      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#5B7885">SEP</text>
     </g>
 
-    <path d="M28 532H1172" stroke="#B9D2DC"/><text x="28" y="549" class="tiny" fill="#5B7885">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.09.02</text><text x="1172" y="549" text-anchor="end" class="tiny" fill="#5B7885">github.com/NextCandy</text>
+    <path d="M28 526H1172" stroke="#B9D2DC"/>
+    <text x="28" y="548" class="tiny" fill="#5B7885">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.09.03</text>
+    <text x="1172" y="548" text-anchor="end" class="tiny" fill="#5B7885">github.com/NextCandy</text>
   </g>
-  <rect x="1" y="1" width="1198" height="558" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+  <path d="M12 1H1188L1199 12V548L1188 559H12L1 548V12Z" fill="none" stroke="#B9D2DC" stroke-width="2"/>
+  <path d="M12 1H258M1 12V70" fill="none" stroke="#0099C4" stroke-width="2"/>
+  <path d="M942 559H1188M1199 490V548" fill="none" stroke="#E83E8C" stroke-width="2"/>
 </svg>
