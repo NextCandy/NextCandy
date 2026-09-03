@@ -1,243 +1,388 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="NextCandy live GitHub source repository signals" data-mode="dark">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#04070D"/><stop offset="1" stop-color="#0A1220"/></linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2FD8FF"/><stop offset=".5" stop-color="#9D8CFF"/><stop offset="1" stop-color="#FF5CA8"/></linearGradient>
-    <radialGradient id="aur1" cx=".5" cy=".5" r=".5"><stop stop-color="#2FD8FF" stop-opacity=".10"/><stop offset="1" stop-color="#2FD8FF" stop-opacity="0"/></radialGradient>
-    <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="#FF5CA8" stop-opacity=".09"/><stop offset="1" stop-color="#FF5CA8" stop-opacity="0"/></radialGradient>
-    <radialGradient id="signal-glow" cx=".5" cy=".5" r=".5"><stop stop-color="#FF5CA8" stop-opacity=".18"/><stop offset="1" stop-color="#FF5CA8" stop-opacity="0"/></radialGradient>
-    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#12202E" stroke-width="1"/></pattern>
-    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><path d="M12 1H1188L1199 12V548L1188 559H12L1 548V12Z"/></clipPath>
+    <clipPath id="frame"><path d="M1 1H1199V559H1Z"/></clipPath>
+    <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
   </defs>
   <style>
-    text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
-    .title{font-size:15px;font-weight:800;letter-spacing:3px}.micro{font-size:10px;font-weight:700;letter-spacing:2px}.tiny{font-size:9px;letter-spacing:1px}
-    .rail-label{font-size:8px;font-weight:700;letter-spacing:1.3px}.rail-value{font-size:17px;font-weight:900;letter-spacing:-.5px}
-    .section{font-size:11px;font-weight:800;letter-spacing:2px}.hero-date{font-size:57px;font-weight:900;letter-spacing:-3px}.hero-year{font-size:10px;font-weight:700;letter-spacing:2px}
-    .hero-repo{font-size:25px;font-weight:900;letter-spacing:-.5px}.ledger-label{font-size:10px;font-weight:800;letter-spacing:1px}.ledger-repo{font-size:11px;font-weight:800}.number{font-size:9px;font-weight:900}
-    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
-    .bar{transform-box:fill-box;transform-origin:center;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
-    .boot{animation:boot .6s ease-out both}
-    @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.45}}
+    text{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+    .title{font-size:14px;font-weight:800;letter-spacing:2.7px}.top-label{font-size:9px;font-weight:700;letter-spacing:1.2px}.top-value{font-size:17px;font-weight:800}
+    .brand{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.4px}.section{font-size:11px;font-weight:800;letter-spacing:2px}
+    .hero-date{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}.hero-repo{font-size:26px;font-weight:800;letter-spacing:1px}
+    .meta{font-size:10px;font-weight:700;letter-spacing:.8px}.body-copy{font-size:13px;font-weight:500;letter-spacing:.3px}.tiny{font-size:8px;letter-spacing:1px}
+    .ledger-repo{font-size:11px;font-weight:800;letter-spacing:.1px}.ledger-message{font-size:9px;letter-spacing:.1px}.ledger-time{font-size:10px;font-weight:800}.ledger-date{font-size:8px;letter-spacing:1px}.number{font-size:8px;font-weight:900}
+    .language-name{font-size:9px;font-weight:700}.language-pct{font-size:9px;letter-spacing:.5px}.chart-value{font-size:8px}.chart-label{font-size:8px;letter-spacing:.5px}
+    .band-copy{font-size:9px;font-weight:700;letter-spacing:1px}.band-code{font-size:12px;letter-spacing:.3px}.mini-label{font-size:6px;font-weight:800;letter-spacing:1px}.mini-date{font-size:7px;letter-spacing:.5px}.mini-repo{font-size:8px;font-weight:800}.mini-number{font-size:5px;font-weight:900}
+    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}.bar{transform-box:fill-box;transform-origin:center;animation:grow .8s cubic-bezier(.23,1,.32,1) both}.boot{animation:boot .35s ease-out both}
+    @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}@keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.35;transform:translateY(3px)}}
     @media(prefers-reduced-motion:reduce){.pulse,.bar,.boot{animation:none}}
   </style>
 
-<g clip-path="url(#frame)">
-    <rect width="1200" height="560" fill="url(#bg)"/>
-    <ellipse cx="100" cy="0" rx="380" ry="200" fill="url(#aur1)"/>
-    <ellipse cx="1150" cy="560" rx="420" ry="220" fill="url(#aur2)"/>
-    <rect width="1200" height="560" fill="url(#grid)" opacity=".32"/>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="560" fill="#06182B"/>
 
-    <circle cx="32" cy="37" r="5" fill="#FF5CA8" filter="url(#glow)"/>
-    <text x="48" y="42" class="title" fill="#EAF6FC">LIVE SIGNALS // SOURCE CONTROL</text>
+    <circle cx="30" cy="27" r="5" fill="#FF6469"/>
+    <text x="52" y="33" class="title" fill="#F4F8FC">LIVE SIGNALS // SOURCE CONTROL</text>
 
-<g class="boot" style="animation-delay:0.08s" transform="translate(398 0)">
-      <text x="0" y="27" class="rail-label" fill="#7E96A6">SOURCE REPOS</text>
-      <text x="0" y="48" class="rail-value" fill="#2FD8FF">9</text>
-      <path d="M543 20V52" stroke="#1E3446"/>
+<g class="boot" style="animation-delay:0.06s" transform="translate(398 0)">
+      <text x="0" y="33" class="top-label" fill="#9FB2C3">REPOS</text>
+      <text x="54" y="33" class="top-value" fill="#FF6469">9</text>
+      <path d="M535 17V40" stroke="#3D5973"/>
     </g>
-<g class="boot" style="animation-delay:0.16s" transform="translate(556 0)">
-      <text x="0" y="27" class="rail-label" fill="#7E96A6">LANGUAGE NODES</text>
-      <text x="0" y="48" class="rail-value" fill="#FF5CA8">5</text>
-      <path d="M701 20V52" stroke="#1E3446"/>
+<g class="boot" style="animation-delay:0.12s" transform="translate(548 0)">
+      <text x="0" y="33" class="top-label" fill="#9FB2C3">LANGUAGES</text>
+      <text x="88" y="33" class="top-value" fill="#2AC2CE">5</text>
+      <path d="M685 17V40" stroke="#3D5973"/>
     </g>
-<g class="boot" style="animation-delay:0.24s" transform="translate(714 0)">
-      <text x="0" y="27" class="rail-label" fill="#7E96A6">ACTIVE / 2026</text>
-      <text x="0" y="48" class="rail-value" fill="#3DF2A6">8</text>
-      <path d="M859 20V52" stroke="#1E3446"/>
+<g class="boot" style="animation-delay:0.18s" transform="translate(698 0)">
+      <text x="0" y="33" class="top-label" fill="#9FB2C3">ACTIVE / 2026</text>
+      <text x="108" y="33" class="top-value" fill="#7896DB">8</text>
+      <path d="M835 17V40" stroke="#3D5973"/>
     </g>
-<g class="boot" style="animation-delay:0.32s" transform="translate(872 0)">
-      <text x="0" y="27" class="rail-label" fill="#7E96A6">LATEST PUSH</text>
-      <text x="0" y="48" class="rail-value" fill="#FFC857">09.03</text>
+<g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
+      <text x="0" y="33" class="top-label" fill="#9FB2C3">LATEST</text>
+      <text x="62" y="33" class="top-value" fill="#FF6469">09.03</text>
 
     </g>
-    <text x="1172" y="42" text-anchor="end" class="hero-repo" fill="#EAF6FC">NextCandy</text>
-    <path d="M28 64H1172" stroke="#1E3446"/>
-    <path d="M28 64H258" stroke="#2FD8FF" stroke-width="2"/>
+    <text x="1028" y="35" class="brand" fill="#F4F8FC">NextCandy</text>
+    <path d="M1152 20L1168 12L1165 20L1149 28ZM1156 29L1172 21L1169 29L1153 37Z" fill="#FF6469"/>
+    <path d="M8 53H1192" stroke="#3D5973"/>
 
-    <g class="boot" style="animation-delay:.18s">
-      <rect x="28" y="82" width="704" height="238" fill="#0E1B29" opacity=".76"/>
-      <path d="M28 82V320" stroke="#FF5CA8" stroke-width="4"/>
-      <path d="M28 82H732M28 320H732" stroke="#1E3446"/>
-      <path d="M28 82H58M28 82V112" stroke="#FF5CA8" stroke-width="2"/>
-      <text x="54" y="112" class="section" fill="#FF5CA8">LATEST PUSH</text>
-      <path d="M54 124H102" stroke="#FF5CA8" stroke-width="4"/>
-      <text x="54" y="193" class="hero-date" fill="#EAF6FC">2026.09.03</text>
-      <text x="54" y="216" class="hero-year" fill="#7E96A6">UTC SOURCE EVENT · PUBLIC REPOSITORY</text>
-      <text x="54" y="256" class="hero-repo" fill="#EAF6FC" textLength="420" lengthAdjust="spacingAndGlyphs">NextCandy</text>
-      <path d="M54 274H468" stroke="#1E3446"/>
-      <text x="54" y="297" class="tiny" fill="#7E96A6">LATEST SOURCE SIGNAL · SEP 03</text>
-      <g transform="translate(620 190)">
-        <circle r="78" fill="url(#signal-glow)"/>
-        <circle r="61" fill="none" stroke="#1E3446" stroke-dasharray="2 6"/>
-        <circle r="43" fill="none" stroke="#7E96A6" stroke-opacity=".65" stroke-dasharray="1 5"/>
-        <circle r="24" fill="none" stroke="#FF5CA8" stroke-opacity=".7"/>
-        <path d="M-70 0H70M0 -70V70" stroke="#1E3446" stroke-opacity=".8"/>
-        <circle class="pulse" r="7" fill="#FF5CA8" filter="url(#glow)"/>
-      </g>
-      <text x="620" y="292" text-anchor="middle" class="tiny" fill="#FF5CA8">SIGNAL / ACTIVE</text>
+    <path d="M16 66H28M16 66V78" stroke="#FF6469" stroke-width="1.5"/>
+    <path d="M31 106V327" stroke="#3D5973" stroke-width="2" stroke-dasharray="16 7"/>
+    <circle cx="31" cy="196" r="14" fill="#06182B" stroke="#FF6469" stroke-width="5"/>
+    <circle cx="31" cy="196" r="4" fill="#FF6469"/>
+    <text x="54" y="91" class="section" fill="#FF6469">LATEST PUSH</text>
+    <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
+    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-03</text>
+    <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy/NextCandy</text>
+    <g transform="translate(116 256)">
+      <circle cx="2" cy="-3" r="2" fill="none" stroke="#9FB2C3"/>
+      <circle cx="2" cy="8" r="2" fill="none" stroke="#9FB2C3"/>
+      <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#9FB2C3"/>
+      <text x="22" y="1" class="meta" fill="#9FB2C3">main</text>
+      <text x="60" y="1" class="meta" fill="#3D5973">│</text>
+      <text x="74" y="1" class="meta" fill="#2AC2CE">4acc668</text>
+      <text x="132" y="1" class="meta" fill="#3D5973">│</text>
+      <text x="146" y="1" class="meta" fill="#9FB2C3">Redesign profile dashboard composition</text>
     </g>
+    <text x="116" y="295" class="body-copy" fill="#9FB2C3">Profile control plane · live source repository signals</text>
+    <text x="116" y="318" class="tiny" fill="#9FB2C3">PUBLIC SOURCE REPOSITORY · SEP 03</text>
 
-    <path d="M760 82V320" stroke="#1E3446"/>
-    <path d="M772 82H1172M772 320H1172" stroke="#1E3446"/>
-    <path d="M772 82V320" stroke="url(#accent)" stroke-width="2"/>
-    <text x="796" y="110" class="section" fill="#EAF6FC">RECENT TRANSMISSIONS</text>
-    <text x="1152" y="110" text-anchor="end" class="tiny" fill="#7E96A6">LAST 5 · PUSHED</text>
-    <path d="M796 122H1152" stroke="#1E3446"/>
-    <path d="M786 152V291" stroke="#1E3446"/>
+    <g transform="translate(657 193)">
+      <circle r="60" fill="none" stroke="#3D5973" stroke-dasharray="2 6"/>
+      <circle r="42" fill="none" stroke="#9FB2C3" stroke-opacity=".75" stroke-dasharray="1 5"/>
+      <circle r="24" fill="none" stroke="#FF6469" stroke-opacity=".8"/>
+      <path d="M-70 0H70M0 -70V70" stroke="#3D5973"/>
+      <circle class="pulse" r="6" fill="#FF6469"/>
+    </g>
+    <text x="657" y="274" text-anchor="middle" class="tiny" fill="#9FB2C3">SIGNAL STRENGTH</text>
+    <text x="612" y="295" class="section" fill="#FF6469">STRONG</text>
+    <rect x="674" y="285" width="3" height="12" fill="#FF6469"/><rect x="684" y="285" width="3" height="12" fill="#FF6469"/><rect x="694" y="285" width="3" height="12" fill="#FF6469"/><rect x="704" y="285" width="3" height="12" fill="#FF6469"/>
 
-<g class="boot" style="animation-delay:0.22s">
-      <rect x="796" y="137" width="356" height="31" fill="#0E1B29"/>
-      <rect x="804" y="142" width="24" height="21" fill="#2FD8FF"/>
-      <text x="816" y="156" text-anchor="middle" class="number" fill="#04070D">01</text>
-      <text x="840" y="151" class="ledger-repo" fill="#EAF6FC">NextCandy</text>
-      <text x="1148" y="151" text-anchor="end" class="tiny" fill="#2FD8FF">PYTHON</text>
-      <text x="1148" y="162" text-anchor="end" class="tiny" fill="#7E96A6">09.03</text>
+    <path d="M768 66V353" stroke="#3D5973"/>
+    <text x="786" y="82" class="section" fill="#F4F8FC">RECENT TRANSMISSIONS</text>
+    <text x="1172" y="82" text-anchor="end" class="section" fill="#2AC2CE">VIEW ALL</text>
+    <path d="M1178 77L1184 82L1178 87" fill="none" stroke="#2AC2CE" stroke-width="1.5"/>
+    <path d="M786 91H1172" stroke="#3D5973"/>
+    <path d="M786 105V327" stroke="#3D5973"/>
+
+<g class="boot" style="animation-delay:0.16s">
+      <rect x="796" y="105" width="376" height="42" fill="#0B213A"/>
+      <path d="M796 147H1172" stroke="#3D5973"/>
+      <circle cx="786" cy="121" r="4.5" fill="#FF6469"/>
+      <rect x="796" y="112" width="22" height="22" fill="#FF6469"/>
+      <text x="807" y="127" text-anchor="middle" class="number" fill="#06182B">01</text>
+      <text x="838" y="122" class="ledger-repo" fill="#FF6469">nextcandy/NextCandy</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Redesign profile dashboard composition</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">17:00</text>
+      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">SEP 03</text>
+    </g>
+<g class="boot" style="animation-delay:0.23s">
+      <rect x="796" y="150" width="376" height="42" fill="none"/>
+      <path d="M796 192H1172" stroke="#3D5973"/>
+      <circle cx="786" cy="166" r="3.2" fill="#F4F8FC"/>
+      <rect x="796" y="157" width="22" height="22" fill="#F4F8FC"/>
+      <text x="807" y="172" text-anchor="middle" class="number" fill="#06182B">02</text>
+      <text x="838" y="167" class="ledger-repo" fill="#F4F8FC">nextcandy/TimeAmber</text>
+      <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">feat: 后台内容同步中心，修复 Notion 正文回填与多数据源游标 起因…</text>
+      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#F4F8FC">04:09</text>
+      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 18</text>
     </g>
 <g class="boot" style="animation-delay:0.3s">
-      <rect x="796" y="172" width="356" height="31" fill="none"/>
-      <rect x="804" y="177" width="24" height="21" fill="#FF5CA8"/>
-      <text x="816" y="191" text-anchor="middle" class="number" fill="#04070D">02</text>
-      <text x="840" y="186" class="ledger-repo" fill="#EAF6FC">TimeAmber</text>
-      <text x="1148" y="186" text-anchor="end" class="tiny" fill="#FF5CA8">TYPESCRIPT</text>
-      <text x="1148" y="197" text-anchor="end" class="tiny" fill="#7E96A6">08.18</text>
+      <rect x="796" y="195" width="376" height="42" fill="none"/>
+      <path d="M796 237H1172" stroke="#3D5973"/>
+      <circle cx="786" cy="211" r="3.2" fill="#F4F8FC"/>
+      <rect x="796" y="202" width="22" height="22" fill="#F4F8FC"/>
+      <text x="807" y="217" text-anchor="middle" class="number" fill="#06182B">03</text>
+      <text x="838" y="212" class="ledger-repo" fill="#F4F8FC">nextcandy/DomainHunter</text>
+      <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Normalize DeepSeek evidence output</text>
+      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#F4F8FC">15:09</text>
+      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 14</text>
     </g>
-<g class="boot" style="animation-delay:0.38s">
-      <rect x="796" y="207" width="356" height="31" fill="none"/>
-      <rect x="804" y="212" width="24" height="21" fill="#9D8CFF"/>
-      <text x="816" y="226" text-anchor="middle" class="number" fill="#04070D">03</text>
-      <text x="840" y="221" class="ledger-repo" fill="#EAF6FC">DomainHunter</text>
-      <text x="1148" y="221" text-anchor="end" class="tiny" fill="#9D8CFF">GO</text>
-      <text x="1148" y="232" text-anchor="end" class="tiny" fill="#7E96A6">08.14</text>
+<g class="boot" style="animation-delay:0.37s">
+      <rect x="796" y="240" width="376" height="42" fill="none"/>
+      <path d="M796 282H1172" stroke="#3D5973"/>
+      <circle cx="786" cy="256" r="3.2" fill="#F4F8FC"/>
+      <rect x="796" y="247" width="22" height="22" fill="#F4F8FC"/>
+      <text x="807" y="262" text-anchor="middle" class="number" fill="#06182B">04</text>
+      <text x="838" y="257" class="ledger-repo" fill="#F4F8FC">nextcandy/content-animator</text>
+      <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">完善中文项目说明</text>
+      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#F4F8FC">21:11</text>
+      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 05</text>
     </g>
-<g class="boot" style="animation-delay:0.46s">
-      <rect x="796" y="242" width="356" height="31" fill="none"/>
-      <rect x="804" y="247" width="24" height="21" fill="#3DF2A6"/>
-      <text x="816" y="261" text-anchor="middle" class="number" fill="#04070D">04</text>
-      <text x="840" y="256" class="ledger-repo" fill="#EAF6FC">content-animator</text>
-      <text x="1148" y="256" text-anchor="end" class="tiny" fill="#3DF2A6">TYPESCRIPT</text>
-      <text x="1148" y="267" text-anchor="end" class="tiny" fill="#7E96A6">08.05</text>
-    </g>
-<g class="boot" style="animation-delay:0.54s">
-      <rect x="796" y="277" width="356" height="31" fill="none"/>
-      <rect x="804" y="282" width="24" height="21" fill="#FFC857"/>
-      <text x="816" y="296" text-anchor="middle" class="number" fill="#04070D">05</text>
-      <text x="840" y="291" class="ledger-repo" fill="#EAF6FC">UnUseDomain</text>
-      <text x="1148" y="291" text-anchor="end" class="tiny" fill="#FFC857">TYPESCRIPT</text>
-      <text x="1148" y="302" text-anchor="end" class="tiny" fill="#7E96A6">07.23</text>
-    </g>
-
-    <path d="M28 338H1172" stroke="#1E3446"/>
-    <path d="M596 344V514" stroke="#1E3446"/>
-    <text x="28" y="365" class="section" fill="#2FD8FF">LANGUAGE TELEMETRY</text>
-    <text x="572" y="365" text-anchor="end" class="tiny" fill="#7E96A6">9 SOURCE REPOSITORIES</text>
-    <path d="M28 378H572" stroke="#1E3446"/>
-    <rect x="28" y="383" width="544" height="14" fill="#12202E"/>
-
-<rect class="bar" style="animation-delay:0.18s" x="28.0" y="383" width="302.2" height="14" fill="#2FD8FF"/>
-<rect class="bar" style="animation-delay:0.26s" x="330.2" y="383" width="60.4" height="14" fill="#9D8CFF"/>
-<rect class="bar" style="animation-delay:0.34s" x="390.6" y="383" width="60.4" height="14" fill="#FF5CA8"/>
-<rect class="bar" style="animation-delay:0.42s" x="451.0" y="383" width="60.4" height="14" fill="#3DF2A6"/>
-<rect class="bar" style="animation-delay:0.5s" x="511.4" y="383" width="60.4" height="14" fill="#FFC857"/>
-
-<g transform="translate(28 426)">
-      <circle cx="3" cy="-4" r="3" fill="#2FD8FF"/>
-      <text x="13" y="0" class="ledger-label" fill="#EAF6FC">TYPESCRIPT</text>
-      <text x="168" y="0" text-anchor="end" class="tiny" fill="#7E96A6">05 · 56%</text>
-    </g>
-<g transform="translate(209 426)">
-      <circle cx="3" cy="-4" r="3" fill="#9D8CFF"/>
-      <text x="13" y="0" class="ledger-label" fill="#EAF6FC">PYTHON</text>
-      <text x="168" y="0" text-anchor="end" class="tiny" fill="#7E96A6">01 · 11%</text>
-    </g>
-<g transform="translate(390 426)">
-      <circle cx="3" cy="-4" r="3" fill="#FF5CA8"/>
-      <text x="13" y="0" class="ledger-label" fill="#EAF6FC">GO</text>
-      <text x="168" y="0" text-anchor="end" class="tiny" fill="#7E96A6">01 · 11%</text>
-    </g>
-<g transform="translate(28 454)">
-      <circle cx="3" cy="-4" r="3" fill="#3DF2A6"/>
-      <text x="13" y="0" class="ledger-label" fill="#EAF6FC">CSS</text>
-      <text x="168" y="0" text-anchor="end" class="tiny" fill="#7E96A6">01 · 11%</text>
-    </g>
-<g transform="translate(209 454)">
-      <circle cx="3" cy="-4" r="3" fill="#FFC857"/>
-      <text x="13" y="0" class="ledger-label" fill="#EAF6FC">HTML</text>
-      <text x="168" y="0" text-anchor="end" class="tiny" fill="#7E96A6">01 · 11%</text>
-    </g>
-    <text x="28" y="499" class="tiny" fill="#7E96A6">TOP LANGUAGE · TYPESCRIPT</text>
-
-    <text x="620" y="365" class="section" fill="#3DF2A6">PUSH CADENCE</text>
-    <text x="1172" y="365" text-anchor="end" class="tiny" fill="#7E96A6">12 MONTHS · LAST-PUSH RHYTHM</text>
-    <path d="M620 378H1172" stroke="#1E3446"/>
-    <path d="M620 425H1172M620 459H1172M620 493H1172" stroke="#1E3446" stroke-dasharray="2 6"/>
-
-<g transform="translate(649.5 0)">
-      <rect class="bar" style="animation-delay:0.22s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6">OCT</text>
-    </g>
-<g transform="translate(692.5 0)">
-      <rect class="bar" style="animation-delay:0.26s" x="0" y="462.3" width="16.0" height="30.7" fill="#9D8CFF"/>
-      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#7E96A6">1</text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(735.5 0)">
-      <rect class="bar" style="animation-delay:0.29s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(778.5 0)">
-      <rect class="bar" style="animation-delay:0.33s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(821.5 0)">
-      <rect class="bar" style="animation-delay:0.36s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(864.5 0)">
-      <rect class="bar" style="animation-delay:0.4s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6">MAR</text>
-    </g>
-<g transform="translate(907.5 0)">
-      <rect class="bar" style="animation-delay:0.43s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(950.5 0)">
-      <rect class="bar" style="animation-delay:0.47s" x="0" y="462.3" width="16.0" height="30.7" fill="#FF5CA8"/>
-      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#7E96A6">1</text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(993.5 0)">
-      <rect class="bar" style="animation-delay:0.5s" x="0" y="485.0" width="16.0" height="8.0" fill="#12202E"/>
-      <text x="8.0" y="479.0" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(1036.5 0)">
-      <rect class="bar" style="animation-delay:0.54s" x="0" y="417.0" width="16.0" height="76.0" fill="#FFC857"/>
-      <text x="8.0" y="411.0" text-anchor="middle" class="tiny" fill="#7E96A6">3</text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(1079.5 0)">
-      <rect class="bar" style="animation-delay:0.57s" x="0" y="417.0" width="16.0" height="76.0" fill="#2FD8FF"/>
-      <text x="8.0" y="411.0" text-anchor="middle" class="tiny" fill="#7E96A6">3</text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6"></text>
-    </g>
-<g transform="translate(1122.5 0)">
-      <rect class="bar" style="animation-delay:0.6s" x="0" y="462.3" width="16.0" height="30.7" fill="#FF5CA8"/>
-      <text x="8.0" y="456.3" text-anchor="middle" class="tiny" fill="#7E96A6">1</text>
-      <text x="8.0" y="508" text-anchor="middle" class="tiny" fill="#7E96A6">SEP</text>
+<g class="boot" style="animation-delay:0.44s">
+      <rect x="796" y="285" width="376" height="42" fill="none"/>
+      <path d="M796 327H1172" stroke="#3D5973"/>
+      <circle cx="786" cy="301" r="3.2" fill="#F4F8FC"/>
+      <rect x="796" y="292" width="22" height="22" fill="#F4F8FC"/>
+      <text x="807" y="307" text-anchor="middle" class="number" fill="#06182B">05</text>
+      <text x="838" y="302" class="ledger-repo" fill="#F4F8FC">nextcandy/UnUseDomain</text>
+      <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
+      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#F4F8FC">08:32</text>
+      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#9FB2C3">JUL 23</text>
     </g>
 
-    <path d="M28 526H1172" stroke="#1E3446"/>
-    <text x="28" y="548" class="tiny" fill="#7E96A6">AUTO-SYNC · SOURCE ONLY · RAW GITHUB COUNTS · LAST SIGNAL 2026.09.03</text>
-    <text x="1172" y="548" text-anchor="end" class="tiny" fill="#7E96A6">github.com/NextCandy</text>
+    <path d="M8 365H1192" stroke="#3D5973"/>
+    <path d="M640 372V477" stroke="#3D5973"/>
+    <text x="28" y="382" class="section" fill="#F4F8FC">LANGUAGE TELEMETRY</text>
+    <text x="622" y="382" text-anchor="end" class="tiny" fill="#9FB2C3">REPOSITORY SHARE</text>
+    <path d="M28 393H622" stroke="#3D5973"/>
+    <rect x="28" y="404" width="572" height="13" fill="#1A3854"/>
+
+<rect class="bar" style="animation-delay:0.16s" x="28.0" y="404" width="312.2" height="13" fill="#2AC2CE"/>
+<rect class="bar" style="animation-delay:0.22s" x="342.2" y="404" width="62.4" height="13" fill="#7896DB"/>
+<rect class="bar" style="animation-delay:0.28s" x="406.6" y="404" width="62.4" height="13" fill="#FF6469"/>
+<rect class="bar" style="animation-delay:0.34s" x="471.0" y="404" width="62.4" height="13" fill="#B27ACB"/>
+<rect class="bar" style="animation-delay:0.4s" x="535.4" y="404" width="62.4" height="13" fill="#FFC44B"/>
+<rect class="bar" style="animation-delay:0.46s" x="599.8" y="404" width="0.0" height="13" fill="#8E9EAE"/>
+
+<g transform="translate(28 0)">
+      <circle cx="3" cy="440" r="3" fill="#2AC2CE"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">TypeScript</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">55.6%</text>
+    </g>
+<g transform="translate(123 0)">
+      <circle cx="3" cy="440" r="3" fill="#7896DB"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">Python</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">11.1%</text>
+    </g>
+<g transform="translate(218 0)">
+      <circle cx="3" cy="440" r="3" fill="#FF6469"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">Go</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">11.1%</text>
+    </g>
+<g transform="translate(313 0)">
+      <circle cx="3" cy="440" r="3" fill="#B27ACB"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">CSS</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">11.1%</text>
+    </g>
+<g transform="translate(408 0)">
+      <circle cx="3" cy="440" r="3" fill="#FFC44B"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">HTML</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">11.1%</text>
+    </g>
+<g transform="translate(503 0)">
+      <circle cx="3" cy="440" r="3" fill="#8E9EAE"/>
+      <text x="12" y="443" class="language-name" fill="#F4F8FC">Other</text>
+      <text x="12" y="461" class="language-pct" fill="#9FB2C3">0.0%</text>
+    </g>
+    <text x="28" y="479" class="tiny" fill="#2AC2CE">TOP LANGUAGE · TYPESCRIPT</text>
+
+    <text x="658" y="382" class="section" fill="#F4F8FC">PUSH CADENCE</text>
+    <text x="1172" y="382" text-anchor="end" class="tiny" fill="#9FB2C3">LAST 28 DAYS</text>
+    <path d="M658 393H1172" stroke="#3D5973"/>
+    <path d="M658 406H1172M658 431H1172M658 456H1172" stroke="#3D5973" stroke-dasharray="2 6"/>
+    <text x="658" y="409" class="tiny" fill="#9FB2C3">1</text><text x="658" y="434" class="tiny" fill="#9FB2C3">1</text><text x="658" y="459" class="tiny" fill="#9FB2C3">0</text>
+
+<g transform="translate(671.2 0)">
+      <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 07</text>
+    </g>
+<g transform="translate(688.8 0)">
+      <rect class="bar" style="animation-delay:0.21s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(706.2 0)">
+      <rect class="bar" style="animation-delay:0.25s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(723.8 0)">
+      <rect class="bar" style="animation-delay:0.29s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(741.2 0)">
+      <rect class="bar" style="animation-delay:0.32s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(758.8 0)">
+      <rect class="bar" style="animation-delay:0.35s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(776.2 0)">
+      <rect class="bar" style="animation-delay:0.39s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(793.8 0)">
+      <rect class="bar" style="animation-delay:0.43s" x="0" y="404.0" width="7.0" height="52.0" fill="#FF6469"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 14</text>
+    </g>
+<g transform="translate(811.2 0)">
+      <rect class="bar" style="animation-delay:0.46s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(828.8 0)">
+      <rect class="bar" style="animation-delay:0.5s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(846.2 0)">
+      <rect class="bar" style="animation-delay:0.53s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(863.8 0)">
+      <rect class="bar" style="animation-delay:0.56s" x="0" y="404.0" width="7.0" height="52.0" fill="#7896DB"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(881.2 0)">
+      <rect class="bar" style="animation-delay:0.6s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(898.8 0)">
+      <rect class="bar" style="animation-delay:0.64s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(916.2 0)">
+      <rect class="bar" style="animation-delay:0.67s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 21</text>
+    </g>
+<g transform="translate(933.8 0)">
+      <rect class="bar" style="animation-delay:0.71s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(951.2 0)">
+      <rect class="bar" style="animation-delay:0.74s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(968.8 0)">
+      <rect class="bar" style="animation-delay:0.78s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(986.2 0)">
+      <rect class="bar" style="animation-delay:0.81s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1003.8 0)">
+      <rect class="bar" style="animation-delay:0.84s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1021.2 0)">
+      <rect class="bar" style="animation-delay:0.88s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1038.8 0)">
+      <rect class="bar" style="animation-delay:0.92s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 28</text>
+    </g>
+<g transform="translate(1056.2 0)">
+      <rect class="bar" style="animation-delay:0.95s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1073.8 0)">
+      <rect class="bar" style="animation-delay:0.99s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1091.2 0)">
+      <rect class="bar" style="animation-delay:1.02s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1108.8 0)">
+      <rect class="bar" style="animation-delay:1.06s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1126.2 0)">
+      <rect class="bar" style="animation-delay:1.09s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
+    </g>
+<g transform="translate(1143.8 0)">
+      <rect class="bar" style="animation-delay:1.12s" x="0" y="404.0" width="7.0" height="52.0" fill="#2AC2CE"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 03</text>
+    </g>
+
+    <rect x="1" y="485" width="1198" height="74" fill="#020B16"/>
+    <path d="M8 485H1192" stroke="#3A5772"/>
+    <rect x="28" y="502" width="34" height="34" fill="none" stroke="#F4F8FC" stroke-dasharray="3 4"/>
+    <text x="74" y="518" class="band-copy" fill="#F4F8FC">SYSTEM CAN INVERT</text>
+    <text x="74" y="538" class="band-copy" fill="#F4F8FC">FOR DARK MODE</text>
+    <path d="M220 497V548" stroke="#3A5772"/>
+
+<rect x="240" y="510" width="22" height="22" fill="#F4F8FC" stroke="none"/>
+<rect x="274" y="510" width="22" height="22" fill="none" stroke="#3A5772"/>
+<rect x="308" y="510" width="22" height="22" fill="#FF6469" stroke="none"/>
+<rect x="342" y="510" width="22" height="22" fill="#2AC2CE" stroke="none"/>
+<rect x="376" y="510" width="22" height="22" fill="#7896DB" stroke="none"/>
+    <text x="454" y="527" class="band-code" fill="#2AC2CE">data-theme="dark"</text>
+    <path d="M635 526H653M646 520L653 526L646 532" fill="none" stroke="#9FB2C3" stroke-width="1.5"/>
+
+    <rect x="708" y="493" width="464" height="58" fill="none" stroke="#3A5772"/>
+    <path d="M714 493H802" stroke="#FF6469" stroke-width="2"/>
+    <text x="718" y="503" class="mini-label" fill="#FF6469">LATEST PUSH</text>
+    <text x="718" y="526" class="hero-date" style="font-size:20px" fill="#F4F8FC">2026-09-03</text>
+    <text x="718" y="542" class="mini-repo" fill="#F4F8FC">nextcandy/NextCandy</text>
+    <g transform="translate(875 522)">
+      <circle r="20" fill="none" stroke="#3A5772" stroke-dasharray="2 4"/>
+      <circle r="11" fill="none" stroke="#FF6469"/>
+      <circle r="3" fill="#FF6469"/>
+    </g>
+    <path d="M900 493V551" stroke="#3A5772"/>
+
+<rect x="908" y="502" width="15" height="9" fill="none" stroke="#FF6469" stroke-width="1"/>
+      <text x="915.5" y="509" text-anchor="middle" class="mini-number" fill="#FF6469">01</text>
+      <path d="M930 505H1008" stroke="#FF6469" stroke-width="1.5"/>
+      <text x="1158" y="509" text-anchor="end" class="mini-date" fill="#FF6469">09.03</text>
+<rect x="908" y="516" width="15" height="9" fill="none" stroke="#F4F8FC" stroke-width="1"/>
+      <text x="915.5" y="523" text-anchor="middle" class="mini-number" fill="#F4F8FC">02</text>
+      <path d="M930 519H992" stroke="#F4F8FC" stroke-width="1.5"/>
+      <text x="1158" y="523" text-anchor="end" class="mini-date" fill="#F4F8FC">08.18</text>
+<rect x="908" y="530" width="15" height="9" fill="none" stroke="#F4F8FC" stroke-width="1"/>
+      <text x="915.5" y="537" text-anchor="middle" class="mini-number" fill="#F4F8FC">03</text>
+      <path d="M930 533H976" stroke="#F4F8FC" stroke-width="1.5"/>
+      <text x="1158" y="537" text-anchor="end" class="mini-date" fill="#F4F8FC">08.14</text>
+
+<rect x="1037" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1053" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1069" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1085" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1101" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1117" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1133" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
+<rect x="1149" y="520.0" width="8" height="24.0" fill="#2AC2CE"/>
   </g>
-  <path d="M12 1H1188L1199 12V548L1188 559H12L1 548V12Z" fill="none" stroke="#1E3446" stroke-width="2"/>
-  <path d="M12 1H258M1 12V70" fill="none" stroke="#2FD8FF" stroke-width="2"/>
-  <path d="M942 559H1188M1199 490V548" fill="none" stroke="#FF5CA8" stroke-width="2"/>
+  <path d="M1 1H1199V559H1Z" fill="none" stroke="#3D5973" stroke-width="2"/>
 </svg>
