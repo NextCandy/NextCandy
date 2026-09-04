@@ -27,7 +27,7 @@
     <ellipse cx="80" cy="0" rx="360" ry="180" fill="url(#aur1)"/>
     <ellipse cx="1160" cy="380" rx="400" ry="200" fill="url(#aur2)"/>
     <rect width="1200" height="380" fill="url(#grid)" opacity=".55"/>
-    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
+    <path d="M0 1.5H1200" stroke="#3D5973" stroke-width="3"/>
 
     <text x="28" y="36" class="title" fill="#2FD8FF">DOMAIN LOOP // CONSTELLATION</text>
 
@@ -102,5 +102,5 @@
 
     <path d="M28 352H1172" stroke="#1E3446"/><text x="28" y="369" class="tiny" fill="#7E96A6">DOMAINS · WHOIS · SELF-HOSTED — EVERY MODULE REPORTS TO CORE</text><text x="1172" y="369" text-anchor="end" class="tiny" fill="#7E96A6">LOOP STATUS: STABLE</text>
   </g>
-  <rect x="1" y="1" width="1198" height="378" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+  <rect x="1" y="1" width="1198" height="378" rx="20" fill="none" stroke="#3D5973" stroke-opacity=".95"/>
 </svg>

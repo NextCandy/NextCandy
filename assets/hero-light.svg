@@ -32,7 +32,7 @@
     <ellipse cx="1120" cy="330" rx="460" ry="260" fill="url(#aur2)"/>
     <ellipse cx="640" cy="420" rx="380" ry="220" fill="url(#aur3)"/>
     <rect width="1200" height="420" fill="url(#grid)" opacity=".55"/>
-    <path d="M0 1.5H1200" stroke="url(#accent)" stroke-width="3"/>
+    <path d="M0 1.5H1200" stroke="#B8C3D1" stroke-width="3"/>
 
     <!-- window chrome -->
     <g transform="translate(24 24)">
@@ -97,5 +97,5 @@
       <rect width="1200" height="44" y="376" fill="url(#fade)"/>
     </g>
   </g>
-  <rect x="1" y="1" width="1198" height="418" rx="20" fill="none" stroke="url(#accent)" stroke-opacity=".8"/>
+  <rect x="1" y="1" width="1198" height="418" rx="20" fill="none" stroke="#B8C3D1" stroke-opacity=".95"/>
 </svg>

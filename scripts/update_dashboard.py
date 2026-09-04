@@ -137,13 +137,13 @@ THEMES = {
         "bg": "#06182B", "panel": "#0B213A", "grid": "#1A3854", "line": "#3D5973",
         "text": "#F4F8FC", "muted": "#9FB2C3", "cyan": "#2AC2CE", "pink": "#FF6469",
         "green": "#2AC7AE", "amber": "#FFC44B", "violet": "#B27ACB", "blue": "#7896DB",
-        "other": "#8E9EAE", "band": "#020B16", "band_line": "#3A5772", "band_text": "#F4F8FC", "band_muted": "#9FB2C3",
+        "other": "#8E9EAE",
     },
     "light": {
         "bg": "#FFFFFF", "panel": "#FBFCFE", "grid": "#E7ECF2", "line": "#B8C3D1",
         "text": "#0A1D39", "muted": "#52627A", "cyan": "#1299A8", "pink": "#F05B60",
         "green": "#159A89", "amber": "#EBAA19", "violet": "#824DA8", "blue": "#405992",
-        "other": "#B8C0CB", "band": "#06182B", "band_line": "#3B5874", "band_text": "#F4F8FC", "band_muted": "#9FB2C3",
+        "other": "#B8C0CB",
     },
 }
 
@@ -166,7 +166,7 @@ def render_dashboard(username, stats, mode):
     latest_slug = f"{username.lower()}/{stats['latest_name']}"
     latest_message = compact(stats["latest_message"], 54)
     latest_description = compact(stats["latest_description"] or "Latest public source update.", 58)
-    frame_path = "M1 1H1199V559H1Z"
+    frame_path = "M1 1H1199V485H1Z"
 
     rail_specs = [
         ("REPOS", str(stats["total"]), t["pink"], 54),
@@ -247,41 +247,16 @@ def render_dashboard(username, stats, mode):
       <text x="1148" y="{row_y + 34}" text-anchor="end" class="ledger-date" fill="{t['muted']}">{item['dt'].strftime('%b %d').upper()}</text>
     </g>""")
 
-    mini_rows = []
-    for i, item in enumerate(stats["recent"][:3]):
-        y = 502 + 14 * i
-        color = t["pink"] if i == 0 else t["band_text"]
-        mini_rows.append(f'''<rect x="908" y="{y}" width="15" height="9" fill="none" stroke="{color}" stroke-width="1"/>
-      <text x="915.5" y="{y + 7}" text-anchor="middle" class="mini-number" fill="{color}">{i + 1:02d}</text>
-      <path d="M930 {y + 3}H{1008 - i * 16}" stroke="{color}" stroke-width="1.5"/>
-      <text x="1158" y="{y + 7}" text-anchor="end" class="mini-date" fill="{color}">{item['dt'].strftime('%m.%d')}</text>''')
-
-    mini_values = stats["cadence"][-8:]
-    mini_max = max((count for _, count in mini_values), default=1) or 1
-    mini_chart = []
-    for i, (_, count) in enumerate(mini_values):
-        height = round(5 + 19 * count / mini_max, 1)
-        color = t["cyan"] if i == len(mini_values) - 1 and count else t["band_text"]
-        mini_chart.append(f'<rect x="{1037 + 16 * i}" y="{544 - height:.1f}" width="8" height="{height:.1f}" fill="{color}"/>')
-
     rail_s = "\n" + "\n".join(rail)
     lang_segments_s = "\n" + "\n".join(lang_segments)
     lang_items_s = "\n" + "\n".join(lang_items)
     cad_s = "\n" + "\n".join(cad_rows)
     rec_s = "\n" + "\n".join(rec_rows)
-    mini_rows_s = "\n" + "\n".join(mini_rows)
-    mini_chart_s = "\n" + "\n".join(mini_chart)
     top_language = "Other" if language_segments[0][0] == "OTHER" else language_segments[0][0]
     cadence_max_label = max_cadence
     cadence_mid_label = max(1, round(max_cadence / 2))
 
-    swatches = []
-    for i, fill in enumerate((t["band_text"], "none", t["pink"], t["cyan"], t["blue"])):
-        stroke = t["band_line"] if fill == "none" else "none"
-        swatches.append(f'<rect x="{240 + 34 * i}" y="510" width="22" height="22" fill="{fill}" stroke="{stroke}"/>')
-    swatches_s = "\n" + "\n".join(swatches)
-
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
   <defs>
     <clipPath id="frame"><path d="{frame_path}"/></clipPath>
     <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
@@ -294,14 +269,13 @@ def render_dashboard(username, stats, mode):
     .meta{{font-size:10px;font-weight:700;letter-spacing:.8px}}.body-copy{{font-size:13px;font-weight:500;letter-spacing:.3px}}.tiny{{font-size:8px;letter-spacing:1px}}
     .ledger-repo{{font-size:11px;font-weight:800;letter-spacing:.1px}}.ledger-message{{font-size:9px;letter-spacing:.1px}}.ledger-time{{font-size:10px;font-weight:800}}.ledger-date{{font-size:8px;letter-spacing:1px}}.number{{font-size:8px;font-weight:900}}
     .language-name{{font-size:9px;font-weight:700}}.language-pct{{font-size:9px;letter-spacing:.5px}}.chart-value{{font-size:8px}}.chart-label{{font-size:8px;letter-spacing:.5px}}
-    .band-copy{{font-size:9px;font-weight:700;letter-spacing:1px}}.band-code{{font-size:12px;letter-spacing:.3px}}.mini-label{{font-size:6px;font-weight:800;letter-spacing:1px}}.mini-date{{font-size:7px;letter-spacing:.5px}}.mini-repo{{font-size:8px;font-weight:800}}.mini-number{{font-size:5px;font-weight:900}}
     .pulse{{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}}.bar{{transform-box:fill-box;transform-origin:center;animation:grow .8s cubic-bezier(.23,1,.32,1) both}}.boot{{animation:boot .35s ease-out both}}
     @keyframes pulse{{50%{{opacity:.35;transform:scale(.7)}}}}@keyframes grow{{from{{transform:scaleY(.05)}}}}@keyframes boot{{from{{opacity:.35;transform:translateY(3px)}}}}
     @media(prefers-reduced-motion:reduce){{.pulse,.bar,.boot{{animation:none}}}}
   </style>
 
   <g clip-path="url(#frame)">
-    <rect width="1200" height="560" fill="{t['bg']}"/>
+    <rect width="1200" height="486" fill="{t['bg']}"/>
 
     <circle cx="30" cy="27" r="5" fill="{t['pink']}"/>
     <text x="52" y="33" class="title" fill="{t['text']}">LIVE SIGNALS // SOURCE CONTROL</text>
@@ -367,29 +341,6 @@ def render_dashboard(username, stats, mode):
     <text x="658" y="409" class="tiny" fill="{t['muted']}">{cadence_max_label}</text><text x="658" y="434" class="tiny" fill="{t['muted']}">{cadence_mid_label}</text><text x="658" y="459" class="tiny" fill="{t['muted']}">0</text>
     {cad_s}
 
-    <rect x="1" y="485" width="1198" height="74" fill="{t['band']}"/>
-    <path d="M8 485H1192" stroke="{t['band_line']}"/>
-    <rect x="28" y="502" width="34" height="34" fill="none" stroke="{t['band_text']}" stroke-dasharray="3 4"/>
-    <text x="74" y="518" class="band-copy" fill="{t['band_text']}">SYSTEM CAN INVERT</text>
-    <text x="74" y="538" class="band-copy" fill="{t['band_text']}">FOR DARK MODE</text>
-    <path d="M220 497V548" stroke="{t['band_line']}"/>
-    {swatches_s}
-    <text x="454" y="527" class="band-code" fill="{t['cyan']}">data-theme="dark"</text>
-    <path d="M635 526H653M646 520L653 526L646 532" fill="none" stroke="{t['band_muted']}" stroke-width="1.5"/>
-
-    <rect x="708" y="493" width="464" height="58" fill="none" stroke="{t['band_line']}"/>
-    <path d="M714 493H802" stroke="{t['pink']}" stroke-width="2"/>
-    <text x="718" y="503" class="mini-label" fill="{t['pink']}">LATEST PUSH</text>
-    <text x="718" y="526" class="hero-date" style="font-size:20px" fill="{t['band_text']}">{latest_full}</text>
-    <text x="718" y="542" class="mini-repo" fill="{t['band_text']}">{esc(compact(latest_slug, 21))}</text>
-    <g transform="translate(875 522)">
-      <circle r="20" fill="none" stroke="{t['band_line']}" stroke-dasharray="2 4"/>
-      <circle r="11" fill="none" stroke="{t['pink']}"/>
-      <circle r="3" fill="{t['pink']}"/>
-    </g>
-    <path d="M900 493V551" stroke="{t['band_line']}"/>
-    {mini_rows_s}
-    {mini_chart_s}
   </g>
   <path d="{frame_path}" fill="none" stroke="{t['line']}" stroke-width="2"/>
 </svg>

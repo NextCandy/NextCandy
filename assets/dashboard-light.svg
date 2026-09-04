@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="NextCandy live GitHub source repository signals" data-mode="light">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="NextCandy live GitHub source repository signals" data-mode="light">
   <defs>
-    <clipPath id="frame"><path d="M1 1H1199V559H1Z"/></clipPath>
+    <clipPath id="frame"><path d="M1 1H1199V485H1Z"/></clipPath>
     <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
   </defs>
   <style>
@@ -11,14 +11,13 @@
     .meta{font-size:10px;font-weight:700;letter-spacing:.8px}.body-copy{font-size:13px;font-weight:500;letter-spacing:.3px}.tiny{font-size:8px;letter-spacing:1px}
     .ledger-repo{font-size:11px;font-weight:800;letter-spacing:.1px}.ledger-message{font-size:9px;letter-spacing:.1px}.ledger-time{font-size:10px;font-weight:800}.ledger-date{font-size:8px;letter-spacing:1px}.number{font-size:8px;font-weight:900}
     .language-name{font-size:9px;font-weight:700}.language-pct{font-size:9px;letter-spacing:.5px}.chart-value{font-size:8px}.chart-label{font-size:8px;letter-spacing:.5px}
-    .band-copy{font-size:9px;font-weight:700;letter-spacing:1px}.band-code{font-size:12px;letter-spacing:.3px}.mini-label{font-size:6px;font-weight:800;letter-spacing:1px}.mini-date{font-size:7px;letter-spacing:.5px}.mini-repo{font-size:8px;font-weight:800}.mini-number{font-size:5px;font-weight:900}
     .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}.bar{transform-box:fill-box;transform-origin:center;animation:grow .8s cubic-bezier(.23,1,.32,1) both}.boot{animation:boot .35s ease-out both}
     @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}@keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.35;transform:translateY(3px)}}
     @media(prefers-reduced-motion:reduce){.pulse,.bar,.boot{animation:none}}
   </style>
 
   <g clip-path="url(#frame)">
-    <rect width="1200" height="560" fill="#FFFFFF"/>
+    <rect width="1200" height="486" fill="#FFFFFF"/>
 
     <circle cx="30" cy="27" r="5" fill="#F05B60"/>
     <text x="52" y="33" class="title" fill="#0A1D39">LIVE SIGNALS // SOURCE CONTROL</text>
@@ -61,9 +60,9 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#52627A"/>
       <text x="22" y="1" class="meta" fill="#52627A">main</text>
       <text x="60" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="74" y="1" class="meta" fill="#1299A8">4acc668</text>
+      <text x="74" y="1" class="meta" fill="#1299A8">f262c09</text>
       <text x="132" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="146" y="1" class="meta" fill="#52627A">Redesign profile dashboard composition</text>
+      <text x="146" y="1" class="meta" fill="#52627A">Match dashboard to reference design</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#52627A">Profile control plane · live source repository signals</text>
     <text x="116" y="318" class="tiny" fill="#52627A">PUBLIC SOURCE REPOSITORY · SEP 03</text>
@@ -93,8 +92,8 @@
       <rect x="796" y="112" width="22" height="22" fill="#F05B60"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#FFFFFF">01</text>
       <text x="838" y="122" class="ledger-repo" fill="#F05B60">nextcandy/NextCandy</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Redesign profile dashboard composition</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">17:00</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Match dashboard to reference design</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">17:17</text>
       <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">SEP 03</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
@@ -335,54 +334,6 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">SEP 03</text>
     </g>
 
-    <rect x="1" y="485" width="1198" height="74" fill="#06182B"/>
-    <path d="M8 485H1192" stroke="#3B5874"/>
-    <rect x="28" y="502" width="34" height="34" fill="none" stroke="#F4F8FC" stroke-dasharray="3 4"/>
-    <text x="74" y="518" class="band-copy" fill="#F4F8FC">SYSTEM CAN INVERT</text>
-    <text x="74" y="538" class="band-copy" fill="#F4F8FC">FOR DARK MODE</text>
-    <path d="M220 497V548" stroke="#3B5874"/>
-
-<rect x="240" y="510" width="22" height="22" fill="#F4F8FC" stroke="none"/>
-<rect x="274" y="510" width="22" height="22" fill="none" stroke="#3B5874"/>
-<rect x="308" y="510" width="22" height="22" fill="#F05B60" stroke="none"/>
-<rect x="342" y="510" width="22" height="22" fill="#1299A8" stroke="none"/>
-<rect x="376" y="510" width="22" height="22" fill="#405992" stroke="none"/>
-    <text x="454" y="527" class="band-code" fill="#1299A8">data-theme="dark"</text>
-    <path d="M635 526H653M646 520L653 526L646 532" fill="none" stroke="#9FB2C3" stroke-width="1.5"/>
-
-    <rect x="708" y="493" width="464" height="58" fill="none" stroke="#3B5874"/>
-    <path d="M714 493H802" stroke="#F05B60" stroke-width="2"/>
-    <text x="718" y="503" class="mini-label" fill="#F05B60">LATEST PUSH</text>
-    <text x="718" y="526" class="hero-date" style="font-size:20px" fill="#F4F8FC">2026-09-03</text>
-    <text x="718" y="542" class="mini-repo" fill="#F4F8FC">nextcandy/NextCandy</text>
-    <g transform="translate(875 522)">
-      <circle r="20" fill="none" stroke="#3B5874" stroke-dasharray="2 4"/>
-      <circle r="11" fill="none" stroke="#F05B60"/>
-      <circle r="3" fill="#F05B60"/>
-    </g>
-    <path d="M900 493V551" stroke="#3B5874"/>
-
-<rect x="908" y="502" width="15" height="9" fill="none" stroke="#F05B60" stroke-width="1"/>
-      <text x="915.5" y="509" text-anchor="middle" class="mini-number" fill="#F05B60">01</text>
-      <path d="M930 505H1008" stroke="#F05B60" stroke-width="1.5"/>
-      <text x="1158" y="509" text-anchor="end" class="mini-date" fill="#F05B60">09.03</text>
-<rect x="908" y="516" width="15" height="9" fill="none" stroke="#F4F8FC" stroke-width="1"/>
-      <text x="915.5" y="523" text-anchor="middle" class="mini-number" fill="#F4F8FC">02</text>
-      <path d="M930 519H992" stroke="#F4F8FC" stroke-width="1.5"/>
-      <text x="1158" y="523" text-anchor="end" class="mini-date" fill="#F4F8FC">08.18</text>
-<rect x="908" y="530" width="15" height="9" fill="none" stroke="#F4F8FC" stroke-width="1"/>
-      <text x="915.5" y="537" text-anchor="middle" class="mini-number" fill="#F4F8FC">03</text>
-      <path d="M930 533H976" stroke="#F4F8FC" stroke-width="1.5"/>
-      <text x="1158" y="537" text-anchor="end" class="mini-date" fill="#F4F8FC">08.14</text>
-
-<rect x="1037" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1053" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1069" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1085" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1101" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1117" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1133" y="539.0" width="8" height="5.0" fill="#F4F8FC"/>
-<rect x="1149" y="520.0" width="8" height="24.0" fill="#1299A8"/>
   </g>
-  <path d="M1 1H1199V559H1Z" fill="none" stroke="#B8C3D1" stroke-width="2"/>
+  <path d="M1 1H1199V485H1Z" fill="none" stroke="#B8C3D1" stroke-width="2"/>
 </svg>
