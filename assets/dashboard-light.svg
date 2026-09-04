@@ -60,9 +60,9 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#52627A"/>
       <text x="22" y="1" class="meta" fill="#52627A">main</text>
       <text x="60" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="74" y="1" class="meta" fill="#1299A8">7bfd863</text>
+      <text x="74" y="1" class="meta" fill="#1299A8">229e9c4</text>
       <text x="132" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="146" y="1" class="meta" fill="#52627A">Automate live dashboard updates in Beijing time</text>
+      <text x="146" y="1" class="meta" fill="#52627A">Align hero header text with content</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#52627A">Profile control plane · live source repository signals</text>
     <text x="116" y="318" class="tiny" fill="#52627A">PUBLIC SOURCE REPOSITORY · SEP 04</text>
@@ -93,8 +93,8 @@
       <rect x="796" y="112" width="22" height="22" fill="#F05B60"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#FFFFFF">01</text>
       <text x="838" y="122" class="ledger-repo" fill="#F05B60">nextcandy/NextCandy</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Automate live dashboard updates in Beij…</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">13:19</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Align hero header text with content</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">14:05</text>
       <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">SEP 04</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
