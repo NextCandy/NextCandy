@@ -36,7 +36,7 @@
 
     <!-- window chrome -->
     <g transform="translate(24 24)">
-      <text x="64" y="4" class="micro" fill="#7E96A6">NEXTCANDY / PROFILE_CONSOLE · V2</text>
+      <text x="16" y="4" class="micro" fill="#7E96A6">NEXTCANDY / PROFILE_CONSOLE · V2</text>
     </g>
     <g transform="translate(950 24)">
       <circle class="pulse" r="4.5" fill="#3DF2A6" filter="url(#glow)"/>
