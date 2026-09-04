@@ -6,10 +6,10 @@
     <radialGradient id="aur2" cx=".5" cy=".5" r=".5"><stop stop-color="#E83E8C" stop-opacity=".09"/><stop offset="1" stop-color="#E83E8C" stop-opacity="0"/></radialGradient>
     <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#DCEAF0" stroke-width="1"/></pattern>
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="378" rx="20"/></clipPath>
+    <clipPath id="frame"><rect x="1" y="1" width="1198" height="378"/></clipPath>
   </defs>
   <style>
-    text{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+    text{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}
     .title{font-size:15px;font-weight:800;letter-spacing:3px}.micro{font-size:10px;font-weight:700;letter-spacing:2px}.tiny{font-size:9px;letter-spacing:1px}
     .row{font-size:11px;font-weight:700;letter-spacing:1px}
     .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
@@ -102,5 +102,5 @@
 
     <path d="M28 352H1172" stroke="#B9D2DC"/><text x="28" y="369" class="tiny" fill="#5B7885">DOMAINS · WHOIS · SELF-HOSTED — EVERY MODULE REPORTS TO CORE</text><text x="1172" y="369" text-anchor="end" class="tiny" fill="#5B7885">LOOP STATUS: STABLE</text>
   </g>
-  <rect x="1" y="1" width="1198" height="378" rx="20" fill="none" stroke="#B8C3D1" stroke-opacity=".95"/>
+  <rect x="1" y="1" width="1198" height="378" fill="none" stroke="#B8C3D1" stroke-opacity=".95"/>
 </svg>
