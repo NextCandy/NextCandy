@@ -3,21 +3,32 @@
 
 Fetches public (non-fork) repositories from the GitHub API, computes profile
 statistics, and renders assets/dashboard-light.svg + assets/dashboard-dark.svg.
-Designed to run in the weekly GitHub Actions workflow.
+Designed to run in the 15-minute GitHub Actions workflow.
 """
 
 import argparse
 import json
+import os
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 API = "https://api.github.com"
 HEADERS = {
     "Accept": "application/vnd.github+json",
     "User-Agent": "nextcandy-profile-dashboard",
 }
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+if GITHUB_TOKEN:
+    HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
+try:
+    BEIJING_TZ = ZoneInfo("Asia/Shanghai")
+except ZoneInfoNotFoundError:
+    # Keep local runs working on systems without an installed IANA tz database.
+    BEIJING_TZ = timezone(timedelta(hours=8), name="Asia/Shanghai")
 
 
 def fetch_public_repos(username):
@@ -40,7 +51,10 @@ def fetch_public_repos(username):
 
 
 def _pushed(repo):
-    return datetime.strptime(repo["pushed_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    """Parse GitHub's UTC timestamp and render it in Beijing time."""
+    return (datetime.strptime(repo["pushed_at"], "%Y-%m-%dT%H:%M:%SZ")
+            .replace(tzinfo=timezone.utc)
+            .astimezone(BEIJING_TZ))
 
 
 def fetch_latest_commit(username, repo_name):
@@ -256,7 +270,7 @@ def render_dashboard(username, stats, mode):
     cadence_max_label = max_cadence
     cadence_mid_label = max(1, round(max_cadence / 2))
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="{esc(username)} live GitHub source repository signals" data-mode="{mode}">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="{esc(username)} live GitHub source repository signals, Beijing time UTC+8" data-mode="{mode}">
   <defs>
     <clipPath id="frame"><path d="{frame_path}"/></clipPath>
     <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
@@ -304,6 +318,7 @@ def render_dashboard(username, stats, mode):
     </g>
     <text x="116" y="295" class="body-copy" fill="{t['muted']}">{esc(latest_description)}</text>
     <text x="116" y="318" class="tiny" fill="{t['muted']}">PUBLIC SOURCE REPOSITORY · {latest_dt.strftime('%b %d').upper()}</text>
+    <text x="116" y="340" class="tiny" fill="{t['cyan']}">TIMEZONE · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
       <circle r="60" fill="none" stroke="{t['line']}" stroke-dasharray="2 6"/>

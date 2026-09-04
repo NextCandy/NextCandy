@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="NextCandy live GitHub source repository signals" data-mode="dark">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="NextCandy live GitHub source repository signals, Beijing time UTC+8" data-mode="dark">
   <defs>
     <clipPath id="frame"><path d="M1 1H1199V485H1Z"/></clipPath>
     <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
@@ -39,7 +39,7 @@
     </g>
 <g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
       <text x="0" y="33" class="top-label" fill="#9FB2C3">LATEST</text>
-      <text x="62" y="33" class="top-value" fill="#FF6469">09.03</text>
+      <text x="62" y="33" class="top-value" fill="#FF6469">09.04</text>
 
     </g>
     <text x="1028" y="35" class="brand" fill="#F4F8FC">NextCandy</text>
@@ -52,7 +52,7 @@
     <circle cx="31" cy="196" r="4" fill="#FF6469"/>
     <text x="54" y="91" class="section" fill="#FF6469">LATEST PUSH</text>
     <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
-    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-03</text>
+    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-04</text>
     <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy/NextCandy</text>
     <g transform="translate(116 256)">
       <circle cx="2" cy="-3" r="2" fill="none" stroke="#9FB2C3"/>
@@ -60,12 +60,13 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#9FB2C3"/>
       <text x="22" y="1" class="meta" fill="#9FB2C3">main</text>
       <text x="60" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="74" y="1" class="meta" fill="#2AC2CE">f262c09</text>
+      <text x="74" y="1" class="meta" fill="#2AC2CE">50d9299</text>
       <text x="132" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="146" y="1" class="meta" fill="#9FB2C3">Match dashboard to reference design</text>
+      <text x="146" y="1" class="meta" fill="#9FB2C3">Square profile frames and align display typography</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#9FB2C3">Profile control plane · live source repository signals</text>
-    <text x="116" y="318" class="tiny" fill="#9FB2C3">PUBLIC SOURCE REPOSITORY · SEP 03</text>
+    <text x="116" y="318" class="tiny" fill="#9FB2C3">PUBLIC SOURCE REPOSITORY · SEP 04</text>
+    <text x="116" y="340" class="tiny" fill="#2AC2CE">TIMEZONE · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
       <circle r="60" fill="none" stroke="#3D5973" stroke-dasharray="2 6"/>
@@ -92,9 +93,9 @@
       <rect x="796" y="112" width="22" height="22" fill="#FF6469"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#06182B">01</text>
       <text x="838" y="122" class="ledger-repo" fill="#FF6469">nextcandy/NextCandy</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Match dashboard to reference design</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">17:17</text>
-      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">SEP 03</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Square profile frames and align display…</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">12:57</text>
+      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">SEP 04</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
       <rect x="796" y="150" width="376" height="42" fill="none"/>
@@ -104,7 +105,7 @@
       <text x="807" y="172" text-anchor="middle" class="number" fill="#06182B">02</text>
       <text x="838" y="167" class="ledger-repo" fill="#F4F8FC">nextcandy/TimeAmber</text>
       <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">feat: 后台内容同步中心，修复 Notion 正文回填与多数据源游标 起因…</text>
-      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#F4F8FC">04:09</text>
+      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#F4F8FC">12:09</text>
       <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 18</text>
     </g>
 <g class="boot" style="animation-delay:0.3s">
@@ -115,7 +116,7 @@
       <text x="807" y="217" text-anchor="middle" class="number" fill="#06182B">03</text>
       <text x="838" y="212" class="ledger-repo" fill="#F4F8FC">nextcandy/DomainHunter</text>
       <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Normalize DeepSeek evidence output</text>
-      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#F4F8FC">15:09</text>
+      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#F4F8FC">23:09</text>
       <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 14</text>
     </g>
 <g class="boot" style="animation-delay:0.37s">
@@ -126,8 +127,8 @@
       <text x="807" y="262" text-anchor="middle" class="number" fill="#06182B">04</text>
       <text x="838" y="257" class="ledger-repo" fill="#F4F8FC">nextcandy/content-animator</text>
       <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">完善中文项目说明</text>
-      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#F4F8FC">21:11</text>
-      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 05</text>
+      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#F4F8FC">05:11</text>
+      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#9FB2C3">AUG 06</text>
     </g>
 <g class="boot" style="animation-delay:0.44s">
       <rect x="796" y="285" width="376" height="42" fill="none"/>
@@ -137,7 +138,7 @@
       <text x="807" y="307" text-anchor="middle" class="number" fill="#06182B">05</text>
       <text x="838" y="302" class="ledger-repo" fill="#F4F8FC">nextcandy/UnUseDomain</text>
       <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
-      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#F4F8FC">08:32</text>
+      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#F4F8FC">16:32</text>
       <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#9FB2C3">JUL 23</text>
     </g>
 
@@ -196,7 +197,7 @@
 <g transform="translate(671.2 0)">
       <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 07</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 08</text>
     </g>
 <g transform="translate(688.8 0)">
       <rect class="bar" style="animation-delay:0.21s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -224,14 +225,14 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(776.2 0)">
-      <rect class="bar" style="animation-delay:0.39s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <rect class="bar" style="animation-delay:0.39s" x="0" y="404.0" width="7.0" height="52.0" fill="#7896DB"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(793.8 0)">
-      <rect class="bar" style="animation-delay:0.43s" x="0" y="404.0" width="7.0" height="52.0" fill="#FF6469"/>
-      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 14</text>
+      <rect class="bar" style="animation-delay:0.43s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 15</text>
     </g>
 <g transform="translate(811.2 0)">
       <rect class="bar" style="animation-delay:0.46s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -244,13 +245,13 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(846.2 0)">
-      <rect class="bar" style="animation-delay:0.53s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <rect class="bar" style="animation-delay:0.53s" x="0" y="404.0" width="7.0" height="52.0" fill="#2AC2CE"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(863.8 0)">
-      <rect class="bar" style="animation-delay:0.56s" x="0" y="404.0" width="7.0" height="52.0" fill="#7896DB"/>
-      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
+      <rect class="bar" style="animation-delay:0.56s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(881.2 0)">
@@ -266,7 +267,7 @@
 <g transform="translate(916.2 0)">
       <rect class="bar" style="animation-delay:0.67s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 21</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 22</text>
     </g>
 <g transform="translate(933.8 0)">
       <rect class="bar" style="animation-delay:0.71s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -301,7 +302,7 @@
 <g transform="translate(1038.8 0)">
       <rect class="bar" style="animation-delay:0.92s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 28</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 29</text>
     </g>
 <g transform="translate(1056.2 0)">
       <rect class="bar" style="animation-delay:0.95s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -331,7 +332,7 @@
 <g transform="translate(1143.8 0)">
       <rect class="bar" style="animation-delay:1.12s" x="0" y="404.0" width="7.0" height="52.0" fill="#2AC2CE"/>
       <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 03</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 04</text>
     </g>
 
   </g>

@@ -1,50 +1,52 @@
-name: Update live profile dashboard
+name: Update profile dashboard
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "23 3 * * 1"
+    # GitHub cron is UTC; every 15 minutes keeps the profile current without
+    # depending on the timezone of the runner.
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update_dashboard.py"
+      - ".github/workflows/update-dashboard.yml"
+      - "README.md"
 
 permissions:
   contents: write
 
 concurrency:
   group: profile-dashboard
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out profile repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.x"
 
-      - name: Generate source-only dashboard
+      - name: Regenerate dashboard in Beijing time
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/update_dashboard.py --username NextCandy --output assets --check-readme README.md
 
-      - name: Verify generated assets
+      - name: Commit changed dashboard assets
+        shell: bash
         run: |
-          python - <<'PY'
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
-          for path in Path("assets").glob("*.svg"):
-              ET.parse(path)
-              print(f"valid: {path}")
-          PY
-
-      - name: Commit refreshed signals
-        run: |
-          if git diff --quiet -- assets/dashboard-dark.svg assets/dashboard-light.svg; then
+          if git diff --quiet -- assets/dashboard-light.svg assets/dashboard-dark.svg; then
             echo "Dashboard is already current."
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/dashboard-dark.svg assets/dashboard-light.svg
-          git commit -m "refresh live profile signals"
+          git add assets/dashboard-light.svg assets/dashboard-dark.svg
+          git commit -m "Refresh live profile dashboard"
           git push
