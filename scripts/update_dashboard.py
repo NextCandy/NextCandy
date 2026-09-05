@@ -45,16 +45,38 @@ def fetch_public_repos(username):
         if len(batch) < 100:
             break
         page += 1
-    projects = [r for r in repos if not r.get("fork")]
+    # The profile repository is rewritten by this workflow itself. Excluding
+    # it prevents the dashboard refresh commit from becoming a fake "latest
+    # push" and keeps the signal tied to the actual source repositories.
+    projects = [
+        r for r in repos
+        if not r.get("fork") and r.get("name", "").casefold() != username.casefold()
+    ]
+    if not projects:
+        projects = [r for r in repos if not r.get("fork")]
     projects.sort(key=lambda r: r.get("pushed_at") or "", reverse=True)
     return projects
 
 
+def _parse_datetime(value):
+    """Parse a GitHub ISO-8601 timestamp and render it in Beijing time."""
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed.astimezone(BEIJING_TZ)
+    except (TypeError, ValueError):
+        return None
+
+
 def _pushed(repo):
     """Parse GitHub's UTC timestamp and render it in Beijing time."""
-    return (datetime.strptime(repo["pushed_at"], "%Y-%m-%dT%H:%M:%SZ")
-            .replace(tzinfo=timezone.utc)
-            .astimezone(BEIJING_TZ))
+    parsed = _parse_datetime(repo.get("pushed_at"))
+    if parsed is None:
+        raise ValueError(f"repository has no valid pushed_at timestamp: {repo.get('name')}")
+    return parsed
 
 
 def fetch_latest_commit(username, repo_name):
@@ -65,13 +87,19 @@ def fetch_latest_commit(username, repo_name):
         with urllib.request.urlopen(req, timeout=20) as resp:
             commits = json.load(resp)
         commit = commits[0]
-        subject = " ".join((commit.get("commit", {}).get("message") or "").splitlines()).strip()
+        commit_data = commit.get("commit", {})
+        subject = " ".join((commit_data.get("message") or "").splitlines()).strip()
+        commit_dt = _parse_datetime(
+            commit_data.get("committer", {}).get("date")
+            or commit_data.get("author", {}).get("date")
+        )
         return {
             "sha": (commit.get("sha") or "")[:7] or "—",
             "message": subject or "latest public push",
+            "dt": commit_dt,
         }
     except (HTTPError, URLError, TimeoutError, IndexError, KeyError, TypeError, json.JSONDecodeError):
-        return {"sha": "—", "message": "latest public push"}
+        return {"sha": "—", "message": "latest public push", "dt": None}
 
 
 def profile_stats(username, projects):
@@ -91,23 +119,26 @@ def profile_stats(username, projects):
     languages = sorted(order, key=lambda l: -counts[l])
     lang_rows = [(l, counts[l]) for l in languages[:5]]
 
-    latest = projects[0]
-    latest_dt = _pushed(latest)
-    year = latest_dt.year
-    active_year = sum(1 for p in projects if _pushed(p).year == year)
-
     recent = []
     for p in projects[:5]:
         commit = fetch_latest_commit(username, p["name"])
         recent.append({
             "name": p["name"],
             "lang": (p.get("language") or "TXT").upper(),
-            "dt": _pushed(p),
+            # Use the commit endpoint for the displayed event time. The
+            # users/repos response can be cached, while commit metadata is
+            # the source of truth for the actual latest commit.
+            "dt": commit["dt"] or _pushed(p),
             "branch": p.get("default_branch") or "main",
             "sha": commit["sha"],
             "message": commit["message"],
             "description": p.get("description") or "",
         })
+    recent.sort(key=lambda item: item["dt"], reverse=True)
+    latest = recent[0]
+    latest_dt = latest["dt"]
+    year = latest_dt.year
+    active_year = sum(1 for p in projects if _pushed(p).year == year)
 
     # 28 daily buckets ending at the latest push, counting each repo once on
     # the day it was last pushed. This keeps the chart honest without needing
@@ -177,6 +208,7 @@ def render_dashboard(username, stats, mode):
     latest_dt = stats["latest_dt"]
     latest = stats["recent"][0]
     latest_full = latest_dt.strftime("%Y-%m-%d")
+    latest_time = latest_dt.strftime("%H:%M")
     latest_slug = f"{username.lower()}/{stats['latest_name']}"
     latest_message = compact(stats["latest_message"], 54)
     latest_description = compact(stats["latest_description"] or "Latest public source update.", 58)
@@ -279,7 +311,7 @@ def render_dashboard(username, stats, mode):
     text{{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}}
     .title{{font-size:14px;font-weight:800;letter-spacing:2.7px}}.top-label{{font-size:9px;font-weight:700;letter-spacing:1.2px}}.top-value{{font-size:17px;font-weight:800}}
     .brand{{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.4px}}.section{{font-size:11px;font-weight:800;letter-spacing:2px}}
-    .hero-date{{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}}.hero-repo{{font-size:26px;font-weight:800;letter-spacing:1px}}
+    .hero-date{{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}}.hero-time{{font-size:19px;font-weight:800;letter-spacing:.5px}}.hero-repo{{font-size:26px;font-weight:800;letter-spacing:1px}}
     .meta{{font-size:10px;font-weight:700;letter-spacing:.8px}}.body-copy{{font-size:13px;font-weight:500;letter-spacing:.3px}}.tiny{{font-size:8px;letter-spacing:1px}}
     .ledger-repo{{font-size:11px;font-weight:800;letter-spacing:.1px}}.ledger-message{{font-size:9px;letter-spacing:.1px}}.ledger-time{{font-size:10px;font-weight:800}}.ledger-date{{font-size:8px;letter-spacing:1px}}.number{{font-size:8px;font-weight:900}}
     .language-name{{font-size:9px;font-weight:700}}.language-pct{{font-size:9px;letter-spacing:.5px}}.chart-value{{font-size:8px}}.chart-label{{font-size:8px;letter-spacing:.5px}}
@@ -305,6 +337,8 @@ def render_dashboard(username, stats, mode):
     <text x="54" y="91" class="section" fill="{t['pink']}">LATEST PUSH</text>
     <path d="M54 102H86" stroke="{t['pink']}" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="{t['text']}">{latest_full}</text>
+    <text x="514" y="180" class="hero-time" fill="{t['text']}">{latest_time}</text>
+    <text x="514" y="195" class="tiny" fill="{t['cyan']}">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="{t['text']}">{esc(latest_slug)}</text>
     <g transform="translate(116 256)">
       <circle cx="2" cy="-3" r="2" fill="none" stroke="{t['muted']}"/>
