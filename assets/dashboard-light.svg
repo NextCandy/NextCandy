@@ -7,7 +7,7 @@
     text{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}
     .title{font-size:14px;font-weight:800;letter-spacing:2.7px}.top-label{font-size:9px;font-weight:700;letter-spacing:1.2px}.top-value{font-size:17px;font-weight:800}
     .brand{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.4px}.section{font-size:11px;font-weight:800;letter-spacing:2px}
-    .hero-date{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}.hero-time{font-size:19px;font-weight:800;letter-spacing:.5px}.hero-repo{font-size:26px;font-weight:800;letter-spacing:1px}
+    .hero-date{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}.hero-time{font-size:19px;font-weight:800;letter-spacing:.5px}.hero-repo{font-size:24px;font-weight:800;letter-spacing:1px}
     .meta{font-size:10px;font-weight:700;letter-spacing:.8px}.body-copy{font-size:13px;font-weight:500;letter-spacing:.3px}.tiny{font-size:8px;letter-spacing:1px}
     .ledger-repo{font-size:11px;font-weight:800;letter-spacing:.1px}.ledger-message{font-size:9px;letter-spacing:.1px}.ledger-time{font-size:10px;font-weight:800}.ledger-date{font-size:8px;letter-spacing:1px}.number{font-size:8px;font-weight:900}
     .language-name{font-size:9px;font-weight:700}.language-pct{font-size:9px;letter-spacing:.5px}.chart-value{font-size:8px}.chart-label{font-size:8px;letter-spacing:.5px}
@@ -50,12 +50,12 @@
     <path d="M31 106V327" stroke="#B8C3D1" stroke-width="2" stroke-dasharray="16 7"/>
     <circle cx="31" cy="196" r="14" fill="#FFFFFF" stroke="#F05B60" stroke-width="5"/>
     <circle cx="31" cy="196" r="4" fill="#F05B60"/>
-    <text x="54" y="91" class="section" fill="#F05B60">LATEST PUSH</text>
+    <text x="54" y="91" class="section" fill="#F05B60">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#F05B60" stroke-width="3"/>
-    <text x="116" y="193" class="hero-date" fill="#0A1D39">2026-08-13</text>
-    <text x="514" y="180" class="hero-time" fill="#0A1D39">01:43</text>
+    <text x="116" y="193" class="hero-date" fill="#0A1D39">2026-09-06</text>
+    <text x="514" y="180" class="hero-time" fill="#0A1D39">09:47</text>
     <text x="514" y="195" class="tiny" fill="#1299A8">BJT</text>
-    <text x="116" y="230" class="hero-repo" fill="#0A1D39">nextcandy/DomainHunter</text>
+    <text x="116" y="230" class="hero-repo" fill="#0A1D39">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
       <circle cx="2" cy="-3" r="2" fill="none" stroke="#52627A"/>
       <circle cx="2" cy="8" r="2" fill="none" stroke="#52627A"/>
@@ -67,8 +67,8 @@
       <text x="146" y="1" class="meta" fill="#52627A">Normalize DeepSeek evidence output</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#52627A">DomainHunter: RDAP-first domain monitoring with safe avai…</text>
-    <text x="116" y="318" class="tiny" fill="#52627A">PUBLIC SOURCE REPOSITORY · AUG 13</text>
-    <text x="116" y="340" class="tiny" fill="#1299A8">TIMEZONE · BEIJING (UTC+8)</text>
+    <text x="116" y="318" class="tiny" fill="#52627A">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER · AUG 13 01:43 BJT</text>
+    <text x="116" y="340" class="tiny" fill="#1299A8">LIVE CLOCK · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
       <circle r="60" fill="none" stroke="#B8C3D1" stroke-dasharray="2 6"/>

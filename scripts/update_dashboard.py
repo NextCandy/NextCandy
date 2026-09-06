@@ -170,6 +170,7 @@ def profile_stats(username, projects):
         "latest_message": recent[0]["message"],
         "latest_description": recent[0]["description"],
         "latest_dt": latest_dt,
+        "generated_dt": datetime.now(BEIJING_TZ),
         "recent": recent,
         "cadence": cadence,
         "all": projects,
@@ -213,12 +214,18 @@ def compact(s, limit):
 def render_dashboard(username, stats, mode):
     t = THEMES[mode]
     latest_dt = stats["latest_dt"]
+    generated_dt = stats["generated_dt"]
     latest = stats["recent"][0]
-    latest_full = latest_dt.strftime("%Y-%m-%d")
-    latest_time = latest_dt.strftime("%H:%M")
+    current_full = generated_dt.strftime("%Y-%m-%d")
+    current_time = generated_dt.strftime("%H:%M")
     latest_slug = f"{username.lower()}/{stats['latest_name']}"
+    live_slug = f"{username.lower()} // LIVE PROFILE"
     latest_message = compact(stats["latest_message"], 54)
     latest_description = compact(stats["latest_description"] or "Latest public source update.", 58)
+    latest_source_line = compact(
+        f"LATEST SOURCE · {latest_slug.upper()} · {latest_dt.strftime('%b %d %H:%M').upper()} BJT",
+        68,
+    )
     frame_path = "M1 1H1199V485H1Z"
 
     rail_specs = [
@@ -318,7 +325,7 @@ def render_dashboard(username, stats, mode):
     text{{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}}
     .title{{font-size:14px;font-weight:800;letter-spacing:2.7px}}.top-label{{font-size:9px;font-weight:700;letter-spacing:1.2px}}.top-value{{font-size:17px;font-weight:800}}
     .brand{{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.4px}}.section{{font-size:11px;font-weight:800;letter-spacing:2px}}
-    .hero-date{{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}}.hero-time{{font-size:19px;font-weight:800;letter-spacing:.5px}}.hero-repo{{font-size:26px;font-weight:800;letter-spacing:1px}}
+    .hero-date{{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}}.hero-time{{font-size:19px;font-weight:800;letter-spacing:.5px}}.hero-repo{{font-size:24px;font-weight:800;letter-spacing:1px}}
     .meta{{font-size:10px;font-weight:700;letter-spacing:.8px}}.body-copy{{font-size:13px;font-weight:500;letter-spacing:.3px}}.tiny{{font-size:8px;letter-spacing:1px}}
     .ledger-repo{{font-size:11px;font-weight:800;letter-spacing:.1px}}.ledger-message{{font-size:9px;letter-spacing:.1px}}.ledger-time{{font-size:10px;font-weight:800}}.ledger-date{{font-size:8px;letter-spacing:1px}}.number{{font-size:8px;font-weight:900}}
     .language-name{{font-size:9px;font-weight:700}}.language-pct{{font-size:9px;letter-spacing:.5px}}.chart-value{{font-size:8px}}.chart-label{{font-size:8px;letter-spacing:.5px}}
@@ -341,12 +348,12 @@ def render_dashboard(username, stats, mode):
     <path d="M31 106V327" stroke="{t['line']}" stroke-width="2" stroke-dasharray="16 7"/>
     <circle cx="31" cy="196" r="14" fill="{t['bg']}" stroke="{t['pink']}" stroke-width="5"/>
     <circle cx="31" cy="196" r="4" fill="{t['pink']}"/>
-    <text x="54" y="91" class="section" fill="{t['pink']}">LATEST PUSH</text>
+    <text x="54" y="91" class="section" fill="{t['pink']}">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="{t['pink']}" stroke-width="3"/>
-    <text x="116" y="193" class="hero-date" fill="{t['text']}">{latest_full}</text>
-    <text x="514" y="180" class="hero-time" fill="{t['text']}">{latest_time}</text>
+    <text x="116" y="193" class="hero-date" fill="{t['text']}">{current_full}</text>
+    <text x="514" y="180" class="hero-time" fill="{t['text']}">{current_time}</text>
     <text x="514" y="195" class="tiny" fill="{t['cyan']}">BJT</text>
-    <text x="116" y="230" class="hero-repo" fill="{t['text']}">{esc(latest_slug)}</text>
+    <text x="116" y="230" class="hero-repo" fill="{t['text']}">{esc(live_slug)}</text>
     <g transform="translate(116 256)">
       <circle cx="2" cy="-3" r="2" fill="none" stroke="{t['muted']}"/>
       <circle cx="2" cy="8" r="2" fill="none" stroke="{t['muted']}"/>
@@ -358,8 +365,8 @@ def render_dashboard(username, stats, mode):
       <text x="146" y="1" class="meta" fill="{t['muted']}">{esc(latest_message)}</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="{t['muted']}">{esc(latest_description)}</text>
-    <text x="116" y="318" class="tiny" fill="{t['muted']}">PUBLIC SOURCE REPOSITORY · {latest_dt.strftime('%b %d').upper()}</text>
-    <text x="116" y="340" class="tiny" fill="{t['cyan']}">TIMEZONE · BEIJING (UTC+8)</text>
+    <text x="116" y="318" class="tiny" fill="{t['muted']}">{esc(latest_source_line)}</text>
+    <text x="116" y="340" class="tiny" fill="{t['cyan']}">LIVE CLOCK · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
       <circle r="60" fill="none" stroke="{t['line']}" stroke-dasharray="2 6"/>
