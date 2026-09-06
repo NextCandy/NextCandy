@@ -126,10 +126,10 @@ def profile_stats(username, projects):
     languages = sorted(order, key=lambda l: -counts[l])
     lang_rows = [(l, counts[l]) for l in languages[:5]]
 
-    recent = []
-    for p in projects[:5]:
+    events = []
+    for p in projects:
         commit = fetch_latest_commit(username, p["name"])
-        recent.append({
+        events.append({
             "name": p["name"],
             "lang": (p.get("language") or "TXT").upper(),
             # Use the commit endpoint for the displayed event time. The
@@ -141,19 +141,21 @@ def profile_stats(username, projects):
             "message": commit["message"],
             "description": p.get("description") or "",
         })
-    recent.sort(key=lambda item: item["dt"], reverse=True)
-    latest = recent[0]
+    events.sort(key=lambda item: item["dt"], reverse=True)
+    recent = events[:5]
+    latest = events[0]
     latest_dt = latest["dt"]
+    generated_dt = datetime.now(BEIJING_TZ)
     year = latest_dt.year
-    active_year = sum(1 for p in projects if _pushed(p).year == year)
+    active_year = sum(1 for event in events if event["dt"].year == year)
 
-    # 28 daily buckets ending at the latest push, counting each repo once on
-    # the day it was last pushed. This keeps the chart honest without needing
-    # a second authenticated contribution API.
-    buckets = [latest_dt - timedelta(days=offset) for offset in range(27, -1, -1)]
+    # 28 daily buckets ending today, counting each included repository once
+    # on the day of its actual latest commit. This keeps the chart's dates
+    # current even when the last source push happened weeks ago.
+    buckets = [generated_dt - timedelta(days=offset) for offset in range(27, -1, -1)]
     counts_by_day = {b.date(): 0 for b in buckets}
-    for p in projects:
-        d = _pushed(p)
+    for event in events:
+        d = event["dt"]
         if d.date() in counts_by_day:
             counts_by_day[d.date()] += 1
     cadence = [(bucket, counts_by_day[bucket.date()]) for bucket in buckets]
@@ -170,7 +172,7 @@ def profile_stats(username, projects):
         "latest_message": recent[0]["message"],
         "latest_description": recent[0]["description"],
         "latest_dt": latest_dt,
-        "generated_dt": datetime.now(BEIJING_TZ),
+        "generated_dt": generated_dt,
         "recent": recent,
         "cadence": cadence,
         "all": projects,
@@ -213,7 +215,6 @@ def compact(s, limit):
 
 def render_dashboard(username, stats, mode):
     t = THEMES[mode]
-    latest_dt = stats["latest_dt"]
     generated_dt = stats["generated_dt"]
     latest = stats["recent"][0]
     current_full = generated_dt.strftime("%Y-%m-%d")
@@ -222,17 +223,14 @@ def render_dashboard(username, stats, mode):
     live_slug = f"{username.lower()} // LIVE PROFILE"
     latest_message = compact(stats["latest_message"], 54)
     latest_description = compact(stats["latest_description"] or "Latest public source update.", 58)
-    latest_source_line = compact(
-        f"LATEST SOURCE · {latest_slug.upper()} · {latest_dt.strftime('%b %d %H:%M').upper()} BJT",
-        68,
-    )
+    latest_source_line = compact(f"LATEST SOURCE · {latest_slug.upper()}", 68)
     frame_path = "M1 1H1199V485H1Z"
 
     rail_specs = [
         ("REPOS", str(stats["total"]), t["pink"], 54),
         ("LANGUAGES", str(stats["lang_count"]), t["cyan"], 88),
         (f"ACTIVE / {stats['year']}", str(stats["active_year"]), t["blue"], 108),
-        ("LATEST", latest_dt.strftime("%m.%d"), t["pink"], 62),
+        ("TODAY", generated_dt.strftime("%m.%d"), t["pink"], 62),
     ]
     rail = []
     for i, (label, value, color, value_x) in enumerate(rail_specs):
@@ -304,7 +302,7 @@ def render_dashboard(username, stats, mode):
       <text x="838" y="{row_y + 17}" class="ledger-repo" fill="{color if i == 0 else t['text']}">{esc(f"{username.lower()}/{item['name']}")}</text>
       <text x="838" y="{row_y + 34}" class="ledger-message" clip-path="url(#message-clip)" fill="{t['muted']}">{esc(message)}</text>
       <text x="1148" y="{row_y + 17}" text-anchor="end" class="ledger-time" fill="{color}">{item['dt'].strftime('%H:%M')}</text>
-      <text x="1148" y="{row_y + 34}" text-anchor="end" class="ledger-date" fill="{t['muted']}">{item['dt'].strftime('%b %d').upper()}</text>
+      <text x="1148" y="{row_y + 34}" text-anchor="end" class="ledger-date" fill="{t['muted']}">{item['dt'].strftime('%Y-%m-%d')}</text>
     </g>""")
 
     rail_s = "\n" + "\n".join(rail)

@@ -38,8 +38,8 @@
       <path d="M835 17V40" stroke="#B8C3D1"/>
     </g>
 <g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
-      <text x="0" y="33" class="top-label" fill="#52627A">LATEST</text>
-      <text x="62" y="33" class="top-value" fill="#F05B60">08.13</text>
+      <text x="0" y="33" class="top-label" fill="#52627A">TODAY</text>
+      <text x="62" y="33" class="top-value" fill="#F05B60">09.06</text>
 
     </g>
     <text x="1028" y="35" class="brand" fill="#0A1D39">NextCandy</text>
@@ -53,7 +53,7 @@
     <text x="54" y="91" class="section" fill="#F05B60">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#F05B60" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="#0A1D39">2026-09-06</text>
-    <text x="514" y="180" class="hero-time" fill="#0A1D39">09:48</text>
+    <text x="514" y="180" class="hero-time" fill="#0A1D39">10:12</text>
     <text x="514" y="195" class="tiny" fill="#1299A8">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#0A1D39">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
@@ -67,7 +67,7 @@
       <text x="146" y="1" class="meta" fill="#52627A">Normalize DeepSeek evidence output</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#52627A">DomainHunter: RDAP-first domain monitoring with safe avai…</text>
-    <text x="116" y="318" class="tiny" fill="#52627A">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER · AUG 13 01:43 BJT</text>
+    <text x="116" y="318" class="tiny" fill="#52627A">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
     <text x="116" y="340" class="tiny" fill="#1299A8">LIVE CLOCK · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
@@ -97,7 +97,7 @@
       <text x="838" y="122" class="ledger-repo" fill="#F05B60">nextcandy/DomainHunter</text>
       <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Normalize DeepSeek evidence output</text>
       <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">01:43</text>
-      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">AUG 13</text>
+      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">2026-08-13</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
       <rect x="796" y="150" width="376" height="42" fill="none"/>
@@ -108,7 +108,7 @@
       <text x="838" y="167" class="ledger-repo" fill="#0A1D39">nextcandy/content-animator</text>
       <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">完善中文项目说明</text>
       <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#0A1D39">05:11</text>
-      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#52627A">AUG 06</text>
+      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#52627A">2026-08-06</text>
     </g>
 <g class="boot" style="animation-delay:0.3s">
       <rect x="796" y="195" width="376" height="42" fill="none"/>
@@ -119,7 +119,7 @@
       <text x="838" y="212" class="ledger-repo" fill="#0A1D39">nextcandy/UnUseDomain</text>
       <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
       <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#0A1D39">16:32</text>
-      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#52627A">JUL 23</text>
+      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-23</text>
     </g>
 <g class="boot" style="animation-delay:0.37s">
       <rect x="796" y="240" width="376" height="42" fill="none"/>
@@ -130,7 +130,7 @@
       <text x="838" y="257" class="ledger-repo" fill="#0A1D39">nextcandy/dshunter</text>
       <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Make domain showcase changes visible</text>
       <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#0A1D39">00:06</text>
-      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#52627A">JUL 10</text>
+      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-10</text>
     </g>
 <g class="boot" style="animation-delay:0.44s">
       <rect x="796" y="285" width="376" height="42" fill="none"/>
@@ -141,7 +141,7 @@
       <text x="838" y="302" class="ledger-repo" fill="#0A1D39">nextcandy/dh</text>
       <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">feat: update NAS project interface</text>
       <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#0A1D39">13:31</text>
-      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#52627A">JUL 01</text>
+      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-01</text>
     </g>
 
     <path d="M8 365H1192" stroke="#B8C3D1"/>
@@ -193,7 +193,7 @@
 <g transform="translate(671.2 0)">
       <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">JUL 17</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 10</text>
     </g>
 <g transform="translate(688.8 0)">
       <rect class="bar" style="animation-delay:0.21s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
@@ -206,8 +206,8 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(723.8 0)">
-      <rect class="bar" style="animation-delay:0.29s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
+      <rect class="bar" style="animation-delay:0.29s" x="0" y="404.0" width="7.0" height="52.0" fill="#824DA8"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#52627A">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(741.2 0)">
@@ -221,14 +221,14 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(776.2 0)">
-      <rect class="bar" style="animation-delay:0.39s" x="0" y="404.0" width="7.0" height="52.0" fill="#405992"/>
-      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#52627A">1</text>
+      <rect class="bar" style="animation-delay:0.39s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(793.8 0)">
       <rect class="bar" style="animation-delay:0.43s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">JUL 24</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 17</text>
     </g>
 <g transform="translate(811.2 0)">
       <rect class="bar" style="animation-delay:0.46s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
@@ -263,7 +263,7 @@
 <g transform="translate(916.2 0)">
       <rect class="bar" style="animation-delay:0.67s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">JUL 31</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 24</text>
     </g>
 <g transform="translate(933.8 0)">
       <rect class="bar" style="animation-delay:0.71s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
@@ -291,14 +291,14 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(1021.2 0)">
-      <rect class="bar" style="animation-delay:0.88s" x="0" y="404.0" width="7.0" height="52.0" fill="#1299A8"/>
-      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#52627A">1</text>
+      <rect class="bar" style="animation-delay:0.88s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(1038.8 0)">
       <rect class="bar" style="animation-delay:0.92s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 07</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 31</text>
     </g>
 <g transform="translate(1056.2 0)">
       <rect class="bar" style="animation-delay:0.95s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
@@ -328,7 +328,7 @@
 <g transform="translate(1143.8 0)">
       <rect class="bar" style="animation-delay:1.12s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">AUG 13</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">SEP 06</text>
     </g>
 
   </g>
