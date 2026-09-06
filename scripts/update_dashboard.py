@@ -24,6 +24,11 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
+# Keep the dashboard focused on the source/control projects. TimeAmber is a
+# blog and remains documented in README.md, but should not drive this panel's
+# latest-push and recent-transmission signals.
+DASHBOARD_EXCLUDED_REPOS = {"timeamber"}
+
 try:
     BEIJING_TZ = ZoneInfo("Asia/Shanghai")
 except ZoneInfoNotFoundError:
@@ -50,10 +55,12 @@ def fetch_public_repos(username):
     # push" and keeps the signal tied to the actual source repositories.
     projects = [
         r for r in repos
-        if not r.get("fork") and r.get("name", "").casefold() != username.casefold()
+        if (
+            not r.get("fork")
+            and r.get("name", "").casefold() != username.casefold()
+            and r.get("name", "").casefold() not in DASHBOARD_EXCLUDED_REPOS
+        )
     ]
-    if not projects:
-        projects = [r for r in repos if not r.get("fork")]
     projects.sort(key=lambda r: r.get("pushed_at") or "", reverse=True)
     return projects
 
