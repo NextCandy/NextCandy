@@ -53,7 +53,7 @@
     <text x="54" y="91" class="section" fill="#F05B60">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#F05B60" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="#0A1D39">2026-09-11</text>
-    <text x="514" y="180" class="hero-time" fill="#0A1D39">05:32</text>
+    <text x="514" y="180" class="hero-time" fill="#0A1D39">07:24</text>
     <text x="514" y="195" class="tiny" fill="#1299A8">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#0A1D39">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
