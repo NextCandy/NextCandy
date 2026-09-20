@@ -53,7 +53,7 @@
     <text x="54" y="91" class="section" fill="#FF6469">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-20</text>
-    <text x="514" y="180" class="hero-time" fill="#F4F8FC">14:16</text>
+    <text x="514" y="180" class="hero-time" fill="#F4F8FC">19:42</text>
     <text x="514" y="195" class="tiny" fill="#2AC2CE">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
@@ -62,9 +62,9 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#9FB2C3"/>
       <text x="22" y="1" class="meta" fill="#9FB2C3">main</text>
       <text x="60" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="74" y="1" class="meta" fill="#2AC2CE">a504fb6</text>
+      <text x="74" y="1" class="meta" fill="#2AC2CE">925d934</text>
       <text x="132" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="146" y="1" class="meta" fill="#9FB2C3">Normalize DeepSeek evidence output</text>
+      <text x="146" y="1" class="meta" fill="#9FB2C3">docs: NAS 源码目录改为 git clone，更新部署流程 /volume1/docker/dom…</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#9FB2C3">DomainHunter: RDAP-first domain monitoring with safe avai…</text>
     <text x="116" y="318" class="tiny" fill="#9FB2C3">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
@@ -95,9 +95,9 @@
       <rect x="796" y="112" width="22" height="22" fill="#FF6469"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#06182B">01</text>
       <text x="838" y="122" class="ledger-repo" fill="#FF6469">nextcandy/DomainHunter</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Normalize DeepSeek evidence output</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">01:43</text>
-      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-08-13</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">docs: NAS 源码目录改为 git clone，更新部署流程 /volu…</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">15:15</text>
+      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-09-20</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
       <rect x="796" y="150" width="376" height="42" fill="none"/>
@@ -188,7 +188,7 @@
     <text x="1172" y="382" text-anchor="end" class="tiny" fill="#9FB2C3">LAST 28 DAYS</text>
     <path d="M658 393H1172" stroke="#3D5973"/>
     <path d="M658 406H1172M658 431H1172M658 456H1172" stroke="#3D5973" stroke-dasharray="2 6"/>
-    <text x="658" y="409" class="tiny" fill="#9FB2C3">0</text><text x="658" y="434" class="tiny" fill="#9FB2C3">1</text><text x="658" y="459" class="tiny" fill="#9FB2C3">0</text>
+    <text x="658" y="409" class="tiny" fill="#9FB2C3">1</text><text x="658" y="434" class="tiny" fill="#9FB2C3">1</text><text x="658" y="459" class="tiny" fill="#9FB2C3">0</text>
 
 <g transform="translate(671.2 0)">
       <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -326,8 +326,8 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(1143.8 0)">
-      <rect class="bar" style="animation-delay:1.12s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <rect class="bar" style="animation-delay:1.12s" x="0" y="404.0" width="7.0" height="52.0" fill="#2AC2CE"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 20</text>
     </g>
 
