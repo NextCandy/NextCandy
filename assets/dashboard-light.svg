@@ -24,17 +24,17 @@
 
 <g class="boot" style="animation-delay:0.06s" transform="translate(398 0)">
       <text x="0" y="33" class="top-label" fill="#52627A">REPOS</text>
-      <text x="54" y="33" class="top-value" fill="#F05B60">7</text>
+      <text x="54" y="33" class="top-value" fill="#F05B60">8</text>
       <path d="M535 17V40" stroke="#B8C3D1"/>
     </g>
 <g class="boot" style="animation-delay:0.12s" transform="translate(548 0)">
       <text x="0" y="33" class="top-label" fill="#52627A">LANGUAGES</text>
-      <text x="88" y="33" class="top-value" fill="#1299A8">4</text>
+      <text x="88" y="33" class="top-value" fill="#1299A8">5</text>
       <path d="M685 17V40" stroke="#B8C3D1"/>
     </g>
 <g class="boot" style="animation-delay:0.18s" transform="translate(698 0)">
       <text x="0" y="33" class="top-label" fill="#52627A">ACTIVE / 2026</text>
-      <text x="108" y="33" class="top-value" fill="#405992">6</text>
+      <text x="108" y="33" class="top-value" fill="#405992">7</text>
       <path d="M835 17V40" stroke="#B8C3D1"/>
     </g>
 <g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
@@ -53,7 +53,7 @@
     <text x="54" y="91" class="section" fill="#F05B60">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#F05B60" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="#0A1D39">2026-09-23</text>
-    <text x="514" y="180" class="hero-time" fill="#0A1D39">09:50</text>
+    <text x="514" y="180" class="hero-time" fill="#0A1D39">15:24</text>
     <text x="514" y="195" class="tiny" fill="#1299A8">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#0A1D39">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
@@ -62,12 +62,12 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#52627A"/>
       <text x="22" y="1" class="meta" fill="#52627A">main</text>
       <text x="60" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="74" y="1" class="meta" fill="#1299A8">925d934</text>
+      <text x="74" y="1" class="meta" fill="#1299A8">4e12922</text>
       <text x="132" y="1" class="meta" fill="#B8C3D1">│</text>
-      <text x="146" y="1" class="meta" fill="#52627A">docs: NAS 源码目录改为 git clone，更新部署流程 /volume1/docker/dom…</text>
+      <text x="146" y="1" class="meta" fill="#52627A">交互式添加域名并自动申请证书 - 交互式输入域名，显示所需 A/AAAA 记录 - 支持 Cloudfla…</text>
     </g>
-    <text x="116" y="295" class="body-copy" fill="#52627A">DomainHunter: RDAP-first domain monitoring with safe avai…</text>
-    <text x="116" y="318" class="tiny" fill="#52627A">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
+    <text x="116" y="295" class="body-copy" fill="#52627A">Surge / Shadowrocket 一键部署：Hysteria2（端口跳跃）+ Snell v5，自动带宽检…</text>
+    <text x="116" y="318" class="tiny" fill="#52627A">LATEST SOURCE · NEXTCANDY/ONEKEY</text>
     <text x="116" y="340" class="tiny" fill="#1299A8">LIVE CLOCK · BEIJING (UTC+8)</text>
 
     <g transform="translate(657 193)">
@@ -94,10 +94,10 @@
       <circle cx="786" cy="121" r="4.5" fill="#F05B60"/>
       <rect x="796" y="112" width="22" height="22" fill="#F05B60"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#FFFFFF">01</text>
-      <text x="838" y="122" class="ledger-repo" fill="#F05B60">nextcandy/DomainHunter</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">docs: NAS 源码目录改为 git clone，更新部署流程 /volu…</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">15:15</text>
-      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">2026-09-20</text>
+      <text x="838" y="122" class="ledger-repo" fill="#F05B60">nextcandy/onekey</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">交互式添加域名并自动申请证书 - 交互式输入域名，显示所需 A/AAAA 记录…</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#F05B60">15:12</text>
+      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#52627A">2026-09-23</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
       <rect x="796" y="150" width="376" height="42" fill="none"/>
@@ -105,10 +105,10 @@
       <circle cx="786" cy="166" r="3.2" fill="#0A1D39"/>
       <rect x="796" y="157" width="22" height="22" fill="#0A1D39"/>
       <text x="807" y="172" text-anchor="middle" class="number" fill="#FFFFFF">02</text>
-      <text x="838" y="167" class="ledger-repo" fill="#0A1D39">nextcandy/content-animator</text>
-      <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">完善中文项目说明</text>
-      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#0A1D39">05:11</text>
-      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#52627A">2026-08-06</text>
+      <text x="838" y="167" class="ledger-repo" fill="#0A1D39">nextcandy/DomainHunter</text>
+      <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">docs: NAS 源码目录改为 git clone，更新部署流程 /volu…</text>
+      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#0A1D39">15:15</text>
+      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#52627A">2026-09-20</text>
     </g>
 <g class="boot" style="animation-delay:0.3s">
       <rect x="796" y="195" width="376" height="42" fill="none"/>
@@ -116,10 +116,10 @@
       <circle cx="786" cy="211" r="3.2" fill="#0A1D39"/>
       <rect x="796" y="202" width="22" height="22" fill="#0A1D39"/>
       <text x="807" y="217" text-anchor="middle" class="number" fill="#FFFFFF">03</text>
-      <text x="838" y="212" class="ledger-repo" fill="#0A1D39">nextcandy/UnUseDomain</text>
-      <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
-      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#0A1D39">16:32</text>
-      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-23</text>
+      <text x="838" y="212" class="ledger-repo" fill="#0A1D39">nextcandy/content-animator</text>
+      <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">完善中文项目说明</text>
+      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#0A1D39">05:11</text>
+      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#52627A">2026-08-06</text>
     </g>
 <g class="boot" style="animation-delay:0.37s">
       <rect x="796" y="240" width="376" height="42" fill="none"/>
@@ -127,10 +127,10 @@
       <circle cx="786" cy="256" r="3.2" fill="#0A1D39"/>
       <rect x="796" y="247" width="22" height="22" fill="#0A1D39"/>
       <text x="807" y="262" text-anchor="middle" class="number" fill="#FFFFFF">04</text>
-      <text x="838" y="257" class="ledger-repo" fill="#0A1D39">nextcandy/dshunter</text>
-      <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Make domain showcase changes visible</text>
-      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#0A1D39">00:06</text>
-      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-10</text>
+      <text x="838" y="257" class="ledger-repo" fill="#0A1D39">nextcandy/UnUseDomain</text>
+      <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
+      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#0A1D39">16:32</text>
+      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-23</text>
     </g>
 <g class="boot" style="animation-delay:0.44s">
       <rect x="796" y="285" width="376" height="42" fill="none"/>
@@ -138,10 +138,10 @@
       <circle cx="786" cy="301" r="3.2" fill="#0A1D39"/>
       <rect x="796" y="292" width="22" height="22" fill="#0A1D39"/>
       <text x="807" y="307" text-anchor="middle" class="number" fill="#FFFFFF">05</text>
-      <text x="838" y="302" class="ledger-repo" fill="#0A1D39">nextcandy/dh</text>
-      <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">feat: update NAS project interface</text>
-      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#0A1D39">13:31</text>
-      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-01</text>
+      <text x="838" y="302" class="ledger-repo" fill="#0A1D39">nextcandy/dshunter</text>
+      <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#52627A">Make domain showcase changes visible</text>
+      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#0A1D39">00:06</text>
+      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#52627A">2026-07-10</text>
     </g>
 
     <path d="M8 365H1192" stroke="#B8C3D1"/>
@@ -151,33 +151,39 @@
     <path d="M28 393H622" stroke="#B8C3D1"/>
     <rect x="28" y="404" width="572" height="13" fill="#E7ECF2"/>
 
-<rect class="bar" style="animation-delay:0.16s" x="28.0" y="404" width="322.3" height="13" fill="#1299A8"/>
-<rect class="bar" style="animation-delay:0.22s" x="352.3" y="404" width="80.6" height="13" fill="#405992"/>
-<rect class="bar" style="animation-delay:0.28s" x="434.9" y="404" width="80.6" height="13" fill="#F05B60"/>
-<rect class="bar" style="animation-delay:0.34s" x="517.5" y="404" width="80.6" height="13" fill="#824DA8"/>
-<rect class="bar" style="animation-delay:0.4s" x="600.1" y="404" width="0.0" height="13" fill="#B8C0CB"/>
+<rect class="bar" style="animation-delay:0.16s" x="28.0" y="404" width="281.0" height="13" fill="#1299A8"/>
+<rect class="bar" style="animation-delay:0.22s" x="311.0" y="404" width="70.2" height="13" fill="#405992"/>
+<rect class="bar" style="animation-delay:0.28s" x="383.2" y="404" width="70.2" height="13" fill="#F05B60"/>
+<rect class="bar" style="animation-delay:0.34s" x="455.4" y="404" width="70.2" height="13" fill="#824DA8"/>
+<rect class="bar" style="animation-delay:0.4s" x="527.6" y="404" width="70.2" height="13" fill="#EBAA19"/>
+<rect class="bar" style="animation-delay:0.46s" x="599.8" y="404" width="0.0" height="13" fill="#B8C0CB"/>
 
 <g transform="translate(28 0)">
       <circle cx="3" cy="440" r="3" fill="#1299A8"/>
       <text x="12" y="443" class="language-name" fill="#0A1D39">TypeScript</text>
-      <text x="12" y="461" class="language-pct" fill="#52627A">57.1%</text>
+      <text x="12" y="461" class="language-pct" fill="#52627A">50.0%</text>
     </g>
 <g transform="translate(123 0)">
       <circle cx="3" cy="440" r="3" fill="#405992"/>
-      <text x="12" y="443" class="language-name" fill="#0A1D39">Go</text>
-      <text x="12" y="461" class="language-pct" fill="#52627A">14.3%</text>
+      <text x="12" y="443" class="language-name" fill="#0A1D39">Shell</text>
+      <text x="12" y="461" class="language-pct" fill="#52627A">12.5%</text>
     </g>
 <g transform="translate(218 0)">
       <circle cx="3" cy="440" r="3" fill="#F05B60"/>
-      <text x="12" y="443" class="language-name" fill="#0A1D39">CSS</text>
-      <text x="12" y="461" class="language-pct" fill="#52627A">14.3%</text>
+      <text x="12" y="443" class="language-name" fill="#0A1D39">Go</text>
+      <text x="12" y="461" class="language-pct" fill="#52627A">12.5%</text>
     </g>
 <g transform="translate(313 0)">
       <circle cx="3" cy="440" r="3" fill="#824DA8"/>
-      <text x="12" y="443" class="language-name" fill="#0A1D39">HTML</text>
-      <text x="12" y="461" class="language-pct" fill="#52627A">14.3%</text>
+      <text x="12" y="443" class="language-name" fill="#0A1D39">CSS</text>
+      <text x="12" y="461" class="language-pct" fill="#52627A">12.5%</text>
     </g>
 <g transform="translate(408 0)">
+      <circle cx="3" cy="440" r="3" fill="#EBAA19"/>
+      <text x="12" y="443" class="language-name" fill="#0A1D39">HTML</text>
+      <text x="12" y="461" class="language-pct" fill="#52627A">12.5%</text>
+    </g>
+<g transform="translate(503 0)">
       <circle cx="3" cy="440" r="3" fill="#B8C0CB"/>
       <text x="12" y="443" class="language-name" fill="#0A1D39">Other</text>
       <text x="12" y="461" class="language-pct" fill="#52627A">0.0%</text>
@@ -326,8 +332,8 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A"></text>
     </g>
 <g transform="translate(1143.8 0)">
-      <rect class="bar" style="animation-delay:1.12s" x="0" y="452.0" width="7.0" height="4.0" fill="#E7ECF2"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#52627A"></text>
+      <rect class="bar" style="animation-delay:1.12s" x="0" y="404.0" width="7.0" height="52.0" fill="#1299A8"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#52627A">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#52627A">SEP 23</text>
     </g>
 
