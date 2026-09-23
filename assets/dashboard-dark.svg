@@ -53,7 +53,7 @@
     <text x="54" y="91" class="section" fill="#FF6469">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
     <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-23</text>
-    <text x="514" y="180" class="hero-time" fill="#F4F8FC">15:24</text>
+    <text x="514" y="180" class="hero-time" fill="#F4F8FC">20:55</text>
     <text x="514" y="195" class="tiny" fill="#2AC2CE">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
@@ -62,9 +62,9 @@
       <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#9FB2C3"/>
       <text x="22" y="1" class="meta" fill="#9FB2C3">main</text>
       <text x="60" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="74" y="1" class="meta" fill="#2AC2CE">4e12922</text>
+      <text x="74" y="1" class="meta" fill="#2AC2CE">51f2a07</text>
       <text x="132" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="146" y="1" class="meta" fill="#9FB2C3">交互式添加域名并自动申请证书 - 交互式输入域名，显示所需 A/AAAA 记录 - 支持 Cloudfla…</text>
+      <text x="146" y="1" class="meta" fill="#9FB2C3">添加进度交接文档与项目约定 - docs/PROGRESS.md：部署状态、网络检查测试结论、待办、在其他…</text>
     </g>
     <text x="116" y="295" class="body-copy" fill="#9FB2C3">Surge / Shadowrocket 一键部署：Hysteria2（端口跳跃）+ Snell v5，自动带宽检…</text>
     <text x="116" y="318" class="tiny" fill="#9FB2C3">LATEST SOURCE · NEXTCANDY/ONEKEY</text>
@@ -95,8 +95,8 @@
       <rect x="796" y="112" width="22" height="22" fill="#FF6469"/>
       <text x="807" y="127" text-anchor="middle" class="number" fill="#06182B">01</text>
       <text x="838" y="122" class="ledger-repo" fill="#FF6469">nextcandy/onekey</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">交互式添加域名并自动申请证书 - 交互式输入域名，显示所需 A/AAAA 记录…</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">15:12</text>
+      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">添加进度交接文档与项目约定 - docs/PROGRESS.md：部署状态、网…</text>
+      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">16:00</text>
       <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-09-23</text>
     </g>
 <g class="boot" style="animation-delay:0.23s">
