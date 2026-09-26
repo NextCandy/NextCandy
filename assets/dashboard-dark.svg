@@ -39,7 +39,7 @@
     </g>
 <g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
       <text x="0" y="33" class="top-label" fill="#9FB2C3">TODAY</text>
-      <text x="62" y="33" class="top-value" fill="#FF6469">09.26</text>
+      <text x="62" y="33" class="top-value" fill="#FF6469">09.27</text>
 
     </g>
     <text x="1028" y="35" class="brand" fill="#F4F8FC">NextCandy</text>
@@ -52,8 +52,8 @@
     <circle cx="31" cy="196" r="4" fill="#FF6469"/>
     <text x="54" y="91" class="section" fill="#FF6469">LIVE CLOCK</text>
     <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
-    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-26</text>
-    <text x="514" y="180" class="hero-time" fill="#F4F8FC">21:50</text>
+    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-09-27</text>
+    <text x="514" y="180" class="hero-time" fill="#F4F8FC">01:37</text>
     <text x="514" y="195" class="tiny" fill="#2AC2CE">BJT</text>
     <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy // LIVE PROFILE</text>
     <g transform="translate(116 256)">
@@ -199,7 +199,7 @@
 <g transform="translate(671.2 0)">
       <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 30</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">AUG 31</text>
     </g>
 <g transform="translate(688.8 0)">
       <rect class="bar" style="animation-delay:0.21s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -234,7 +234,7 @@
 <g transform="translate(793.8 0)">
       <rect class="bar" style="animation-delay:0.43s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 06</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 07</text>
     </g>
 <g transform="translate(811.2 0)">
       <rect class="bar" style="animation-delay:0.46s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -269,7 +269,7 @@
 <g transform="translate(916.2 0)">
       <rect class="bar" style="animation-delay:0.67s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 13</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 14</text>
     </g>
 <g transform="translate(933.8 0)">
       <rect class="bar" style="animation-delay:0.71s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -304,7 +304,7 @@
 <g transform="translate(1038.8 0)">
       <rect class="bar" style="animation-delay:0.92s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 20</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 21</text>
     </g>
 <g transform="translate(1056.2 0)">
       <rect class="bar" style="animation-delay:0.95s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
@@ -312,8 +312,8 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(1073.8 0)">
-      <rect class="bar" style="animation-delay:0.99s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
+      <rect class="bar" style="animation-delay:0.99s" x="0" y="404.0" width="7.0" height="52.0" fill="#B27ACB"/>
+      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(1091.2 0)">
@@ -322,8 +322,8 @@
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(1108.8 0)">
-      <rect class="bar" style="animation-delay:1.06s" x="0" y="404.0" width="7.0" height="52.0" fill="#2AC2CE"/>
-      <text x="3.5" y="399.0" text-anchor="middle" class="chart-value" fill="#9FB2C3">1</text>
+      <rect class="bar" style="animation-delay:1.06s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
+      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
       <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
     </g>
 <g transform="translate(1126.2 0)">
@@ -334,7 +334,7 @@
 <g transform="translate(1143.8 0)">
       <rect class="bar" style="animation-delay:1.12s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
       <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 26</text>
+      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">SEP 27</text>
     </g>
 
   </g>
