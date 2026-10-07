@@ -5,9 +5,9 @@
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/dashboard-dark.svg?v=ba505375b376">
-  <source media="(prefers-color-scheme: light)" srcset="assets/dashboard-light.svg?v=ba505375b376">
-  <img alt="Live source repository signals" src="assets/dashboard-light.svg?v=ba505375b376" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/dashboard-dark.svg?v=dd31a67c0cb3">
+  <source media="(prefers-color-scheme: light)" srcset="assets/dashboard-light.svg?v=dd31a67c0cb3">
+  <img alt="Live source repository signals" src="assets/dashboard-light.svg?v=dd31a67c0cb3" width="100%">
 </picture>
 
 <picture>
