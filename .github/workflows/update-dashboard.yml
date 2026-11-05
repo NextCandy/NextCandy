@@ -2,8 +2,8 @@ name: Update profile dashboard
 
 on:
   schedule:
-    # Check every 30 minutes; commits only happen when actual repo telemetry or date changes.
-    - cron: "*/30 * * * *"
+    # GitHub Actions shortest allowed interval (every 5 minutes) to keep Beijing time current.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
   repository_dispatch:
     types: [refresh-dashboard]

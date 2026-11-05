@@ -416,8 +416,10 @@ def render_dashboard(username, stats, mode):
     latest_col, latest_bg = lang_color_pair(latest["lang"], t)
     latest_msg_line = visual_truncate(latest["message"], 58)
     latest_desc_line = visual_truncate(latest["description"], 64)
-    latest_date_str = latest_dt.strftime("%Y-%m-%d")
-    latest_time_str = latest_dt.strftime("%H:%M BJT")
+    current_date_str = generated_dt.strftime("%Y-%m-%d")
+    current_time_str = generated_dt.strftime("%H:%M BJT")
+    weekday_str = generated_dt.strftime("%a").upper()
+    latest_commit_date = latest_dt.strftime("%Y-%m-%d %H:%M")
 
     rail_s = "\n    ".join(rail_items)
     lang_rects_s = "\n    ".join(lang_rects)
@@ -425,7 +427,7 @@ def render_dashboard(username, stats, mode):
     pulse_bars_s = "\n    ".join(pulse_bars)
     rec_cards_s = "\n    ".join(rec_cards)
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="{esc(username)} live GitHub source repository telemetry" data-mode="{mode}">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="{esc(username)} live GitHub source repository telemetry, Beijing time UTC+8" data-mode="{mode}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="{t['bg0']}"/>
@@ -459,9 +461,9 @@ def render_dashboard(username, stats, mode):
     .top-value {{ font-size: 13px; font-weight: 800; }}
     .brand {{ font-size: 20px; font-weight: 900; letter-spacing: -0.8px; }}
     .section {{ font-size: 10.5px; font-weight: 800; letter-spacing: 1.6px; }}
-    .hero-repo {{ font-size: 28px; font-weight: 900; letter-spacing: -0.6px; }}
-    .hero-date {{ font-size: 38px; font-weight: 900; letter-spacing: -1px; }}
-    .meta {{ font-size: 11px; font-weight: 700; }}
+    .hero-date {{ font-size: 44px; font-weight: 900; letter-spacing: -1.2px; }}
+    .hero-repo {{ font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }}
+    .meta {{ font-size: 11.5px; font-weight: 800; }}
     .body-copy {{ font-size: 12.5px; font-weight: 500; }}
     .tiny {{ font-size: 9px; font-weight: 700; letter-spacing: 1px; }}
     .ledger-repo {{ font-size: 12px; font-weight: 800; }}
@@ -492,41 +494,46 @@ def render_dashboard(username, stats, mode):
     <text x="1146" y="31" text-anchor="end" class="sans brand" fill="{t['text']}">{esc(username)}</text>
     <path d="M1156 18L1172 10L1169 18L1153 26ZM1160 27L1176 19L1173 27L1157 35Z" fill="{t['pink']}"/>
 
-    <!-- Top-Left Bento Card: Latest Commit Focus -->
+    <!-- Top-Left Bento Card: Live Beijing Clock & Latest Commit Focus -->
     <rect x="24" y="64" width="684" height="252" rx="12" fill="url(#card)" stroke="{t['border']}"/>
     <rect x="24" y="80" width="4" height="220" rx="2" fill="url(#accent)"/>
 
-    <g transform="translate(46 86)">
-      <rect x="0" y="0" width="172" height="22" rx="11" fill="{t['pink_bg']}"/>
+    <g transform="translate(46 84)">
+      <rect x="0" y="0" width="164" height="22" rx="11" fill="{t['pink_bg']}"/>
       <circle class="pulse" cx="13" cy="11" r="3.5" fill="{t['pink']}"/>
-      <text x="24" y="14.5" class="mono tiny" fill="{t['pink']}">LATEST COMMIT PULSE</text>
+      <text x="24" y="14.5" class="mono tiny" fill="{t['pink']}">LIVE CLOCK · UTC+8</text>
 
-      <rect x="182" y="0" width="88" height="22" rx="6" fill="{t['inner']}" stroke="{t['line']}"/>
-      <text x="226" y="14.5" text-anchor="middle" class="mono tiny" fill="{t['sub']}">⎇ {esc(latest['branch'])}</text>
+      <rect x="172" y="0" width="84" height="22" rx="6" fill="{t['inner']}" stroke="{t['line']}"/>
+      <text x="214" y="14.5" text-anchor="middle" class="mono tiny" fill="{t['sub']}">⎇ {esc(latest['branch'])}</text>
 
-      <rect x="278" y="0" width="86" height="22" rx="6" fill="{t['cyan_bg']}"/>
-      <text x="321" y="14.5" text-anchor="middle" class="mono tiny" fill="{t['cyan']}">#{esc(latest['sha'])}</text>
+      <rect x="264" y="0" width="86" height="22" rx="6" fill="{t['cyan_bg']}"/>
+      <text x="307" y="14.5" text-anchor="middle" class="mono tiny" fill="{t['cyan']}">#{esc(latest['sha'])}</text>
 
-      <rect x="372" y="0" width="110" height="22" rx="6" fill="{latest_bg}"/>
-      <text x="427" y="14.5" text-anchor="middle" class="mono tiny" fill="{latest_col}">{esc(latest['lang'])} MODULE</text>
+      <rect x="358" y="0" width="110" height="22" rx="6" fill="{latest_bg}"/>
+      <text x="413" y="14.5" text-anchor="middle" class="mono tiny" fill="{latest_col}">{esc(latest['lang'])} MODULE</text>
     </g>
 
-    <!-- Latest Repo Name & Date -->
-    <text x="46" y="148" class="mono hero-repo" fill="{t['text']}">{esc(username)} / {esc(latest['name'])}</text>
-    <text x="46" y="188" class="mono hero-date" fill="{t['cyan']}">{latest_date_str}</text>
-    <rect x="288" y="163" width="96" height="24" rx="6" fill="{t['inner']}" stroke="{t['line']}"/>
-    <text x="336" y="179" text-anchor="middle" class="mono meta" fill="{t['sub']}">{latest_time_str}</text>
+    <!-- Current Date (Beijing Time) & Live Time Pill -->
+    <text x="46" y="152" class="mono hero-date" fill="{t['text']}">{current_date_str}</text>
+    <rect x="330" y="121" width="104" height="28" rx="8" fill="{t['cyan_bg']}" stroke="{t['cyan']}" stroke-opacity="0.4"/>
+    <text x="382" y="139" text-anchor="middle" class="mono meta" fill="{t['cyan']}">{current_time_str}</text>
+    <rect x="442" y="121" width="68" height="28" rx="8" fill="{t['inner']}" stroke="{t['line']}"/>
+    <text x="476" y="139" text-anchor="middle" class="mono tiny" fill="{t['sub']}">{weekday_str}</text>
+
+    <!-- Latest Repo Subheader -->
+    <text x="46" y="184" class="mono hero-repo" fill="{t['cyan']}">{esc(username)} / {esc(latest['name'])}</text>
+    <text x="356" y="183" class="mono tiny" fill="{t['muted']}">LAST PUSH · {latest_commit_date}</text>
 
     <!-- Commit Message Box -->
-    <g transform="translate(46 206)">
-      <rect width="466" height="54" rx="8" fill="{t['inner']}" stroke="{t['line']}"/>
-      <rect x="0" y="8" width="3.5" height="38" rx="1.7" fill="{t['cyan']}"/>
-      <text x="16" y="22" class="sans body-copy" font-weight="700" fill="{t['text']}">{esc(latest_msg_line)}</text>
-      <text x="16" y="42" class="sans" font-size="11.5" fill="{t['muted']}">{esc(latest_desc_line)}</text>
+    <g transform="translate(46 198)">
+      <rect width="466" height="58" rx="8" fill="{t['inner']}" stroke="{t['line']}"/>
+      <rect x="0" y="8" width="3.5" height="42" rx="1.7" fill="{t['cyan']}"/>
+      <text x="16" y="23" class="sans body-copy" font-weight="700" fill="{t['text']}">{esc(latest_msg_line)}</text>
+      <text x="16" y="44" class="sans" font-size="11.5" fill="{t['muted']}">{esc(latest_desc_line)}</text>
     </g>
 
-    <text x="46" y="286" class="mono tiny" fill="{t['muted']}">ACTIVE REPOSITORY STREAM · VERIFIED VIA GITHUB REST API</text>
-    <text x="46" y="302" class="mono tiny" fill="{t['emerald']}">● TELEMETRY STATUS: SYNCHRONIZED (BEIJING TIME UTC+8)</text>
+    <text x="46" y="280" class="mono tiny" fill="{t['muted']}">LATEST SOURCE · {esc(f"{username.upper()}/{latest['name'].upper()}")}</text>
+    <text x="46" y="298" class="mono tiny" fill="{t['emerald']}">● LIVE CLOCK · BEIJING TIME (UTC+8) · {current_date_str} {current_time_str}</text>
 
     <!-- Radar Gauge inside Top-Left Card -->
     <g transform="translate(608 178)">
