@@ -1,82 +1,68 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg">
-  <img alt="NextCandy profile control plane" src="assets/hero-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg?v=a4991701dce7">
+  <source media="(prefers-color-scheme: light)" srcset="assets/hero-light.svg?v=939c0108dd8f">
+  <img alt="NextCandy profile control plane" src="assets/hero-light.svg?v=939c0108dd8f" width="100%">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/dashboard-dark.svg?v=b042f97e13b0">
-  <source media="(prefers-color-scheme: light)" srcset="assets/dashboard-light.svg?v=b042f97e13b0">
-  <img alt="Live source repository signals" src="assets/dashboard-light.svg?v=b042f97e13b0" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/dashboard-dark.svg?v=777b4fc7d25e">
+  <source media="(prefers-color-scheme: light)" srcset="assets/dashboard-light.svg?v=ca4f170b902d">
+  <img alt="Live source repository signals" src="assets/dashboard-light.svg?v=ca4f170b902d" width="100%">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/closed-loop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/closed-loop-light.svg">
-  <img alt="NextCandy architecture map" src="assets/closed-loop-light.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/closed-loop-dark.svg?v=18e720ce1376">
+  <source media="(prefers-color-scheme: light)" srcset="assets/closed-loop-light.svg?v=91d738378d6c">
+  <img alt="NextCandy architecture map" src="assets/closed-loop-light.svg?v=91d738378d6c" width="100%">
 </picture>
 
-## ◉ Systems online
+## ◉ Flagship Systems · 核心系统矩阵
 
-| Node | Mission | Runtime |
-| --- | --- | --- |
-| [`UnUseDomain`](https://github.com/NextCandy/UnUseDomain) | **PORTFOLIO** · 闲置域名展示米表 | TypeScript · UnUseDomain.com |
-| [`DomainHunter`](https://github.com/NextCandy/DomainHunter) | **MONITOR** · RDAP-first domain monitoring with safe availability detection | Go · RDAP · availability check |
-| [`TimeAmber`](https://github.com/NextCandy/TimeAmber) | **SELF-HOSTED** · Blog, web archive and content platform for NAS | TanStack Start · Supabase · TypeScript |
-| [`nextwhois`](https://github.com/NextCandy/nextwhois) | **LOOKUP** · Modern Whois lookup tooling | TypeScript · Next.js |
-| [`aio`](https://github.com/NextCandy/aio) | **DASHBOARD** · Domain portfolio live board | dog.do data · nextwhois live lookup |
-| [`dog.do`](https://github.com/NextCandy/dog.do) | **PUBLISH** · 🐶 Dog.Do 域名站点 | CSS · domain landing |
+| Node | Mission & Positioning | Stack & Endpoint |
+| :--- | :--- | :--- |
+| [`DomainHunter`](https://github.com/NextCandy/DomainHunter) | **MONITOR** · RDAP-first 域名监控与安全可注册性检测系统 | `Go` · `RDAP` · Availability Check |
+| [`UnUseDomain`](https://github.com/NextCandy/UnUseDomain) | **PORTFOLIO** · 闲置精品域名资产展示米表 | `TypeScript` · [`UnUseDomain.com`](https://UnUseDomain.com) |
+| [`TimeAmber`](https://github.com/NextCandy/TimeAmber) | **SELF-HOSTED** · 面向 NAS 的自托管博客、网页归档与内容管理平台 | `TanStack Start` · `Supabase` · [`timeamber.com`](https://timeamber.com) |
+| [`onekey`](https://github.com/NextCandy/onekey) | **INFRA** · Surge / Shadowrocket 一键部署：Hysteria2（端口跳跃）+ Snell v5 + BBR + SSH 加固 | `Shell` · Network Automation |
+| [`dog.do`](https://github.com/NextCandy/dog.do) | **LANDING** · 🐶 Dog.Do 极简品牌域名落地页与展示站点 | `CSS` · [`dog.do`](https://dog.do) |
+| [`dshunter`](https://github.com/NextCandy/dshunter) | **DISCOVERY** · 自动化域名发现、嗅探与状态追踪工具 | `TypeScript` · Domain Recon |
 
-## ▣ Module registry
+## ▣ Module Registry · 生态模块索引
 
-<details>
-<summary><strong>Domain intelligence</strong> · 4 source repositories</summary>
+<details open>
+<summary><strong>01 // Domain Intelligence &amp; Portfolio（域名情报与米表生态）</strong> · 5 repositories</summary>
 
-| Module | Signal |
-| --- | --- |
-| [`DomainHunter`](https://github.com/NextCandy/DomainHunter) | RDAP-first 域名监控与安全可注册性检测。 |
-| [`nextwhois`](https://github.com/NextCandy/nextwhois) | 现代化 Whois 查询工具。 |
-| [`whoisnext`](https://github.com/NextCandy/whoisnext) | Whois 查询链路实验。 |
-| [`dshunter`](https://github.com/NextCandy/dshunter) | 域名发现与嗅探工具。 |
-
-</details>
-
-<details>
-<summary><strong>Portfolio &amp; 米表</strong> · 4 source repositories</summary>
-
-| Module | Signal |
-| --- | --- |
-| [`UnUseDomain`](https://github.com/NextCandy/UnUseDomain) | 闲置域名展示米表 · UnUseDomain.com。 |
-| [`aio`](https://github.com/NextCandy/aio) | 域名组合仪表盘，接入 dog.do 数据与 nextwhois 实时查询。 |
-| [`DomainName`](https://github.com/NextCandy/DomainName) | 域名数据处理脚本集合。 |
-| [`dog.do`](https://github.com/NextCandy/dog.do) | 🐶 Dog.Do 域名落地页。 |
+| Module | Signal & Capabilities |
+| :--- | :--- |
+| [`DomainHunter`](https://github.com/NextCandy/DomainHunter) | RDAP-first 域名监控系统，支持多渠道通知与安全可注册性校验。 |
+| [`UnUseDomain`](https://github.com/NextCandy/UnUseDomain) | 闲置精品域名展示米表 · [`UnUseDomain.com`](https://UnUseDomain.com)。 |
+| [`dshunter`](https://github.com/NextCandy/dshunter) | 自动化域名发现、嗅探与展示更新追踪工具。 |
+| [`dh`](https://github.com/NextCandy/dh) | 轻量化域名查询与工具链实验原型。 |
+| [`dog.do`](https://github.com/NextCandy/dog.do) | 🐶 Dog.Do 品牌域名着陆页 · [`dog.do`](https://dog.do)。 |
 
 </details>
 
 <details>
-<summary><strong>Content &amp; self-hosted</strong> · 4 source repositories</summary>
+<summary><strong>02 // Self-Hosted, Content &amp; Infrastructure（自托管平台与网络基建）</strong> · 4 repositories</summary>
 
-| Module | Signal |
-| --- | --- |
-| [`TimeAmber`](https://github.com/NextCandy/TimeAmber) | 面向 NAS 的自托管博客、网页归档与内容管理平台。 |
-| [`MeArchive`](https://github.com/NextCandy/MeArchive) | 个人内容归档系统。 |
-| [`content-animator`](https://github.com/NextCandy/content-animator) | 内容动效与展示实验。 |
-| [`HomePage`](https://github.com/NextCandy/HomePage) | 个人主页。 |
-
-</details>
-
-<details>
-<summary><strong>Lab</strong> · 4 source repositories</summary>
-
-| Module | Signal |
-| --- | --- |
-| [`who`](https://github.com/NextCandy/who) | Whois 接口实验。 |
-| [`dh`](https://github.com/NextCandy/dh) | 域名工具链原型。 |
-| [`allinone`](https://github.com/NextCandy/allinone) | 一体化服务整合实验。 |
-| [`DOM`](https://github.com/NextCandy/DOM) | 前端 DOM 操作实验。 |
+| Module | Signal & Capabilities |
+| :--- | :--- |
+| [`TimeAmber`](https://github.com/NextCandy/TimeAmber) | 面向 NAS 的自托管博客、网页归档与内容管理平台 · [`timeamber.com`](https://timeamber.com)。 |
+| [`onekey`](https://github.com/NextCandy/onekey) | Hysteria2（端口跳跃）+ Snell v5 一键部署脚本，集成自动带宽检测、BBR 与 SSH 加固。 |
+| [`content-animator`](https://github.com/NextCandy/content-animator) | 交互式内容动效与前端视觉展示实验。 |
+| [`HomePage`](https://github.com/NextCandy/HomePage) | 极简个人主页与导航门户。 |
 
 </details>
 
-<p align="center"><a href="https://github.com/NextCandy">GitHub</a> · <a href="https://UnUseDomain.com">UnUseDomain</a> · <a href="https://wanmi.org">wanmi.org</a> · <a href="https://twitter.com/iWangGang">X / Twitter</a></p>
+---
 
-<!-- Live dashboard data is generated by scripts/update_dashboard.py on a 15-minute schedule (GitHub may delay scheduled runs). The main clock uses current Beijing time; source rows use actual commit times. -->
+<p align="center">
+  <a href="https://github.com/NextCandy"><strong>GitHub</strong></a> ·
+  <a href="https://UnUseDomain.com"><strong>UnUseDomain.com</strong></a> ·
+  <a href="https://wanmi.org"><strong>wanmi.org</strong></a> ·
+  <a href="https://timeamber.com"><strong>TimeAmber.com</strong></a> ·
+  <a href="https://dog.do"><strong>dog.do</strong></a> ·
+  <a href="https://twitter.com/iWangGang"><strong>X / @iWangGang</strong></a>
+</p>
+
+<!-- Live telemetry is generated by scripts/update_dashboard.py. Commits are only created when repository signals or dates actually change. -->

@@ -1,99 +1,188 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-label="NextCandy domain tools constellation map" data-mode="light">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-label="NextCandy ecosystem architecture map" data-mode="light">
   <defs>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0099C4"/><stop offset=".5" stop-color="#6A54D8"/><stop offset="1" stop-color="#E83E8C"/></linearGradient>
-    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <clipPath id="frame"><rect x="1" y="1" width="1198" height="378"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#E2E8F0" stroke-width="0.7" stroke-opacity="0.65"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect x="1" y="1" width="1198" height="388" rx="16"/>
+    </clipPath>
   </defs>
   <style>
-    text{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}
-    .title{font-size:15px;font-weight:800;letter-spacing:3px}.micro{font-size:10px;font-weight:700;letter-spacing:2px}.tiny{font-size:9px;letter-spacing:1px}
-    .row{font-size:11px;font-weight:700;letter-spacing:1px}
-    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}
-    .spin{transform-box:fill-box;transform-origin:center;animation:spin 26s linear infinite}
-    .spinr{transform-box:fill-box;transform-origin:center;animation:spin 38s linear infinite reverse}
-    .flow{stroke-dasharray:2 8;animation:flow 1.1s linear infinite}
-    .boot{animation:boot .6s ease-out both}
-    @keyframes pulse{50%{opacity:.3;transform:scale(.65)}}@keyframes spin{to{transform:rotate(360deg)}}
-    @keyframes flow{to{stroke-dashoffset:-10}}@keyframes boot{from{opacity:.35}}
-    @media(prefers-reduced-motion:reduce){.pulse,.spin,.spinr,.flow,.boot{animation:none}}
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Inter, Helvetica, Arial, sans-serif; }
+    .mono { font-family: "JetBrains Mono", "SFMono-Regular", "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    .title { font-size: 13px; font-weight: 800; letter-spacing: 2px; }
+    .micro { font-size: 10px; font-weight: 700; letter-spacing: 1.6px; }
+    .tiny { font-size: 9.5px; font-weight: 600; letter-spacing: 0.6px; }
+    .q-title { font-size: 11px; font-weight: 800; letter-spacing: 1px; }
+    .repo { font-size: 12px; font-weight: 800; }
+    .desc { font-size: 11px; font-weight: 500; }
+    .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.2s ease-in-out infinite; }
+    .spin { transform-box: fill-box; transform-origin: center; animation: spin 28s linear infinite; }
+    .spinr { transform-box: fill-box; transform-origin: center; animation: spin 40s linear infinite reverse; }
+    .flow { stroke-dasharray: 4 8; animation: flow 1.2s linear infinite; }
+    @keyframes pulse { 50% { opacity: 0.35; transform: scale(0.7); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes flow { to { stroke-dashoffset: -12; } }
+    @media (prefers-reduced-motion: reduce) {
+      .pulse, .spin, .spinr, .flow { animation: none; }
+    }
   </style>
 
-<g clip-path="url(#frame)">
-    <rect width="1200" height="380" fill="#FFFFFF"/>
-    <path d="M0 1.5H1200" stroke="#B8C3D1" stroke-width="3"/>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="390" fill="url(#bg)"/>
+    <rect width="1200" height="390" fill="url(#grid)"/>
 
-    <text x="28" y="36" class="title" fill="#0099C4">DOMAIN LOOP // CONSTELLATION</text>
+    <!-- Header -->
+    <rect x="0" y="0" width="1200" height="48" fill="#FFFFFF" fill-opacity="0.8"/>
+    <path d="M0 48H1200" stroke="#E2E8F0" stroke-width="1"/>
+    <circle cx="30" cy="24" r="5" fill="#0284C7"/>
+    <text x="46" y="28.5" class="mono title" fill="#0F172A">DOMAIN LOOP // ECOSYSTEM ARCHITECTURE</text>
+    <text x="420" y="28.5" class="mono tiny" fill="#CBD5E1">│</text>
+    <text x="434" y="28.5" class="sans tiny" fill="#64748B">域名情报 · 米表矩阵 · 自托管平台 · 网络基建闭环</text>
 
-<g transform="translate(988 29)"><circle class="pulse" r="5" fill="#12995F" filter="url(#glow)"/><text x="14" y="4" class="micro" fill="#12995F">8 MODULES LINKED</text></g>
-    <path d="M28 52H1172" stroke="#B9D2DC"/>
-
-    <path class="flow" d="M600.0 157.0L600.0 147.0" stroke="#0099C4" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M841.3 136.4L655.8 189.1" stroke="#E83E8C" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M970.0 205.0L658.0 205.0" stroke="#12995F" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M841.3 273.6L655.8 220.9" stroke="#B57400" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M600.0 253.0L600.0 263.0" stroke="#6A54D8" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M358.7 273.6L544.2 220.9" stroke="#0099C4" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M230.0 205.0L542.0 205.0" stroke="#E83E8C" stroke-width="1.6" fill="none" opacity=".8"/>
-    <path class="flow" d="M358.7 136.4L544.2 189.1" stroke="#12995F" stroke-width="1.6" fill="none" opacity=".8"/>
-
-<g>
-      <circle class="spin" cx="600" cy="205" r="52" fill="none" stroke="#0099C4" stroke-width="1.4" stroke-dasharray="10 14" opacity=".9"/>
-      <circle class="spinr" cx="600" cy="205" r="36" fill="none" stroke="#E83E8C" stroke-width="1.2" stroke-dasharray="4 9" opacity=".9"/>
-      <circle cx="600" cy="205" r="15" fill="#FFFFFF" stroke="url(#accent)" stroke-width="2"/>
-      <circle class="pulse" cx="600" cy="205" r="5.5" fill="#12995F" filter="url(#glow)"/>
-      <text x="600" y="281" text-anchor="middle" class="micro" fill="#0C2733">NC CORE</text>
+    <g transform="translate(946 13)">
+      <rect width="226" height="22" rx="11" fill="#ECFDF5" stroke="#A7F3D0"/>
+      <circle class="pulse" cx="14" cy="11" r="4" fill="#10B981"/>
+      <text x="26" y="14.5" class="mono micro" fill="#059669">9 MODULES · 4 CLUSTERS</text>
     </g>
 
-<g class="boot" style="animation-delay:0.15s" transform="translate(600.0 88.0)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#0099C4" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#0099C4" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">COLLECT</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">UnUseDomain</text>
-    </g>
-<g class="boot" style="animation-delay:0.23s" transform="translate(918.2 114.5)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#E83E8C" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#E83E8C" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">MONITOR</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">DomainHunter</text>
-    </g>
-<g class="boot" style="animation-delay:0.31s" transform="translate(1050.0 205.0)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#12995F" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#12995F" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">LOOKUP</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">nextwhois</text>
-    </g>
-<g class="boot" style="animation-delay:0.39s" transform="translate(918.2 295.5)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#B57400" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#B57400" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">ARCHIVE</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">TimeAmber</text>
-    </g>
-<g class="boot" style="animation-delay:0.47s" transform="translate(600.0 320.0)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#6A54D8" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#6A54D8" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">BOARD</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">aio</text>
-    </g>
-<g class="boot" style="animation-delay:0.55s" transform="translate(281.8 295.5)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#0099C4" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#0099C4" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">PUBLISH</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">dog.do</text>
-    </g>
-<g class="boot" style="animation-delay:0.63s" transform="translate(150.0 205.0)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#E83E8C" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#E83E8C" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">HOME</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">HomePage</text>
-    </g>
-<g class="boot" style="animation-delay:0.71s" transform="translate(281.8 114.5)">
-      <rect x="-78" y="-24" width="156" height="48" rx="24" fill="#FFFFFF" stroke="#12995F" stroke-opacity=".65"/>
-      <circle class="pulse" cx="-56" cy="0" r="4" fill="#12995F" filter="url(#glow)"/>
-      <text x="8" y="-3" text-anchor="middle" class="row" fill="#0C2733">HUNT</text>
-      <text x="8" y="13" text-anchor="middle" class="tiny" fill="#5B7885">dshunter</text>
+    <!-- Connecting Bus Lines to Center Core -->
+    <path d="M416 125H508L546 168" fill="none" stroke="#BAE6FD" stroke-width="2.5"/>
+    <path class="flow" d="M416 125H508L546 168" fill="none" stroke="#0284C7" stroke-width="2"/>
+
+    <path d="M784 125H692L654 168" fill="none" stroke="#FBCFE8" stroke-width="2.5"/>
+    <path class="flow" d="M784 125H692L654 168" fill="none" stroke="#DB2777" stroke-width="2"/>
+
+    <path d="M416 267H508L546 224" fill="none" stroke="#A7F3D0" stroke-width="2.5"/>
+    <path class="flow" d="M416 267H508L546 224" fill="none" stroke="#059669" stroke-width="2"/>
+
+    <path d="M784 267H692L654 224" fill="none" stroke="#C7D2FE" stroke-width="2.5"/>
+    <path class="flow" d="M784 267H692L654 224" fill="none" stroke="#4F46E5" stroke-width="2"/>
+
+    <!-- Center Core Hub -->
+    <g transform="translate(600 196)">
+      <circle r="84" fill="#FFFFFF" fill-opacity="0.75" stroke="#E2E8F0" stroke-width="1"/>
+      <circle class="spin" r="70" fill="none" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="10 12" stroke-opacity="0.75"/>
+      <circle class="spinr" r="54" fill="none" stroke="#EC4899" stroke-width="1.3" stroke-dasharray="5 9" stroke-opacity="0.75"/>
+      <circle r="38" fill="#FFFFFF" stroke="url(#accent)" stroke-width="2.5"/>
+      <circle class="pulse" r="4.5" cy="-24" fill="#10B981"/>
+      <text y="0" text-anchor="middle" class="sans" font-size="18" font-weight="900" fill="#0F172A">NC HUB</text>
+      <text y="14" text-anchor="middle" class="mono" font-size="7.5" font-weight="700" letter-spacing="1.5" fill="#64748B">CORE BUS</text>
+
+      <!-- 4 Port Dots -->
+      <circle cx="-54" cy="-28" r="4" fill="#0284C7"/>
+      <circle cx="54" cy="-28" r="4" fill="#DB2777"/>
+      <circle cx="-54" cy="28" r="4" fill="#059669"/>
+      <circle cx="54" cy="28" r="4" fill="#4F46E5"/>
     </g>
 
-    <path d="M28 352H1172" stroke="#B9D2DC"/><text x="28" y="369" class="tiny" fill="#5B7885">DOMAINS · WHOIS · SELF-HOSTED — EVERY MODULE REPORTS TO CORE</text><text x="1172" y="369" text-anchor="end" class="tiny" fill="#5B7885">LOOP STATUS: STABLE</text>
+    <!-- Cluster 1: Top-Left (Domain Intelligence) -->
+    <g transform="translate(28 64)">
+      <rect width="388" height="122" rx="12" fill="url(#card)" stroke="#CBD5E1"/>
+      <rect x="0" y="14" width="4" height="94" rx="2" fill="#0284C7"/>
+      <circle cx="22" cy="22" r="4" fill="#0284C7"/>
+      <text x="34" y="26" class="mono q-title" fill="#0284C7">01 // DOMAIN INTELLIGENCE</text>
+      <rect x="296" y="11" width="76" height="20" rx="10" fill="#E0F2FE"/>
+      <text x="334" y="24.5" text-anchor="middle" class="mono" font-size="9" font-weight="800" fill="#0369A1">RDAP · GO</text>
+      <path d="M16 38H372" stroke="#F1F5F9"/>
+
+      <g transform="translate(18 46)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">DomainHunter</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">RDAP 优先域名监控与安全可注册性检测</text>
+      </g>
+      <g transform="translate(18 82)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">dshunter / dh</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">域名发现嗅探引擎与工具链实验原型</text>
+      </g>
+    </g>
+
+    <!-- Cluster 2: Top-Right (Portfolio & Landing) -->
+    <g transform="translate(784 64)">
+      <rect width="388" height="122" rx="12" fill="url(#card)" stroke="#CBD5E1"/>
+      <rect x="384" y="14" width="4" height="94" rx="2" fill="#DB2777"/>
+      <circle cx="22" cy="22" r="4" fill="#DB2777"/>
+      <text x="34" y="26" class="mono q-title" fill="#DB2777">02 // PORTFOLIO &amp; SHOWCASE</text>
+      <rect x="286" y="11" width="86" height="20" rx="10" fill="#FCE7F3"/>
+      <text x="329" y="24.5" text-anchor="middle" class="mono" font-size="9" font-weight="800" fill="#BE185D">PORTFOLIO</text>
+      <path d="M16 38H372" stroke="#F1F5F9"/>
+
+      <g transform="translate(18 46)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">UnUseDomain</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">UnUseDomain.com · 闲置精品域名展示米表</text>
+      </g>
+      <g transform="translate(18 82)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">dog.do / Home</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">🐶 Dog.Do 域名着陆页与个人主页导航</text>
+      </g>
+    </g>
+
+    <!-- Cluster 3: Bottom-Left (Content & Self-Hosted) -->
+    <g transform="translate(28 206)">
+      <rect width="388" height="122" rx="12" fill="url(#card)" stroke="#CBD5E1"/>
+      <rect x="0" y="14" width="4" height="94" rx="2" fill="#059669"/>
+      <circle cx="22" cy="22" r="4" fill="#059669"/>
+      <text x="34" y="26" class="mono q-title" fill="#059669">03 // CONTENT &amp; SELF-HOSTED</text>
+      <rect x="286" y="11" width="86" height="20" rx="10" fill="#D1FAE5"/>
+      <text x="329" y="24.5" text-anchor="middle" class="mono" font-size="9" font-weight="800" fill="#047857">NAS · WEB</text>
+      <path d="M16 38H372" stroke="#F1F5F9"/>
+
+      <g transform="translate(18 46)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">TimeAmber</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">timeamber.com · NAS 博客与网页归档平台</text>
+      </g>
+      <g transform="translate(18 82)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">animator</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">content-animator · 内容动效与视觉呈现</text>
+      </g>
+    </g>
+
+    <!-- Cluster 4: Bottom-Right (Network & Infra) -->
+    <g transform="translate(784 206)">
+      <rect width="388" height="122" rx="12" fill="url(#card)" stroke="#CBD5E1"/>
+      <rect x="384" y="14" width="4" height="94" rx="2" fill="#4F46E5"/>
+      <circle cx="22" cy="22" r="4" fill="#4F46E5"/>
+      <text x="34" y="26" class="mono q-title" fill="#4F46E5">04 // NETWORK &amp; INFRASTRUCTURE</text>
+      <rect x="286" y="11" width="86" height="20" rx="10" fill="#E0E7FF"/>
+      <text x="329" y="24.5" text-anchor="middle" class="mono" font-size="9" font-weight="800" fill="#4338CA">DEVOPS · SH</text>
+      <path d="M16 38H372" stroke="#F1F5F9"/>
+
+      <g transform="translate(18 46)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">onekey</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">Hysteria2 端口跳跃 + Snell v5 + BBR 部署</text>
+      </g>
+      <g transform="translate(18 82)">
+        <rect width="352" height="30" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+        <text x="10" y="19" class="mono repo" fill="#0F172A">wanmi.org</text>
+        <text x="116" y="19" class="sans desc" fill="#475569">域名资讯生态与自托管节点网络互联</text>
+      </g>
+    </g>
+
+    <!-- Footer Pipeline Bar -->
+    <rect x="0" y="346" width="1200" height="44" fill="#FFFFFF" fill-opacity="0.8"/>
+    <path d="M0 346H1200" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="28" y="372" class="mono tiny" fill="#475569">WORKFLOW PIPELINE :: [01 DISCOVER 发现] ──▸ [02 MONITOR 监控] ──▸ [03 SHOWCASE 米表] ──▸ [04 ARCHIVE &amp; INFRA 自托管基建]</text>
+    <text x="1172" y="372" text-anchor="end" class="mono tiny" fill="#059669">LOOP STATUS: ACTIVE &amp; STABLE</text>
   </g>
-  <rect x="1" y="1" width="1198" height="378" fill="none" stroke="#B8C3D1" stroke-opacity=".95"/>
+  <rect x="1" y="1" width="1198" height="388" rx="16" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
 </svg>

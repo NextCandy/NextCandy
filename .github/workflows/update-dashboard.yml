@@ -2,16 +2,20 @@ name: Update profile dashboard
 
 on:
   schedule:
-    # GitHub cron is UTC; every 15 minutes keeps the profile current without
-    # depending on the timezone of the runner.
-    - cron: "*/15 * * * *"
+    # Check every 30 minutes; commits only happen when actual repo telemetry or date changes.
+    - cron: "*/30 * * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [refresh-dashboard]
   push:
     branches: [main]
     paths:
       - "scripts/update_dashboard.py"
       - ".github/workflows/update-dashboard.yml"
-      - "README.md"
+      - "assets/hero-light.svg"
+      - "assets/hero-dark.svg"
+      - "assets/closed-loop-light.svg"
+      - "assets/closed-loop-dark.svg"
 
 permissions:
   contents: write
@@ -41,7 +45,7 @@ jobs:
         shell: bash
         run: |
           if git diff --quiet -- assets/dashboard-light.svg assets/dashboard-dark.svg; then
-            echo "Dashboard is already current."
+            echo "Dashboard is already current (no new commits or date change)."
             exit 0
           fi
 
@@ -50,14 +54,24 @@ jobs:
           import re
           from pathlib import Path
 
-          version = hashlib.sha256(Path("assets/dashboard-light.svg").read_bytes()).hexdigest()[:12]
           readme_path = Path("README.md")
           readme = readme_path.read_text(encoding="utf-8")
-          for filename in ("dashboard-light.svg", "dashboard-dark.svg"):
+          for filename in (
+              "hero-light.svg",
+              "hero-dark.svg",
+              "dashboard-light.svg",
+              "dashboard-dark.svg",
+              "closed-loop-light.svg",
+              "closed-loop-dark.svg",
+          ):
+              asset_path = Path("assets") / filename
+              if not asset_path.exists():
+                  continue
+              version = hashlib.sha256(asset_path.read_bytes()).hexdigest()[:12]
               pattern = rf"assets/{re.escape(filename)}(?:\?v=[^\" )]+)?"
               replacement = f"assets/{filename}?v={version}"
               readme, matches = re.subn(pattern, replacement, readme)
-              if matches == 0:
+              if matches == 0 and filename.startswith("dashboard-"):
                   raise SystemExit(f"README does not reference {filename}")
           readme_path.write_text(readme, encoding="utf-8")
           PY

@@ -1,342 +1,303 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="NextCandy live GitHub source repository signals, Beijing time UTC+8" data-mode="dark">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="486" viewBox="0 0 1200 486" role="img" aria-label="NextCandy live GitHub source repository telemetry" data-mode="dark">
   <defs>
-    <clipPath id="frame"><path d="M1 1H1199V485H1Z"/></clipPath>
-    <clipPath id="message-clip"><rect x="838" y="105" width="270" height="222"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070B14"/>
+      <stop offset="55%" stop-color="#0B1120"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111C2D"/>
+      <stop offset="100%" stop-color="#0D1524"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#334155" stroke-width="0.7" stroke-opacity="0.6"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect x="1" y="1" width="1198" height="484" rx="16"/>
+    </clipPath>
+    <clipPath id="msg-clip">
+      <rect x="42" y="24" width="366" height="22"/>
+    </clipPath>
   </defs>
   <style>
-    text{font-family:"SFMono-Regular","SF Mono",Menlo,Monaco,Consolas,"Liberation Mono",monospace}
-    .title{font-size:14px;font-weight:800;letter-spacing:2.7px}.top-label{font-size:9px;font-weight:700;letter-spacing:1.2px}.top-value{font-size:17px;font-weight:800}
-    .brand{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;font-size:25px;font-weight:800;letter-spacing:-1.4px}.section{font-size:11px;font-weight:800;letter-spacing:2px}
-    .hero-date{font-family:"DIN Condensed","Avenir Next Condensed","Arial Narrow",sans-serif;font-size:72px;font-weight:700;letter-spacing:-1.5px}.hero-time{font-size:19px;font-weight:800;letter-spacing:.5px}.hero-repo{font-size:24px;font-weight:800;letter-spacing:1px}
-    .meta{font-size:10px;font-weight:700;letter-spacing:.8px}.body-copy{font-size:13px;font-weight:500;letter-spacing:.3px}.tiny{font-size:8px;letter-spacing:1px}
-    .ledger-repo{font-size:11px;font-weight:800;letter-spacing:.1px}.ledger-message{font-size:9px;letter-spacing:.1px}.ledger-time{font-size:10px;font-weight:800}.ledger-date{font-size:8px;letter-spacing:1px}.number{font-size:8px;font-weight:900}
-    .language-name{font-size:9px;font-weight:700}.language-pct{font-size:9px;letter-spacing:.5px}.chart-value{font-size:8px}.chart-label{font-size:8px;letter-spacing:.5px}
-    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-in-out infinite}.bar{transform-box:fill-box;transform-origin:center;animation:grow .8s cubic-bezier(.23,1,.32,1) both}.boot{animation:boot .35s ease-out both}
-    @keyframes pulse{50%{opacity:.35;transform:scale(.7)}}@keyframes grow{from{transform:scaleY(.05)}}@keyframes boot{from{opacity:.35;transform:translateY(3px)}}
-    @media(prefers-reduced-motion:reduce){.pulse,.bar,.boot{animation:none}}
+    .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Inter, Helvetica, Arial, sans-serif; }
+    .mono { font-family: "JetBrains Mono", "SFMono-Regular", "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    .title { font-size: 13px; font-weight: 800; letter-spacing: 2px; }
+    .top-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; }
+    .top-value { font-size: 13px; font-weight: 800; }
+    .brand { font-size: 20px; font-weight: 900; letter-spacing: -0.8px; }
+    .section { font-size: 10.5px; font-weight: 800; letter-spacing: 1.6px; }
+    .hero-repo { font-size: 28px; font-weight: 900; letter-spacing: -0.6px; }
+    .hero-date { font-size: 38px; font-weight: 900; letter-spacing: -1px; }
+    .meta { font-size: 11px; font-weight: 700; }
+    .body-copy { font-size: 12.5px; font-weight: 500; }
+    .tiny { font-size: 9px; font-weight: 700; letter-spacing: 1px; }
+    .ledger-repo { font-size: 12px; font-weight: 800; }
+    .ledger-msg { font-size: 11px; font-weight: 500; }
+    .ledger-date { font-size: 9.5px; font-weight: 700; }
+    .number { font-size: 10px; font-weight: 800; }
+    .lang-name { font-size: 9.5px; font-weight: 700; }
+    .lang-pct { font-size: 8.5px; font-weight: 600; }
+    .chart-val { font-size: 8.5px; font-weight: 700; }
+    .chart-lbl { font-size: 8px; font-weight: 700; }
+    .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.2s ease-in-out infinite; }
+    .spin { transform-box: fill-box; transform-origin: center; animation: spin 24s linear infinite; }
+    @keyframes pulse { 50% { opacity: 0.35; transform: scale(0.7); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .pulse, .spin { animation: none; } }
   </style>
 
   <g clip-path="url(#frame)">
-    <rect width="1200" height="486" fill="#06182B"/>
+    <rect width="1200" height="486" fill="url(#bg)"/>
+    <rect width="1200" height="486" fill="url(#grid)"/>
 
-    <circle cx="30" cy="27" r="5" fill="#FF6469"/>
-    <text x="52" y="33" class="title" fill="#F4F8FC">LIVE SIGNALS // SOURCE CONTROL</text>
+    <!-- Header Bar -->
+    <rect x="0" y="0" width="1200" height="50" fill="#070B14" fill-opacity="0.8"/>
+    <path d="M0 50H1200" stroke="#334155" stroke-width="1"/>
+    <circle class="pulse" cx="30" cy="25" r="5" fill="#F472B6"/>
+    <text x="46" y="29.5" class="mono title" fill="#F8FAFC">LIVE SIGNALS // SOURCE CONTROL</text>
+    <g transform="translate(430 12)">
+      <rect width="130" height="26" rx="8" fill="#090F1C" stroke="#334155"/>
+      <text x="12" y="17" class="mono top-label" fill="#64748B">REPOS</text>
+      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#38BDF8">09</text>
+    </g>
+    <g transform="translate(572 12)">
+      <rect width="130" height="26" rx="8" fill="#090F1C" stroke="#334155"/>
+      <text x="12" y="17" class="mono top-label" fill="#64748B">COMMITS</text>
+      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#818CF8">950</text>
+    </g>
+    <g transform="translate(714 12)">
+      <rect width="130" height="26" rx="8" fill="#090F1C" stroke="#334155"/>
+      <text x="12" y="17" class="mono top-label" fill="#64748B">ACTIVE</text>
+      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#34D399">08/09</text>
+    </g>
+    <g transform="translate(856 12)">
+      <rect width="130" height="26" rx="8" fill="#090F1C" stroke="#334155"/>
+      <text x="12" y="17" class="mono top-label" fill="#64748B">SYNC DATE</text>
+      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#F472B6">11.05</text>
+    </g>
+    <text x="1146" y="31" text-anchor="end" class="sans brand" fill="#F8FAFC">NextCandy</text>
+    <path d="M1156 18L1172 10L1169 18L1153 26ZM1160 27L1176 19L1173 27L1157 35Z" fill="#F472B6"/>
 
-<g class="boot" style="animation-delay:0.06s" transform="translate(398 0)">
-      <text x="0" y="33" class="top-label" fill="#9FB2C3">REPOS</text>
-      <text x="54" y="33" class="top-value" fill="#FF6469">8</text>
-      <path d="M535 17V40" stroke="#3D5973"/>
-    </g>
-<g class="boot" style="animation-delay:0.12s" transform="translate(548 0)">
-      <text x="0" y="33" class="top-label" fill="#9FB2C3">LANGUAGES</text>
-      <text x="88" y="33" class="top-value" fill="#2AC2CE">5</text>
-      <path d="M685 17V40" stroke="#3D5973"/>
-    </g>
-<g class="boot" style="animation-delay:0.18s" transform="translate(698 0)">
-      <text x="0" y="33" class="top-label" fill="#9FB2C3">ACTIVE / 2026</text>
-      <text x="108" y="33" class="top-value" fill="#7896DB">7</text>
-      <path d="M835 17V40" stroke="#3D5973"/>
-    </g>
-<g class="boot" style="animation-delay:0.24s" transform="translate(848 0)">
-      <text x="0" y="33" class="top-label" fill="#9FB2C3">TODAY</text>
-      <text x="62" y="33" class="top-value" fill="#FF6469">11.05</text>
+    <!-- Top-Left Bento Card: Latest Commit Focus -->
+    <rect x="24" y="64" width="684" height="252" rx="12" fill="url(#card)" stroke="#1E293B"/>
+    <rect x="24" y="80" width="4" height="220" rx="2" fill="url(#accent)"/>
 
-    </g>
-    <text x="1028" y="35" class="brand" fill="#F4F8FC">NextCandy</text>
-    <path d="M1152 20L1168 12L1165 20L1149 28ZM1156 29L1172 21L1169 29L1153 37Z" fill="#FF6469"/>
-    <path d="M8 53H1192" stroke="#3D5973"/>
+    <g transform="translate(46 86)">
+      <rect x="0" y="0" width="172" height="22" rx="11" fill="#3B0D2C"/>
+      <circle class="pulse" cx="13" cy="11" r="3.5" fill="#F472B6"/>
+      <text x="24" y="14.5" class="mono tiny" fill="#F472B6">LATEST COMMIT PULSE</text>
 
-    <path d="M16 66H28M16 66V78" stroke="#FF6469" stroke-width="1.5"/>
-    <path d="M31 106V327" stroke="#3D5973" stroke-width="2" stroke-dasharray="16 7"/>
-    <circle cx="31" cy="196" r="14" fill="#06182B" stroke="#FF6469" stroke-width="5"/>
-    <circle cx="31" cy="196" r="4" fill="#FF6469"/>
-    <text x="54" y="91" class="section" fill="#FF6469">LIVE CLOCK</text>
-    <path d="M54 102H86" stroke="#FF6469" stroke-width="3"/>
-    <text x="116" y="193" class="hero-date" fill="#F4F8FC">2026-11-05</text>
-    <text x="514" y="180" class="hero-time" fill="#F4F8FC">11:36</text>
-    <text x="514" y="195" class="tiny" fill="#2AC2CE">BJT</text>
-    <text x="116" y="230" class="hero-repo" fill="#F4F8FC">nextcandy // LIVE PROFILE</text>
-    <g transform="translate(116 256)">
-      <circle cx="2" cy="-3" r="2" fill="none" stroke="#9FB2C3"/>
-      <circle cx="2" cy="8" r="2" fill="none" stroke="#9FB2C3"/>
-      <path d="M4 -3V8M4 2H13V6" fill="none" stroke="#9FB2C3"/>
-      <text x="22" y="1" class="meta" fill="#9FB2C3">main</text>
-      <text x="60" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="74" y="1" class="meta" fill="#2AC2CE">e9028ca</text>
-      <text x="132" y="1" class="meta" fill="#3D5973">│</text>
-      <text x="146" y="1" class="meta" fill="#9FB2C3">fix(notification): 静音不再无声——丢弃写日志、静音要确认、全局常驻提示 分类静音曾被设…</text>
-    </g>
-    <text x="116" y="295" class="body-copy" fill="#9FB2C3">DomainHunter: RDAP-first domain monitoring with safe avai…</text>
-    <text x="116" y="318" class="tiny" fill="#9FB2C3">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
-    <text x="116" y="340" class="tiny" fill="#2AC2CE">LIVE CLOCK · BEIJING (UTC+8)</text>
+      <rect x="182" y="0" width="88" height="22" rx="6" fill="#090F1C" stroke="#334155"/>
+      <text x="226" y="14.5" text-anchor="middle" class="mono tiny" fill="#CBD5E1">⎇ main</text>
 
-    <g transform="translate(657 193)">
-      <circle r="60" fill="none" stroke="#3D5973" stroke-dasharray="2 6"/>
-      <circle r="42" fill="none" stroke="#9FB2C3" stroke-opacity=".75" stroke-dasharray="1 5"/>
-      <circle r="24" fill="none" stroke="#FF6469" stroke-opacity=".8"/>
-      <path d="M-70 0H70M0 -70V70" stroke="#3D5973"/>
-      <circle class="pulse" r="6" fill="#FF6469"/>
-    </g>
-    <text x="657" y="274" text-anchor="middle" class="tiny" fill="#9FB2C3">SIGNAL STRENGTH</text>
-    <text x="612" y="295" class="section" fill="#FF6469">STRONG</text>
-    <rect x="674" y="285" width="3" height="12" fill="#FF6469"/><rect x="684" y="285" width="3" height="12" fill="#FF6469"/><rect x="694" y="285" width="3" height="12" fill="#FF6469"/><rect x="704" y="285" width="3" height="12" fill="#FF6469"/>
+      <rect x="278" y="0" width="86" height="22" rx="6" fill="#0C2D48"/>
+      <text x="321" y="14.5" text-anchor="middle" class="mono tiny" fill="#38BDF8">#e9028ca</text>
 
-    <path d="M768 66V353" stroke="#3D5973"/>
-    <text x="786" y="82" class="section" fill="#F4F8FC">RECENT TRANSMISSIONS</text>
-    <text x="1172" y="82" text-anchor="end" class="section" fill="#2AC2CE">VIEW ALL</text>
-    <path d="M1178 77L1184 82L1178 87" fill="none" stroke="#2AC2CE" stroke-width="1.5"/>
-    <path d="M786 91H1172" stroke="#3D5973"/>
-    <path d="M786 105V327" stroke="#3D5973"/>
-
-<g class="boot" style="animation-delay:0.16s">
-      <rect x="796" y="105" width="376" height="42" fill="#0B213A"/>
-      <path d="M796 147H1172" stroke="#3D5973"/>
-      <circle cx="786" cy="121" r="4.5" fill="#FF6469"/>
-      <rect x="796" y="112" width="22" height="22" fill="#FF6469"/>
-      <text x="807" y="127" text-anchor="middle" class="number" fill="#06182B">01</text>
-      <text x="838" y="122" class="ledger-repo" fill="#FF6469">nextcandy/DomainHunter</text>
-      <text x="838" y="139" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">fix(notification): 静音不再无声——丢弃写日志、静音要确认、…</text>
-      <text x="1148" y="122" text-anchor="end" class="ledger-time" fill="#FF6469">11:12</text>
-      <text x="1148" y="139" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-09-24</text>
-    </g>
-<g class="boot" style="animation-delay:0.23s">
-      <rect x="796" y="150" width="376" height="42" fill="none"/>
-      <path d="M796 192H1172" stroke="#3D5973"/>
-      <circle cx="786" cy="166" r="3.2" fill="#F4F8FC"/>
-      <rect x="796" y="157" width="22" height="22" fill="#F4F8FC"/>
-      <text x="807" y="172" text-anchor="middle" class="number" fill="#06182B">02</text>
-      <text x="838" y="167" class="ledger-repo" fill="#F4F8FC">nextcandy/onekey</text>
-      <text x="838" y="184" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">添加进度交接文档与项目约定 - docs/PROGRESS.md：部署状态、网…</text>
-      <text x="1148" y="167" text-anchor="end" class="ledger-time" fill="#F4F8FC">16:00</text>
-      <text x="1148" y="184" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-09-23</text>
-    </g>
-<g class="boot" style="animation-delay:0.3s">
-      <rect x="796" y="195" width="376" height="42" fill="none"/>
-      <path d="M796 237H1172" stroke="#3D5973"/>
-      <circle cx="786" cy="211" r="3.2" fill="#F4F8FC"/>
-      <rect x="796" y="202" width="22" height="22" fill="#F4F8FC"/>
-      <text x="807" y="217" text-anchor="middle" class="number" fill="#06182B">03</text>
-      <text x="838" y="212" class="ledger-repo" fill="#F4F8FC">nextcandy/content-animator</text>
-      <text x="838" y="229" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">完善中文项目说明</text>
-      <text x="1148" y="212" text-anchor="end" class="ledger-time" fill="#F4F8FC">05:11</text>
-      <text x="1148" y="229" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-08-06</text>
-    </g>
-<g class="boot" style="animation-delay:0.37s">
-      <rect x="796" y="240" width="376" height="42" fill="none"/>
-      <path d="M796 282H1172" stroke="#3D5973"/>
-      <circle cx="786" cy="256" r="3.2" fill="#F4F8FC"/>
-      <rect x="796" y="247" width="22" height="22" fill="#F4F8FC"/>
-      <text x="807" y="262" text-anchor="middle" class="number" fill="#06182B">04</text>
-      <text x="838" y="257" class="ledger-repo" fill="#F4F8FC">nextcandy/UnUseDomain</text>
-      <text x="838" y="274" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩器丢掉的 ba…</text>
-      <text x="1148" y="257" text-anchor="end" class="ledger-time" fill="#F4F8FC">16:32</text>
-      <text x="1148" y="274" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-07-23</text>
-    </g>
-<g class="boot" style="animation-delay:0.44s">
-      <rect x="796" y="285" width="376" height="42" fill="none"/>
-      <path d="M796 327H1172" stroke="#3D5973"/>
-      <circle cx="786" cy="301" r="3.2" fill="#F4F8FC"/>
-      <rect x="796" y="292" width="22" height="22" fill="#F4F8FC"/>
-      <text x="807" y="307" text-anchor="middle" class="number" fill="#06182B">05</text>
-      <text x="838" y="302" class="ledger-repo" fill="#F4F8FC">nextcandy/dshunter</text>
-      <text x="838" y="319" class="ledger-message" clip-path="url(#message-clip)" fill="#9FB2C3">Make domain showcase changes visible</text>
-      <text x="1148" y="302" text-anchor="end" class="ledger-time" fill="#F4F8FC">00:06</text>
-      <text x="1148" y="319" text-anchor="end" class="ledger-date" fill="#9FB2C3">2026-07-10</text>
+      <rect x="372" y="0" width="110" height="22" rx="6" fill="#062E26"/>
+      <text x="427" y="14.5" text-anchor="middle" class="mono tiny" fill="#34D399">GO MODULE</text>
     </g>
 
-    <path d="M8 365H1192" stroke="#3D5973"/>
-    <path d="M640 372V477" stroke="#3D5973"/>
-    <text x="28" y="382" class="section" fill="#F4F8FC">LANGUAGE TELEMETRY</text>
-    <text x="622" y="382" text-anchor="end" class="tiny" fill="#9FB2C3">REPOSITORY SHARE</text>
-    <path d="M28 393H622" stroke="#3D5973"/>
-    <rect x="28" y="404" width="572" height="13" fill="#1A3854"/>
+    <!-- Latest Repo Name & Date -->
+    <text x="46" y="148" class="mono hero-repo" fill="#F8FAFC">NextCandy / DomainHunter</text>
+    <text x="46" y="188" class="mono hero-date" fill="#38BDF8">2026-09-24</text>
+    <rect x="288" y="163" width="96" height="24" rx="6" fill="#090F1C" stroke="#334155"/>
+    <text x="336" y="179" text-anchor="middle" class="mono meta" fill="#CBD5E1">11:12 BJT</text>
 
-<rect class="bar" style="animation-delay:0.16s" x="28.0" y="404" width="281.0" height="13" fill="#2AC2CE"/>
-<rect class="bar" style="animation-delay:0.22s" x="311.0" y="404" width="70.2" height="13" fill="#7896DB"/>
-<rect class="bar" style="animation-delay:0.28s" x="383.2" y="404" width="70.2" height="13" fill="#FF6469"/>
-<rect class="bar" style="animation-delay:0.34s" x="455.4" y="404" width="70.2" height="13" fill="#B27ACB"/>
-<rect class="bar" style="animation-delay:0.4s" x="527.6" y="404" width="70.2" height="13" fill="#FFC44B"/>
-<rect class="bar" style="animation-delay:0.46s" x="599.8" y="404" width="0.0" height="13" fill="#8E9EAE"/>
-
-<g transform="translate(28 0)">
-      <circle cx="3" cy="440" r="3" fill="#2AC2CE"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">TypeScript</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">50.0%</text>
-    </g>
-<g transform="translate(123 0)">
-      <circle cx="3" cy="440" r="3" fill="#7896DB"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">Go</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">12.5%</text>
-    </g>
-<g transform="translate(218 0)">
-      <circle cx="3" cy="440" r="3" fill="#FF6469"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">Shell</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">12.5%</text>
-    </g>
-<g transform="translate(313 0)">
-      <circle cx="3" cy="440" r="3" fill="#B27ACB"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">CSS</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">12.5%</text>
-    </g>
-<g transform="translate(408 0)">
-      <circle cx="3" cy="440" r="3" fill="#FFC44B"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">HTML</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">12.5%</text>
-    </g>
-<g transform="translate(503 0)">
-      <circle cx="3" cy="440" r="3" fill="#8E9EAE"/>
-      <text x="12" y="443" class="language-name" fill="#F4F8FC">Other</text>
-      <text x="12" y="461" class="language-pct" fill="#9FB2C3">0.0%</text>
-    </g>
-    <text x="28" y="479" class="tiny" fill="#2AC2CE">TOP LANGUAGE · TYPESCRIPT</text>
-
-    <text x="658" y="382" class="section" fill="#F4F8FC">PUSH CADENCE</text>
-    <text x="1172" y="382" text-anchor="end" class="tiny" fill="#9FB2C3">LAST 28 DAYS</text>
-    <path d="M658 393H1172" stroke="#3D5973"/>
-    <path d="M658 406H1172M658 431H1172M658 456H1172" stroke="#3D5973" stroke-dasharray="2 6"/>
-    <text x="658" y="409" class="tiny" fill="#9FB2C3">0</text><text x="658" y="434" class="tiny" fill="#9FB2C3">1</text><text x="658" y="459" class="tiny" fill="#9FB2C3">0</text>
-
-<g transform="translate(671.2 0)">
-      <rect class="bar" style="animation-delay:0.18s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">OCT 09</text>
-    </g>
-<g transform="translate(688.8 0)">
-      <rect class="bar" style="animation-delay:0.21s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(706.2 0)">
-      <rect class="bar" style="animation-delay:0.25s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(723.8 0)">
-      <rect class="bar" style="animation-delay:0.29s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(741.2 0)">
-      <rect class="bar" style="animation-delay:0.32s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(758.8 0)">
-      <rect class="bar" style="animation-delay:0.35s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(776.2 0)">
-      <rect class="bar" style="animation-delay:0.39s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(793.8 0)">
-      <rect class="bar" style="animation-delay:0.43s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">OCT 16</text>
-    </g>
-<g transform="translate(811.2 0)">
-      <rect class="bar" style="animation-delay:0.46s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(828.8 0)">
-      <rect class="bar" style="animation-delay:0.5s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(846.2 0)">
-      <rect class="bar" style="animation-delay:0.53s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(863.8 0)">
-      <rect class="bar" style="animation-delay:0.56s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(881.2 0)">
-      <rect class="bar" style="animation-delay:0.6s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(898.8 0)">
-      <rect class="bar" style="animation-delay:0.64s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(916.2 0)">
-      <rect class="bar" style="animation-delay:0.67s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">OCT 23</text>
-    </g>
-<g transform="translate(933.8 0)">
-      <rect class="bar" style="animation-delay:0.71s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(951.2 0)">
-      <rect class="bar" style="animation-delay:0.74s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(968.8 0)">
-      <rect class="bar" style="animation-delay:0.78s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(986.2 0)">
-      <rect class="bar" style="animation-delay:0.81s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1003.8 0)">
-      <rect class="bar" style="animation-delay:0.84s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1021.2 0)">
-      <rect class="bar" style="animation-delay:0.88s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1038.8 0)">
-      <rect class="bar" style="animation-delay:0.92s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">OCT 30</text>
-    </g>
-<g transform="translate(1056.2 0)">
-      <rect class="bar" style="animation-delay:0.95s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1073.8 0)">
-      <rect class="bar" style="animation-delay:0.99s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1091.2 0)">
-      <rect class="bar" style="animation-delay:1.02s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1108.8 0)">
-      <rect class="bar" style="animation-delay:1.06s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1126.2 0)">
-      <rect class="bar" style="animation-delay:1.09s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3"></text>
-    </g>
-<g transform="translate(1143.8 0)">
-      <rect class="bar" style="animation-delay:1.12s" x="0" y="452.0" width="7.0" height="4.0" fill="#1A3854"/>
-      <text x="3.5" y="447.0" text-anchor="middle" class="chart-value" fill="#9FB2C3"></text>
-      <text x="3.5" y="476" text-anchor="middle" class="chart-label" fill="#9FB2C3">NOV 05</text>
+    <!-- Commit Message Box -->
+    <g transform="translate(46 206)">
+      <rect width="466" height="54" rx="8" fill="#090F1C" stroke="#334155"/>
+      <rect x="0" y="8" width="3.5" height="38" rx="1.7" fill="#38BDF8"/>
+      <text x="16" y="22" class="sans body-copy" font-weight="700" fill="#F8FAFC">fix(notification): 静音不再无声——丢弃写日志、静音要确认、全局…</text>
+      <text x="16" y="42" class="sans" font-size="11.5" fill="#64748B">DomainHunter: RDAP-first domain monitoring with safe availabil…</text>
     </g>
 
+    <text x="46" y="286" class="mono tiny" fill="#64748B">ACTIVE REPOSITORY STREAM · VERIFIED VIA GITHUB REST API</text>
+    <text x="46" y="302" class="mono tiny" fill="#34D399">● TELEMETRY STATUS: SYNCHRONIZED (BEIJING TIME UTC+8)</text>
+
+    <!-- Radar Gauge inside Top-Left Card -->
+    <g transform="translate(608 178)">
+      <circle r="68" fill="#090F1C" stroke="#334155" stroke-width="1"/>
+      <circle class="spin" r="56" fill="none" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="6 8" stroke-opacity="0.7"/>
+      <circle r="38" fill="none" stroke="#64748B" stroke-dasharray="2 5" stroke-opacity="0.6"/>
+      <circle r="20" fill="none" stroke="#F472B6" stroke-opacity="0.8"/>
+      <path d="M-64 0H64M0 -64V64" stroke="#334155" stroke-width="0.8"/>
+      <circle class="pulse" r="6" fill="#F472B6"/>
+      <text x="0" y="88" text-anchor="middle" class="mono tiny" fill="#64748B">SIGNAL INTEGRITY</text>
+      <text x="-18" y="106" text-anchor="middle" class="mono section" fill="#34D399">100%</text>
+      <rect x="14" y="96" width="4" height="11" rx="1" fill="#34D399"/>
+      <rect x="21" y="96" width="4" height="11" rx="1" fill="#34D399"/>
+      <rect x="28" y="96" width="4" height="11" rx="1" fill="#34D399"/>
+      <rect x="35" y="96" width="4" height="11" rx="1" fill="#34D399"/>
+    </g>
+
+    <!-- Bottom-Left Card: Language Telemetry -->
+    <rect x="24" y="330" width="334" height="138" rx="12" fill="url(#card)" stroke="#1E293B"/>
+    <text x="42" y="354" class="mono section" fill="#F8FAFC">LANGUAGE TELEMETRY</text>
+    <text x="340" y="354" text-anchor="end" class="mono tiny" fill="#38BDF8">5 STACKS</text>
+    <path d="M42 366H340" stroke="#334155"/>
+    <rect x="42" y="388" width="302" height="10" rx="5" fill="#090F1C"/>
+    <rect x="42.0" y="388" width="161.1" height="10" rx="3" fill="#38BDF8"/>
+    <rect x="206.1" y="388" width="32.2" height="10" rx="3" fill="#34D399"/>
+    <rect x="241.3" y="388" width="32.2" height="10" rx="3" fill="#818CF8"/>
+    <rect x="276.5" y="388" width="32.2" height="10" rx="3" fill="#F472B6"/>
+    <rect x="311.7" y="388" width="32.2" height="10" rx="3" fill="#FBBF24"/>
+    <g transform="translate(42 418)">
+      <circle cx="4" cy="-3.5" r="3.5" fill="#38BDF8"/>
+      <text x="13" y="0" class="mono lang-name" fill="#F8FAFC">TypeScript</text>
+      <text x="13" y="11" class="mono lang-pct" fill="#64748B">55.6% (5)</text>
+    </g>
+    <g transform="translate(146 418)">
+      <circle cx="4" cy="-3.5" r="3.5" fill="#34D399"/>
+      <text x="13" y="0" class="mono lang-name" fill="#F8FAFC">Go</text>
+      <text x="13" y="11" class="mono lang-pct" fill="#64748B">11.1% (1)</text>
+    </g>
+    <g transform="translate(250 418)">
+      <circle cx="4" cy="-3.5" r="3.5" fill="#818CF8"/>
+      <text x="13" y="0" class="mono lang-name" fill="#F8FAFC">Shell</text>
+      <text x="13" y="11" class="mono lang-pct" fill="#64748B">11.1% (1)</text>
+    </g>
+    <g transform="translate(42 442)">
+      <circle cx="4" cy="-3.5" r="3.5" fill="#F472B6"/>
+      <text x="13" y="0" class="mono lang-name" fill="#F8FAFC">CSS</text>
+      <text x="13" y="11" class="mono lang-pct" fill="#64748B">11.1% (1)</text>
+    </g>
+    <g transform="translate(146 442)">
+      <circle cx="4" cy="-3.5" r="3.5" fill="#FBBF24"/>
+      <text x="13" y="0" class="mono lang-name" fill="#F8FAFC">HTML</text>
+      <text x="13" y="11" class="mono lang-pct" fill="#64748B">11.1% (1)</text>
+    </g>
+
+    <!-- Bottom-Middle Card: Repository Commit Pulse -->
+    <rect x="374" y="330" width="334" height="138" rx="12" fill="url(#card)" stroke="#1E293B"/>
+    <text x="392" y="354" class="mono section" fill="#F8FAFC">REPO COMMIT PULSE</text>
+    <text x="690" y="354" text-anchor="end" class="mono tiny" fill="#34D399">8/9 ACTIVE IN 2026</text>
+    <path d="M392 366H690" stroke="#334155"/>
+    <g transform="translate(392.0 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="414.8" width="16" height="23.2" rx="4" fill="#34D399"/>
+      <text x="12" y="410.8" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">83</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">Hunter</text>
+    </g>
+    <g transform="translate(425.5 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="429.3" width="16" height="8.7" rx="4" fill="#818CF8"/>
+      <text x="12" y="425.3" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">4</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">onekey</text>
+    </g>
+    <g transform="translate(459.0 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="410.2" width="16" height="27.8" rx="4" fill="#38BDF8"/>
+      <text x="12" y="406.2" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">108</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">Amber</text>
+    </g>
+    <g transform="translate(492.5 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="410.5" width="16" height="27.5" rx="4" fill="#38BDF8"/>
+      <text x="12" y="406.5" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">106</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">Animat</text>
+    </g>
+    <g transform="translate(526.0 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="401.2" width="16" height="36.8" rx="4" fill="#38BDF8"/>
+      <text x="12" y="397.2" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">157</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">UnUse</text>
+    </g>
+    <g transform="translate(559.5 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="413.8" width="16" height="24.2" rx="4" fill="#38BDF8"/>
+      <text x="12" y="409.8" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">88</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">dshunt</text>
+    </g>
+    <g transform="translate(593.0 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="394.9" width="16" height="43.1" rx="4" fill="#38BDF8"/>
+      <text x="12" y="390.9" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">191</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">dh</text>
+    </g>
+    <g transform="translate(626.5 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="392.0" width="16" height="46.0" rx="4" fill="#F472B6"/>
+      <text x="12" y="388.0" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">207</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">dog.do</text>
+    </g>
+    <g transform="translate(660.0 0)">
+      <rect x="4" y="392" width="16" height="46" rx="4" fill="#090F1C"/>
+      <rect x="4" y="428.9" width="16" height="9.1" rx="4" fill="#FBBF24"/>
+      <text x="12" y="424.9" text-anchor="middle" class="mono chart-val" fill="#CBD5E1">6</text>
+      <text x="12" y="452" text-anchor="middle" class="mono chart-lbl" fill="#64748B">Home</text>
+    </g>
+
+    <!-- Right Card: Recent Transmissions -->
+    <rect x="724" y="64" width="452" height="404" rx="12" fill="url(#card)" stroke="#1E293B"/>
+    <text x="744" y="90" class="mono section" fill="#F8FAFC">RECENT TRANSMISSIONS // 近期源码动态</text>
+    <text x="1156" y="90" text-anchor="end" class="mono tiny" fill="#38BDF8">TOP 06 REPOS</text>
+    <path d="M740 100H1160" stroke="#334155"/>
+    <g transform="translate(740 112)">
+      <rect width="420" height="48" rx="8" fill="#090F1C" stroke="#34D399" stroke-width="1.2"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#062E26"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#34D399">01</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">DomainHunter</text>
+      <rect x="136.8" y="8" width="32" height="15" rx="4" fill="#062E26"/>
+      <text x="152.8" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#34D399">GO</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#34D399">2026-09-24 · 11:12</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">fix(notification): 静音不再无声——丢弃写日志、静音…</text>
+    </g>
+    <g transform="translate(740 168)">
+      <rect width="420" height="48" rx="8" fill="#0D1524" stroke="#334155" stroke-width="0.8"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#1E1B4B"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#818CF8">02</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">onekey</text>
+      <rect x="92.4" y="8" width="32" height="15" rx="4" fill="#1E1B4B"/>
+      <text x="108.4" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#818CF8">SH</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#CBD5E1">2026-09-23 · 16:00</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">添加进度交接文档与项目约定</text>
+    </g>
+    <g transform="translate(740 224)">
+      <rect width="420" height="48" rx="8" fill="#0D1524" stroke="#334155" stroke-width="0.8"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#0C2D48"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#38BDF8">03</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">TimeAmber</text>
+      <rect x="114.6" y="8" width="32" height="15" rx="4" fill="#0C2D48"/>
+      <text x="130.6" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#38BDF8">TS</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#CBD5E1">2026-08-18 · 12:08</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">feat: 后台内容同步中心，修复 Notion 正文回填与多数据…</text>
+    </g>
+    <g transform="translate(740 280)">
+      <rect width="420" height="48" rx="8" fill="#0D1524" stroke="#334155" stroke-width="0.8"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#0C2D48"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#38BDF8">04</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">content-animator</text>
+      <rect x="166.4" y="8" width="32" height="15" rx="4" fill="#0C2D48"/>
+      <text x="182.4" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#38BDF8">TS</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#CBD5E1">2026-08-06 · 05:11</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">完善中文项目说明</text>
+    </g>
+    <g transform="translate(740 336)">
+      <rect width="420" height="48" rx="8" fill="#0D1524" stroke="#334155" stroke-width="0.8"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#0C2D48"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#38BDF8">05</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">UnUseDomain</text>
+      <rect x="129.4" y="8" width="32" height="15" rx="4" fill="#0C2D48"/>
+      <text x="145.4" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#38BDF8">TS</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#CBD5E1">2026-07-23 · 16:32</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">fix(css): 厂商前缀改「前缀在前、标准在后」，找回被压缩…</text>
+    </g>
+    <g transform="translate(740 392)">
+      <rect width="420" height="48" rx="8" fill="#0D1524" stroke="#334155" stroke-width="0.8"/>
+      <rect x="8" y="8" width="24" height="32" rx="6" fill="#0C2D48"/>
+      <text x="20" y="28" text-anchor="middle" class="mono number" fill="#38BDF8">06</text>
+      <text x="42" y="20" class="mono ledger-repo" fill="#F8FAFC">dshunter</text>
+      <rect x="107.2" y="8" width="32" height="15" rx="4" fill="#0C2D48"/>
+      <text x="123.2" y="18.5" text-anchor="middle" class="mono" font-size="8.5" font-weight="800" fill="#38BDF8">TS</text>
+      <text x="408" y="19" text-anchor="end" class="mono ledger-date" fill="#CBD5E1">2026-07-10 · 00:06</text>
+      <text x="42" y="38" class="sans ledger-msg" clip-path="url(#msg-clip)" fill="#64748B">Make domain showcase changes visible</text>
+    </g>
   </g>
-  <path d="M1 1H1199V485H1Z" fill="none" stroke="#3D5973" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="484" rx="16" fill="none" stroke="#1E293B" stroke-width="1.5"/>
 </svg>
