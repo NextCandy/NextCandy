@@ -79,7 +79,7 @@
     <g transform="translate(856 12)">
       <rect width="130" height="26" rx="8" fill="#F1F5F9" stroke="#E2E8F0"/>
       <text x="12" y="17" class="mono top-label" fill="#64748B">SYNC DATE</text>
-      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#DB2777">11.07</text>
+      <text x="118" y="17.5" text-anchor="end" class="mono top-value" fill="#DB2777">11.08</text>
     </g>
     <text x="1146" y="31" text-anchor="end" class="sans brand" fill="#0F172A">NextCandy</text>
     <path d="M1156 18L1172 10L1169 18L1153 26ZM1160 27L1176 19L1173 27L1157 35Z" fill="#DB2777"/>
@@ -104,11 +104,11 @@
     </g>
 
     <!-- Current Date (Beijing Time) & Live Time Pill -->
-    <text x="46" y="152" class="mono hero-date" fill="#0F172A">2026-11-07</text>
+    <text x="46" y="152" class="mono hero-date" fill="#0F172A">2026-11-08</text>
     <rect x="330" y="121" width="104" height="28" rx="8" fill="#E0F2FE" stroke="#0284C7" stroke-opacity="0.4"/>
-    <text x="382" y="139" text-anchor="middle" class="mono meta" fill="#0284C7">21:55 BJT</text>
+    <text x="382" y="139" text-anchor="middle" class="mono meta" fill="#0284C7">02:27 BJT</text>
     <rect x="442" y="121" width="68" height="28" rx="8" fill="#F1F5F9" stroke="#E2E8F0"/>
-    <text x="476" y="139" text-anchor="middle" class="mono tiny" fill="#334155">SAT</text>
+    <text x="476" y="139" text-anchor="middle" class="mono tiny" fill="#334155">SUN</text>
 
     <!-- Latest Repo Subheader -->
     <text x="46" y="184" class="mono hero-repo" fill="#0284C7">NextCandy / DomainHunter</text>
@@ -123,7 +123,7 @@
     </g>
 
     <text x="46" y="280" class="mono tiny" fill="#64748B">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
-    <text x="46" y="298" class="mono tiny" fill="#059669">● LIVE CLOCK · BEIJING TIME (UTC+8) · 2026-11-07 21:55 BJT</text>
+    <text x="46" y="298" class="mono tiny" fill="#059669">● LIVE CLOCK · BEIJING TIME (UTC+8) · 2026-11-08 02:27 BJT</text>
 
     <!-- Radar Gauge inside Top-Left Card -->
     <g transform="translate(608 178)">
