@@ -106,7 +106,7 @@
     <!-- Current Date (Beijing Time) & Live Time Pill -->
     <text x="46" y="152" class="mono hero-date" fill="#F8FAFC">2026-11-13</text>
     <rect x="330" y="121" width="104" height="28" rx="8" fill="#0C2D48" stroke="#38BDF8" stroke-opacity="0.4"/>
-    <text x="382" y="139" text-anchor="middle" class="mono meta" fill="#38BDF8">09:29 BJT</text>
+    <text x="382" y="139" text-anchor="middle" class="mono meta" fill="#38BDF8">16:40 BJT</text>
     <rect x="442" y="121" width="68" height="28" rx="8" fill="#090F1C" stroke="#334155"/>
     <text x="476" y="139" text-anchor="middle" class="mono tiny" fill="#CBD5E1">FRI</text>
 
@@ -123,7 +123,7 @@
     </g>
 
     <text x="46" y="280" class="mono tiny" fill="#64748B">LATEST SOURCE · NEXTCANDY/DOMAINHUNTER</text>
-    <text x="46" y="298" class="mono tiny" fill="#34D399">● LIVE CLOCK · BEIJING TIME (UTC+8) · 2026-11-13 09:29 BJT</text>
+    <text x="46" y="298" class="mono tiny" fill="#34D399">● LIVE CLOCK · BEIJING TIME (UTC+8) · 2026-11-13 16:40 BJT</text>
 
     <!-- Radar Gauge inside Top-Left Card -->
     <g transform="translate(608 178)">
